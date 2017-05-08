@@ -5,12 +5,12 @@
 <?php require_once 'dbconnect.php'?>
 <?php
 $allQuestionsQuery = $con->prepare(<<<'SQL'
-SELECT id, question FROM questions;
+SELECT id FROM questions;
 SQL
 );
 
 $categoryQuestionsQuery = $con->prepare(<<<'SQL'
-SELECT questions.id, questions.question FROM questions
+SELECT questions.id FROM questions
 INNER JOIN categories ON questions.FK_categories = categories.id
 WHERE categories.category = ?;
 SQL
@@ -29,14 +29,29 @@ switch ($categoryId) {
 
 }
 
-function initQuiz($questionResults) {
+/**
+ * @param bool|mysqli_result $questionResults
+ */
+function initQuiz($questionResults, $num=4) {
 
+    $questions = [];
+    while ($question = $questionResults->fetch_assoc()) {
+        $questions[] = $question['id'];
+    }
+    $pickedQuestions = array_rand($questions, $num);
+    global $categoryId;
+    $_SESSION['quiz_'.$categoryId] = json_encode($pickedQuestions);
 }
+
 
 
 ?>
 <body>
 <div class="container">
+    <script>
+        var selectedQuestions = <?php echo $_SESSION['quiz_'.$categoryId];?>;
+        console.log(selectedQuestions);
+    </script>
 
 
 </div>
