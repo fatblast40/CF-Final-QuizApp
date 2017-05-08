@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2017 at 11:34 AM
+-- Generation Time: May 08, 2017 at 12:08 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -37,6 +37,17 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `FK_users`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `id` int(11) NOT NULL,
+  `answer` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -99,25 +110,22 @@ INSERT INTO `categories` (`id`, `category`, `image`) VALUES
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `question` varchar(200) NOT NULL,
-  `answer` varchar(50) NOT NULL,
-  `wrong_answer_1` varchar(50) NOT NULL,
-  `wrong_answer_2` varchar(50) NOT NULL,
-  `wrong_answer_3` varchar(50) NOT NULL,
-  `FK_categories` int(11) NOT NULL
+  `FK_categories` int(11) NOT NULL,
+  `FK_answers` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `question`, `answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3`, `FK_categories`) VALUES
-(1, 'What is the capital of Austria?', 'Vienna', 'Venice', 'Budapest', 'Bratislava', 1),
-(2, 'Which American Football team has a primary color of green?', 'New York Jets', 'New York Giants', 'Los Angeles Rams', 'Las Vegas Raiders', 2),
-(3, 'Who is the new President of France?', 'Emmanuel Macron', 'Marine Le Pen', 'Charles De Gaulle', 'Napolean Bonaparte', 3),
-(4, 'What is the funniest animal on Youtube?', 'Cat', 'Dog', 'Monkey', 'Sloth', 7),
-(5, 'How many countries are there in the world?', '196', '206', '197', '200', 5),
-(6, 'What is the signature dish from Austria?', 'Wienerschnitzel', 'Doughnut', 'Hamburger', 'Croissant', 6),
-(7, 'Who is the most famous celebrity from Austria?', 'Arnold Schwarzenegger', 'David Hasselhof', 'Lisa Dushchek', 'Angela Merkel', 4);
+INSERT INTO `questions` (`id`, `question`, `FK_categories`, `FK_answers`) VALUES
+(1, 'What is the capital of Austria?', 1, 0),
+(2, 'Which American Football team has a primary color of green?', 2, 0),
+(3, 'Who is the new President of France?', 3, 0),
+(4, 'What is the funniest animal on Youtube?', 7, 0),
+(5, 'How many countries are there in the world?', 5, 0),
+(6, 'What is the signature dish from Austria?', 6, 0),
+(7, 'Who is the most famous celebrity from Austria?', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -172,6 +180,18 @@ INSERT INTO `user` (`id`, `avatar_id`, `nickname`, `email`, `password`) VALUES
 (8, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
 (9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wrong_answers`
+--
+
+CREATE TABLE `wrong_answers` (
+  `id` int(11) NOT NULL,
+  `FK_questions` int(11) NOT NULL,
+  `FK_answers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -183,6 +203,13 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`FK_users`),
   ADD KEY `id` (`id`,`FK_users`);
+
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `answer` (`answer`);
 
 --
 -- Indexes for table `avatar`
@@ -204,7 +231,8 @@ ALTER TABLE `categories`
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`),
-  ADD KEY `FK_categories` (`FK_categories`);
+  ADD KEY `FK_categories` (`FK_categories`),
+  ADD KEY `FK_answers` (`FK_answers`);
 
 --
 -- Indexes for table `quiz-questions`
@@ -232,6 +260,14 @@ ALTER TABLE `user`
   ADD KEY `id` (`id`,`avatar_id`);
 
 --
+-- Indexes for table `wrong_answers`
+--
+ALTER TABLE `wrong_answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_questions` (`FK_questions`),
+  ADD KEY `FK_answers` (`FK_answers`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -240,6 +276,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `avatar`
 --
@@ -271,6 +312,11 @@ ALTER TABLE `quizzes`
 ALTER TABLE `user`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `wrong_answers`
+--
+ALTER TABLE `wrong_answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Constraints for dumped tables
 --
 
@@ -279,6 +325,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`id`) REFERENCES `questions` (`FK_answers`);
 
 --
 -- Constraints for table `questions`
