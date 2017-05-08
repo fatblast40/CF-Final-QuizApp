@@ -19,7 +19,7 @@ $categoriesResult = $categoriesQuery->get_result();
     $categories = [[
             'id' => 0,
             'category' => 'mixed',
-            'image' => 'cat0.png'
+            'image' => 'mixed_category.png'
     ]];
     while ($category = $categoriesResult->fetch_assoc()) {
         $categories[] = $category;
