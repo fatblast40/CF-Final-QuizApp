@@ -19,7 +19,7 @@ header h1 {
     height: 50px;
 }
 #header{
-    background-color: darkblue;
+    background-color: black;
     height: 110px;
 }
 
@@ -44,17 +44,88 @@ header h1 {
 }
 
 body {
-    background-image: url("pictures/blue_background.jpg");
-    /*background-size: 100%;*/
-    /*background-color: lightblue;*/
+    display: block;
+  position: relative;
+
 }
+
+body::after {
+  content: "";
+  background: url("../pictures/grey_background.jpg");
+  background-size: 100% 100%;
+  /*opacity: 0.7;*/
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
 
 .white{
     color: white;
 }
 
 .shadow {
-    -webkit-box-shadow: -2px 11px 5px -11px rgba(0,0,0,0.75);
-    -moz-box-shadow: -2px 11px 5px -11px rgba(0,0,0,0.75);
-    box-shadow: -2px 11px 5px -11px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 6px 16px -3px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 6px 16px -3px rgba(255,255,255,1);
+    box-shadow: 0px 6px 16px -3px rgba(255,255,255,1);
+
+}
+
+
+#play_button{
+    background-color: white;
+}
+
+.margin-top {
+    margin-top: 2%;
+}
+
+.left_round_side {
+    background-color: white;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
+}
+
+ /* unvisited link */
+#play div:link {
+    color: black;
+    background-color: white;
+}
+
+/* visited link */
+#play div:visited {
+    color: black;
+    background-color: white;
+}
+
+/* mouse over link */
+#play div:hover {
+    color:white;
+    background-color: #4D97FF;
+}
+
+/* selected link */
+#play div:active {
+    color:white;
+    background-color: #4D97FF;
+}
+#play_line{
+    margin-top:35px;
+}
+#play_line hr {
+    border: 4px solid white;
+
+}
+#play_button {
+    margin-top:  -55px;
+}
+
+.wrapper {
+    background-color: white;
+    margin:10px;
+    height: 200px;
 }

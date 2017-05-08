@@ -43,12 +43,24 @@ require_once('includes/head_tag.php');
 		<main class="col-xs-12">
 			<section class="row">
 				<!-- add main content here -->
-
-
-				<div class="col-xs-12">
-					<p>hello</p>
-					<img class="img-circle show_avatar border" src="pictures/avatar1.jpg" alt="avatar" id="avatar_img">
-
+				<div class="col-xs-12" id="play_line">
+					<hr>
+				</div>
+				<a href="quiz_categories.php" id="play">
+					<div class="col-xs-8 col-xs-offset-2 text-center margin-top left_round_side" id="play_button">
+						<h1 >PLAY!</h1>		
+					</div>
+				</a>
+				<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+					<div class="row">
+						<a href="my_quizzes.php">
+							<div class="col-xs-6">
+								<div class="wrapper text-center">
+									<h2>My Quizzes</h2>
+								</div>
+							</div>
+						</a>
+					</div>
 				</div>
 	
 
