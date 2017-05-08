@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2017 at 10:14 AM
+-- Generation Time: May 08, 2017 at 11:34 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -73,21 +73,22 @@ INSERT INTO `avatar` (`id`, `location`) VALUES
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `category` varchar(50) NOT NULL
+  `category` varchar(50) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `category`) VALUES
-(1, 'geography'),
-(2, 'sports'),
-(3, 'politics'),
-(4, 'entertainment'),
-(5, 'travel'),
-(6, 'food'),
-(7, 'animals');
+INSERT INTO `categories` (`id`, `category`, `image`) VALUES
+(1, 'geography', ''),
+(2, 'sports', ''),
+(3, 'politics', ''),
+(4, 'entertainment', ''),
+(5, 'travel', ''),
+(6, 'food', ''),
+(7, 'animals', '');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,6 @@ CREATE TABLE `questions` (
   `wrong_answer_1` varchar(50) NOT NULL,
   `wrong_answer_2` varchar(50) NOT NULL,
   `wrong_answer_3` varchar(50) NOT NULL,
-  `image` varchar(50) NOT NULL,
   `FK_categories` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -110,8 +110,14 @@ CREATE TABLE `questions` (
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `question`, `answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3`, `image`, `FK_categories`) VALUES
-(1, 'What is the capital of Austria?', 'Vienna', 'Venice', 'Budapest', 'Bratislava', '', 1);
+INSERT INTO `questions` (`id`, `question`, `answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3`, `FK_categories`) VALUES
+(1, 'What is the capital of Austria?', 'Vienna', 'Venice', 'Budapest', 'Bratislava', 1),
+(2, 'Which American Football team has a primary color of green?', 'New York Jets', 'New York Giants', 'Los Angeles Rams', 'Las Vegas Raiders', 2),
+(3, 'Who is the new President of France?', 'Emmanuel Macron', 'Marine Le Pen', 'Charles De Gaulle', 'Napolean Bonaparte', 3),
+(4, 'What is the funniest animal on Youtube?', 'Cat', 'Dog', 'Monkey', 'Sloth', 7),
+(5, 'How many countries are there in the world?', '196', '206', '197', '200', 5),
+(6, 'What is the signature dish from Austria?', 'Wienerschnitzel', 'Doughnut', 'Hamburger', 'Croissant', 6),
+(7, 'Who is the most famous celebrity from Austria?', 'Arnold Schwarzenegger', 'David Hasselhof', 'Lisa Dushchek', 'Angela Merkel', 4);
 
 -- --------------------------------------------------------
 
@@ -248,7 +254,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `quiz-questions`
 --
