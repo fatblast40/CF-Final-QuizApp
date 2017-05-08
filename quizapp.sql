@@ -30,8 +30,8 @@ USE `quizapp`;
 --
 
 CREATE TABLE `admins` (
-  `id` int(15) NOT NULL,
-  `FK_users` int(15) NOT NULL
+  `id` int(11) NOT NULL,
+  `FK_users` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `answers` (
 --
 
 CREATE TABLE `avatars` (
-  `id` int(15) NOT NULL,
+  `id` int(11) NOT NULL,
   `location` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -162,8 +162,8 @@ CREATE TABLE `quizzes` (
 --
 
 CREATE TABLE `users` (
-  `id` int(15) NOT NULL,
-  `FK_avatars` int(15) NOT NULL,
+  `id` int(11) NOT NULL,
+  `FK_avatars` int(11) NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -263,7 +263,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `answers`
 --
@@ -273,17 +273,17 @@ ALTER TABLE `answers`
 -- AUTO_INCREMENT for table `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `quiz-questions`
 --
@@ -298,7 +298,7 @@ ALTER TABLE `quizzes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- Constraints for dumped tables
 --
