@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2017 at 12:08 PM
+-- Generation Time: May 08, 2017 at 03:16 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -16,9 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-DROP DATABASE `quizapp`;
-CREATE DATABASE `quizapp`;
-USE `quizapp`;
 --
 -- Database: `quizapp`
 --
@@ -50,8 +47,8 @@ INSERT INTO `admins` (`id`, `FK_users`) VALUES
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
   `answer` varchar(255) NOT NULL,
-  `FK_question` INT NOT NULL,
-  `correct` BOOLEAN NOT NULL DEFAULT FALSE
+  `FK_question` int(11) NOT NULL,
+  `correct` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -98,13 +95,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category`, `image`) VALUES
-(1, 'geography', ''),
-(2, 'sports', ''),
-(3, 'politics', ''),
-(4, 'entertainment', ''),
-(5, 'travel', ''),
-(6, 'food', ''),
-(7, 'animals', '');
+(1, 'geography', 'cat1.png'),
+(2, 'sports', 'cat2.png'),
+(3, 'politics', 'cat3.png'),
+(4, 'entertainment', 'cat4.png'),
+(5, 'travel', 'cat5.png'),
+(6, 'food', 'cat6.png'),
+(7, 'animals', 'cat7.png'),
+(8, 'web development', 'cat8.png');
 
 -- --------------------------------------------------------
 
@@ -184,8 +182,6 @@ INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
 (8, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
 (9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
--- --------------------------------------------------------
-
 --
 -- Indexes for dumped tables
 --
@@ -206,7 +202,6 @@ ALTER TABLE `answers`
   ADD KEY `answer` (`answer`),
   ADD KEY `FK_question` (`FK_question`),
   ADD KEY `correct` (`correct`);
-
 
 --
 -- Indexes for table `avatars`
@@ -255,7 +250,7 @@ ALTER TABLE `users`
   ADD KEY `FK_avatars` (`FK_avatars`),
   ADD KEY `id` (`id`,`FK_avatars`);
 
-
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -263,7 +258,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `answers`
 --
@@ -273,17 +268,17 @@ ALTER TABLE `answers`
 -- AUTO_INCREMENT for table `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `quiz-questions`
 --
@@ -298,8 +293,8 @@ ALTER TABLE `quizzes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- Constraints for dumped tables
 --
 
@@ -339,8 +334,6 @@ ALTER TABLE `quizzes`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`);
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
