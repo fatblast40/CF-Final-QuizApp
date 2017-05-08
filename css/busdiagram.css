@@ -1,0 +1,55 @@
+
+.diagram-row {
+    display: flex;
+}
+.diagram-col {
+    width: 72px;
+    height: 72px;
+}
+
+
+.seats-diagram {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.seat-image {
+
+    width: 100%;
+    height: 80%;
+}
+.rotateimg90 {
+    -webkit-transform:rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.rotateimg270 {
+    -webkit-transform:rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.clickable-image
+{
+    cursor: pointer;
+
+}
+.seat-discounted-1
+{
+    background-color: #c1c1c1;
+}
+
+.seat-discounted-2
+{
+    background-color: #8b8b94;
+}
+
+.seat-discounted-3
+{
+    background-color: #3f3f3f;
+}
