@@ -2,8 +2,8 @@
 <?php
 
 
- $con = mysqli_connect("localhost","root","","codebus");
- $select = mysqli_select_db($con, 'codebus');
+ $con = mysqli_connect("localhost","root","","quizapp");
+ $select = mysqli_select_db($con, 'quizapp');
 
 // Check connection
 if (mysqli_connect_errno())

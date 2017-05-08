@@ -1,9 +1,9 @@
 
 
 <header class="row shadow header_margin">
-		<div class="col-xs-12 col-sm-6">
-			<span><img id="logo" src="pictures/logo.png" alt="logo"></span>
-			<!-- <span><h1 class="brandfont">Code Bus</h1></span> -->
+		<div class="col-xs-1">
+
+			<input type="image" src="pictures/back_button.png" id="back_button"/>
 		</div>
 		<div class="col-xs-12 col-sm-6">
 			<div class="padding">
@@ -11,13 +11,10 @@
 					
 					<?php
 
-						echo'<div class="col-xs-10">
-								Welcome back, '.$user_title.' '. $user_last_name.'!<br>
-			       				<a href="logout.php?logout">Sign Out</a>
-			       			</div>
-			       			<div class="col-xs-2 pull-right">
+						echo'
+			       			<figure class="col-xs-2 pull-right">
 			       			<img class="img-circle show_avatar border" src="'.$user_avatar.'" alt="avatar">
-			       			</div>';
+			       			</figure>';
 			       	?>
 
 		    	</div>
