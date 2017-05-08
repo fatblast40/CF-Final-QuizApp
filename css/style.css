@@ -77,7 +77,8 @@ body {
 
 
 #play_button{
-    background-color: white;
+    background-color: #EDB516;
+    color: white;
 }
 
 .margin-top {
@@ -93,14 +94,14 @@ body {
 
  /* unvisited link */
 #play div:link {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #EDB516;
 }
 
 /* visited link */
 #play div:visited {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #EDB516;
 }
 
 /* mouse over link */
@@ -123,10 +124,63 @@ body {
 }
 #play_button {
     margin-top:  -55px;
+    margin-bottom: 20px;
 }
 
 .wrapper {
     background-color: white;
-    margin:10px;
+    margin-top:2%;
+    margin-bottom:2%;
+    margin-left:-10px;
+    margin-right:-10px;
+
     height: 200px;
+    border-radius: 22px 22px 22px 22px;
+    -moz-border-radius: 22px 22px 22px 22px;
+    -webkit-border-radius: 22px 22px 22px 22px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+.wrapper h2 {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+
+}
+
+#category_panel {
+    border-radius: 0px 0px 22px 22px;
+    -moz-border-radius: 0px 0px 22px 22px;
+    -webkit-border-radius: 0px 0px 22px 22px;  
+}
+
+#category_header {
+   
+    background-color:#4D97FF;
+}
+
+
+ /* unvisited link */
+.wrapper:link {
+    color: black;
+    background-color: white;
+}
+
+/* visited link */
+.wrapper:visited {
+    color: black;
+    background-color: white;
+}
+
+/* mouse over link */
+.wrapper:hover {
+    color:white;
+    background-color: #4D97FF;
+}
+
+/* selected link */
+.wrapper:active {
+    color:white;
+    background-color: #4D97FF;
 }

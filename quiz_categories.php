@@ -67,8 +67,8 @@ require_once('includes/head_tag.php');
         ?>
         <div class="col-xs-6 col-md-3">
             <a href="quiz_play.php?category=<?php echo $category['id']?>">
-            <div class="panel panel-primary">
-                <div class="panel-heading text-center">
+            <div class="panel panel-primary" id="category_panel">
+                <div class="text-center panel-heading" id="category_header">
                     <h3><?php echo $category['category']?></h3>
                 </div>
 

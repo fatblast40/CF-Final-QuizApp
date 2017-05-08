@@ -18,12 +18,12 @@ require_once('includes/head_tag.php');
   <div id="main" class="container-fluid clear-top">
 	<!-- header -->
 	<header class="row shadow" id="header">
-			<div class="col-xs-3">
+			<!-- <div class="col-xs-3">
 				<a href="home_user.php">
 					<img alt="back_button" src="pictures/back_button.png" id="back_button"/>
 				</a>
-			</div>		
-			<div class="col-xs-6 white text-center">
+			</div>	 -->	
+			<div class="col-xs-6 col-xs-offset-3 white text-center">
 				<h1 class="heading_font">Menu</h1>
 			</div>		       			
 		<?php
@@ -51,12 +51,37 @@ require_once('includes/head_tag.php');
 						<h1 >PLAY!</h1>		
 					</div>
 				</a>
-				<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+				<div class="col-xs-12  col-sm-8 col-sm-offset-2">
 					<div class="row">
+					<!-- my quizzes -->
 						<a href="my_quizzes.php">
 							<div class="col-xs-6">
 								<div class="wrapper text-center">
 									<h2>My Quizzes</h2>
+								</div>
+							</div>
+						</a>
+						<!-- Statistics -->
+						<a href="my_statistics.php">
+							<div class="col-xs-6">
+								<div class="wrapper text-center">
+									<h2>My Statistics</h2>
+								</div>
+							</div>
+						</a>
+						<!-- Top 10 -->
+						<a href="top_10.php">
+							<div class="col-xs-6">
+								<div class="wrapper text-center">
+									<h2>Top 10</h2>
+								</div>
+							</div>
+						</a>
+						<!-- Change personal data -->
+						<a href="change_personal_data.php">
+							<div class="col-xs-6">
+								<div class="wrapper text-center">
+									<h2>Change Personal Data</h2>
 								</div>
 							</div>
 						</a>
