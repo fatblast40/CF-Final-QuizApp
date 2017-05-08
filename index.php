@@ -55,13 +55,13 @@
    
    $password = hash('sha256', $password); // password hashing using SHA256
   // user
-   $user_query = "SELECT id, email, nickname, password FROM user WHERE email='$email'";
+   $user_query = "SELECT id, email, nickname, password FROM users WHERE email='$email'";
    $res_user = mysqli_query($con, $user_query);
    $row_user = mysqli_fetch_array($res_user);
    $count_user = mysqli_num_rows($res_user); // if uname/pass correct it returns must be 1 row
    // echo $count_user;
    // admin
-   $res_admin=mysqli_query($con, "SELECT user.id, email, nickname, password FROM user JOIN admin ON user.id = admin.FK_users WHERE email='$email'");
+   $res_admin=mysqli_query($con, "SELECT users.id, email, nickname, password FROM users JOIN admins ON users.id = admins.FK_users WHERE email='$email'");
    $row_admin=mysqli_fetch_array($res_admin);
    $count_admin = mysqli_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
    // echo $count_admin;
@@ -106,13 +106,13 @@
 <body>
   <div id="wrap">
   <div id="main" class="container clear-top">
-  
+<!--   
   <header class="row shadow">
     <div class="col-xs-6">
       <span><img id="logo" src="pictures/logo.png" alt="logo"></span>
-      <!-- <span><h1 class="brandfont">Code Library</h1></span> -->
+      <span><h1 class="brandfont">Code Library</h1></span>
     </div>
-  </header>
+  </header> -->
     <div class="row">
       <div class="col-xs-12">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">

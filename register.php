@@ -63,7 +63,7 @@
    $nameError = "Name must have atleat 3 characters.";
   } else {
    // check whether the nickname exist or not
-   $query_nickname = "SELECT nickname FROM user WHERE user.nickname='$nickname'";
+   $query_nickname = "SELECT nickname FROM users WHERE users.nickname='$nickname'";
    $result_nickname = mysqli_query($con, $query_nickname);
    $count_nickname = mysqli_num_rows($result_nickname);
    if($count_nickname!=0){
@@ -79,7 +79,7 @@
    $emailError = "Please enter valid email address.";
   } else {
    // check whether the email exists or not
-   $query_email = "SELECT email FROM user WHERE user.email='$email'";
+   $query_email = "SELECT email FROM users WHERE users.email='$email'";
    $result_email = mysqli_query($con, $query_email);
    $count_email = mysqli_num_rows($result_email);
    if($count_email!=0){
@@ -118,7 +118,7 @@
   if( $error == 0 ) {
    // echo "no error";
     
-   $query_user = "INSERT INTO user (nickname, email, password, avatar_id) VALUES('$nickname', '$email', '$password', $avatar)";
+   $query_user = "INSERT INTO users (nickname, email, password, FK_avatars) VALUES('$nickname', '$email', '$password', $avatar)";
    $res_user = mysqli_query($con, $query_user);
    
    if ($res_user) {
@@ -205,7 +205,7 @@ require_once('includes/head_tag.php');
         <hr>
 
         <?php
-          $query_avatar = "SELECT * FROM avatar";
+          $query_avatar = "SELECT * FROM avatars";
           $res_avatar = mysqli_query($con, $query_avatar);
 
           while($avatarRow=mysqli_fetch_array($res_avatar)){
@@ -237,45 +237,7 @@ require_once('includes/head_tag.php');
   <?php
 require_once('includes/footer.php');
   ?>
-<!-- <script type="text/javascript" src="js/register.js"></script> -->
-<script>
-  //Storing data:
-$("#btn-signup").on("click", save_json);
 
-function save_json() {
-    signup = {
-        email: document.getElementById("email").value,
-        first_name: document.getElementById("first_name").value,
-        family_name: document.getElementById("family_name").value,
-        telephone: document.getElementById("telephone").value,
-        year: document.getElementById("year").value,
-        country: document.getElementById("country").value,
-        iban: document.getElementById("iban").value
-    }
-
-    myJSON = JSON.stringify(signup);
-    localStorage.setItem("signupJSON", myJSON);
-    console.log("new data should be saved in json");
-};
-
-// fill data from json
-fill_data();
-
-function fill_data() {
-    var text;
-    text = localStorage.getItem("signupJSON");
-    signup = JSON.parse(text);
-    // $("#nickname").val(signup.nickname);
-    $("#email").val(signup.email);
-    $("#country").val(signup.country);
-    $("#iban").val(signup.iban);
-    $("#first_name").val(signup.first_name);
-    $("#family_name").val(signup.family_name);
-    $("#telephone").val(signup.telephone);
-    $("#year").val(signup.year);
-    console.log("new data should be received from json");
-};
-</script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

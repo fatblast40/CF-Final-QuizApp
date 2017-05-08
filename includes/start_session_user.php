@@ -11,9 +11,9 @@
 
 
  // select logged-in users detail
- $res=mysqli_query($con, "SELECT nickname, user.id AS user_id, avatar.location AS avatar, avatar.id AS avatar_id FROM user 
- 	JOIN avatar ON user.FK_avatar=avatar.id 
- 	WHERE user.id=".$_SESSION['user']);
+ $res=mysqli_query($con, "SELECT nickname, users.id AS user_id, avatars.location AS avatar, avatars.id AS avatar_id, email FROM users 
+ 	JOIN avatars ON users.FK_avatars=avatars.id 
+ 	WHERE users.id=".$_SESSION['user']);
 	 $userRow=mysqli_fetch_array($res);
 	 $user_id = $userRow['user_id'];
 	 $user_avatar = $userRow['avatar'];
