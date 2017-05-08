@@ -16,6 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+DROP DATABASE `quizapp`;
+CREATE DATABASE `quizapp`;
+USE `quizapp`;
 --
 -- Database: `quizapp`
 --
@@ -23,19 +26,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `admins`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
   `id` int(15) NOT NULL,
   `FK_users` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data for table `admins`
 --
 
-INSERT INTO `admin` (`id`, `FK_users`) VALUES
+INSERT INTO `admins` (`id`, `FK_users`) VALUES
 (1, 1);
 
 -- --------------------------------------------------------
@@ -46,25 +49,27 @@ INSERT INTO `admin` (`id`, `FK_users`) VALUES
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
-  `answer` varchar(255) NOT NULL
+  `answer` varchar(255) NOT NULL,
+  `FK_question` INT NOT NULL,
+  `correct` BOOLEAN NOT NULL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avatar`
+-- Table structure for table `avatars`
 --
 
-CREATE TABLE `avatar` (
+CREATE TABLE `avatars` (
   `id` int(15) NOT NULL,
   `location` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `avatar`
+-- Dumping data for table `avatars`
 --
 
-INSERT INTO `avatar` (`id`, `location`) VALUES
+INSERT INTO `avatars` (`id`, `location`) VALUES
 (1, 'pictures/avatar1.jpg'),
 (2, 'pictures/avatar2.jpg'),
 (3, 'pictures/avatar3.jpg'),
@@ -110,22 +115,21 @@ INSERT INTO `categories` (`id`, `category`, `image`) VALUES
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `question` varchar(200) NOT NULL,
-  `FK_categories` int(11) NOT NULL,
-  `FK_answers` int(11) NOT NULL
+  `FK_categories` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `question`, `FK_categories`, `FK_answers`) VALUES
-(1, 'What is the capital of Austria?', 1, 0),
-(2, 'Which American Football team has a primary color of green?', 2, 0),
-(3, 'Who is the new President of France?', 3, 0),
-(4, 'What is the funniest animal on Youtube?', 7, 0),
-(5, 'How many countries are there in the world?', 5, 0),
-(6, 'What is the signature dish from Austria?', 6, 0),
-(7, 'Who is the most famous celebrity from Austria?', 4, 0);
+INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
+(1, 'What is the capital of Austria?', 1),
+(2, 'Which American Football team has a primary color of green?', 2),
+(3, 'Who is the new President of France?', 3),
+(4, 'What is the funniest animal on Youtube?', 7),
+(5, 'How many countries are there in the world?', 5),
+(6, 'What is the signature dish from Austria?', 6),
+(7, 'Who is the most famous celebrity from Austria?', 4);
 
 -- --------------------------------------------------------
 
@@ -154,22 +158,22 @@ CREATE TABLE `quizzes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(15) NOT NULL,
-  `avatar_id` int(15) NOT NULL,
+  `FK_avatars` int(15) NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`id`, `avatar_id`, `nickname`, `email`, `password`) VALUES
+INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
 (1, 1, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
 (2, 1, 'Goran', 'goran.steviccc@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
 (3, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
@@ -183,23 +187,13 @@ INSERT INTO `user` (`id`, `avatar_id`, `nickname`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wrong_answers`
---
-
-CREATE TABLE `wrong_answers` (
-  `id` int(11) NOT NULL,
-  `FK_questions` int(11) NOT NULL,
-  `FK_answers` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indexes for table `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`FK_users`),
   ADD KEY `id` (`id`,`FK_users`);
@@ -209,12 +203,15 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `answer` (`answer`);
+  ADD KEY `answer` (`answer`),
+  ADD KEY `FK_question` (`FK_question`),
+  ADD KEY `correct` (`correct`);
+
 
 --
--- Indexes for table `avatar`
+-- Indexes for table `avatars`
 --
-ALTER TABLE `avatar`
+ALTER TABLE `avatars`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
@@ -231,8 +228,7 @@ ALTER TABLE `categories`
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`),
-  ADD KEY `FK_categories` (`FK_categories`),
-  ADD KEY `FK_answers` (`FK_answers`);
+  ADD KEY `FK_categories` (`FK_categories`);
 
 --
 -- Indexes for table `quiz-questions`
@@ -252,29 +248,21 @@ ALTER TABLE `quizzes`
   ADD KEY `users` (`FK_users`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `avatar_id` (`avatar_id`),
-  ADD KEY `id` (`id`,`avatar_id`);
+  ADD KEY `FK_avatars` (`FK_avatars`),
+  ADD KEY `id` (`id`,`FK_avatars`);
 
---
--- Indexes for table `wrong_answers`
---
-ALTER TABLE `wrong_answers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_questions` (`FK_questions`),
-  ADD KEY `FK_answers` (`FK_answers`);
 
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT for table `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `answers`
@@ -282,9 +270,9 @@ ALTER TABLE `admin`
 ALTER TABLE `answers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `avatar`
+-- AUTO_INCREMENT for table `avatars`
 --
-ALTER TABLE `avatar`
+ALTER TABLE `avatars`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `categories`
@@ -307,30 +295,25 @@ ALTER TABLE `quiz-questions`
 ALTER TABLE `quizzes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `wrong_answers`
---
-ALTER TABLE `wrong_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
+
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `admin`
+-- Constraints for table `admins`
 --
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `user` (`id`);
+ALTER TABLE `admins`
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `answers`
 --
 ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`id`) REFERENCES `questions` (`FK_answers`);
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`);
 
 --
 -- Constraints for table `questions`
@@ -349,13 +332,15 @@ ALTER TABLE `quiz-questions`
 -- Constraints for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `user`
+-- Constraints for table `users`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`);
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
