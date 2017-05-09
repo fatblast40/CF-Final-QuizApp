@@ -36,7 +36,7 @@ require_once('includes/start_session_admin.php');
 
 		if ($res_category) {
 				$errTyp = "alert alert-success";
-				$errMSG = "Successfully entered! Category available in dropdown now.";
+				$errMSG = "Successfully entered!";
 				// echo $errMSG;
 				unset($category);
 			} else {

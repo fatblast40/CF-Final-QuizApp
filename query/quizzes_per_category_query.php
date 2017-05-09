@@ -2,7 +2,7 @@
 // Report:  score and games played for a specific category and user
 $query_categories = "
     SELECT 
-        time_stamp,
+        start_timestamp AS time_stamp,
         categories.id AS category_id,
         scores
 

@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 09, 2017 at 02:05 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Erstellungszeit: 09. Mai 2017 um 14:51
+-- Server-Version: 10.1.21-MariaDB
+-- PHP-Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,14 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quizapp`
+-- Datenbank: `quizapp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
-
+-- Tabellenstruktur für Tabelle `admins`
+--
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admins`
+-- Daten für Tabelle `admins`
 --
 
 INSERT INTO `admins` (`id`, `FK_users`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `admins` (`id`, `FK_users`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answers`
+-- Tabellenstruktur für Tabelle `answers`
 --
 
 CREATE TABLE `answers` (
@@ -52,7 +52,7 @@ CREATE TABLE `answers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `answers`
+-- Daten für Tabelle `answers`
 --
 
 INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
@@ -803,7 +803,7 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avatars`
+-- Tabellenstruktur für Tabelle `avatars`
 --
 
 CREATE TABLE `avatars` (
@@ -812,7 +812,7 @@ CREATE TABLE `avatars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `avatars`
+-- Daten für Tabelle `avatars`
 --
 
 INSERT INTO `avatars` (`id`, `location`) VALUES
@@ -830,18 +830,18 @@ INSERT INTO `avatars` (`id`, `location`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Tabellenstruktur für Tabelle `categories`
 --
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'default.png',
   `amount_questions` int(11) NOT NULL DEFAULT '8'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Daten für Tabelle `categories`
 --
 
 INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`) VALUES
@@ -858,7 +858,7 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Tabellenstruktur für Tabelle `questions`
 --
 
 CREATE TABLE `questions` (
@@ -868,7 +868,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `questions`
+-- Daten für Tabelle `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
@@ -976,136 +976,137 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quizzes`
+-- Tabellenstruktur für Tabelle `quizzes`
 --
 
 CREATE TABLE `quizzes` (
   `id` int(11) NOT NULL,
   `FK_users` int(11) NOT NULL,
   `FK_categories` int(11) NOT NULL,
-  `scores` decimal(3,2) NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `scores` decimal(3,2) DEFAULT NULL,
+  `start_timestamp` datetime NOT NULL,
+  `end_timestamp` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `quizzes`
+-- Daten für Tabelle `quizzes`
 --
 
-INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `time_stamp`) VALUES
-(1, 1, 0, '0.90', '2017-05-09 09:35:27'),
-(2, 1, 0, '1.00', '2017-05-09 09:35:27'),
-(3, 1, 4, '0.88', '2017-05-09 09:35:27'),
-(4, 1, 4, '0.80', '2017-05-09 09:35:27'),
-(5, 1, 4, '0.80', '2017-05-09 09:35:27'),
-(6, 1, 2, '0.73', '2017-05-09 09:35:27'),
-(7, 1, 7, '0.91', '2017-05-09 09:35:27'),
-(8, 1, 1, '0.52', '2017-05-09 09:35:27'),
-(9, 1, 5, '0.43', '2017-05-09 09:35:27'),
-(10, 1, 3, '0.39', '2017-05-09 09:35:27'),
-(11, 1, 0, '0.08', '2017-05-09 09:35:27'),
-(12, 1, 8, '0.10', '2017-05-09 09:35:27'),
-(13, 1, 6, '0.65', '2017-05-09 09:35:27'),
-(14, 1, 4, '0.25', '2017-05-09 09:35:27'),
-(15, 1, 1, '1.00', '2017-05-09 09:35:27'),
-(16, 1, 7, '0.84', '2017-05-09 09:35:27'),
-(17, 1, 3, '0.72', '2017-05-09 09:35:27'),
-(18, 1, 2, '0.62', '2017-05-09 09:35:27'),
-(19, 1, 5, '0.51', '2017-05-09 09:35:27'),
-(20, 1, 8, '0.44', '2017-05-09 09:35:27'),
-(21, 1, 6, '0.37', '2017-05-09 09:35:27'),
-(22, 1, 2, '0.22', '2017-05-09 09:35:27'),
-(23, 1, 4, '0.10', '2017-05-09 09:35:27'),
-(24, 1, 0, '0.05', '2017-05-09 09:35:27'),
-(25, 1, 8, '0.96', '2017-05-09 09:35:27'),
-(26, 1, 4, '0.82', '2017-05-09 09:35:27'),
-(27, 1, 2, '0.70', '2017-05-09 09:35:27'),
-(28, 1, 7, '0.98', '2017-05-09 09:35:27'),
-(29, 1, 1, '0.50', '2017-05-09 09:35:27'),
-(30, 1, 5, '0.43', '2017-05-09 09:35:27'),
-(31, 1, 3, '0.31', '2017-05-09 09:35:27'),
-(32, 1, 0, '0.02', '2017-05-09 09:35:27'),
-(33, 1, 8, '0.19', '2017-05-09 09:35:27'),
-(34, 1, 6, '0.68', '2017-05-09 09:35:27'),
-(35, 1, 4, '0.20', '2017-05-09 09:35:27'),
-(36, 1, 1, '1.70', '2017-05-09 09:35:27'),
-(37, 1, 7, '0.80', '2017-05-09 09:35:27'),
-(38, 1, 3, '0.76', '2017-05-09 09:35:27'),
-(39, 1, 2, '0.65', '2017-05-09 09:35:27'),
-(40, 1, 5, '0.50', '2017-05-09 09:35:27'),
-(41, 1, 8, '0.40', '2017-05-09 09:35:27'),
-(42, 1, 6, '0.34', '2017-05-09 09:35:27'),
-(43, 1, 2, '0.20', '2017-05-09 09:35:27'),
-(44, 1, 4, '0.10', '2017-05-09 09:35:27'),
-(45, 1, 0, '0.03', '2017-05-09 09:35:27'),
-(46, 1, 8, '0.90', '2017-05-09 09:35:27'),
-(47, 1, 4, '0.80', '2017-05-09 09:35:27'),
-(48, 1, 2, '0.76', '2017-05-09 09:35:27'),
-(49, 1, 7, '0.90', '2017-05-09 09:35:27'),
-(50, 1, 1, '0.50', '2017-05-09 09:35:27'),
-(51, 1, 5, '0.48', '2017-05-09 09:35:27'),
-(52, 1, 3, '0.32', '2017-05-09 09:35:27'),
-(53, 1, 0, '0.00', '2017-05-09 09:35:27'),
-(54, 1, 8, '0.10', '2017-05-09 09:35:27'),
-(55, 1, 6, '0.63', '2017-05-09 09:35:27'),
-(56, 1, 4, '0.20', '2017-05-09 09:35:27'),
-(57, 1, 1, '1.00', '2017-05-09 09:35:27'),
-(58, 1, 7, '0.81', '2017-05-09 09:35:27'),
-(59, 1, 3, '0.70', '2017-05-09 09:35:27'),
-(60, 1, 2, '0.60', '2017-05-09 09:35:27'),
-(61, 1, 5, '0.51', '2017-05-09 09:35:27'),
-(62, 1, 8, '0.42', '2017-05-09 09:35:27'),
-(63, 1, 6, '0.33', '2017-05-09 09:35:27'),
-(64, 1, 2, '0.24', '2017-05-09 09:35:27'),
-(65, 1, 4, '0.16', '2017-05-09 09:35:27'),
-(66, 1, 0, '0.05', '2017-05-09 09:35:27'),
-(67, 1, 8, '0.97', '2017-05-09 09:35:27'),
-(68, 1, 4, '0.86', '2017-05-09 09:35:27'),
-(69, 1, 2, '0.78', '2017-05-09 09:35:27'),
-(70, 1, 7, '0.99', '2017-05-09 09:35:27'),
-(71, 1, 1, '0.51', '2017-05-09 09:35:27'),
-(72, 1, 5, '0.42', '2017-05-09 09:35:27'),
-(73, 1, 3, '0.30', '2017-05-09 09:35:27'),
-(74, 1, 0, '0.03', '2017-05-09 09:35:27'),
-(75, 1, 8, '0.10', '2017-05-09 09:35:27'),
-(76, 1, 6, '0.65', '2017-05-09 09:35:27'),
-(77, 1, 4, '0.26', '2017-05-09 09:35:27'),
-(78, 1, 1, '1.00', '2017-05-09 09:35:27'),
-(79, 1, 7, '0.86', '2017-05-09 09:35:27'),
-(80, 1, 3, '0.77', '2017-05-09 09:35:27'),
-(81, 1, 2, '0.68', '2017-05-09 09:35:27'),
-(82, 1, 5, '0.59', '2017-05-09 09:35:27'),
-(83, 1, 8, '0.40', '2017-05-09 09:35:27'),
-(84, 1, 6, '0.31', '2017-05-09 09:35:27'),
-(85, 1, 2, '0.22', '2017-05-09 09:35:27'),
-(86, 1, 4, '0.13', '2017-05-09 09:35:27'),
-(87, 1, 0, '0.04', '2017-05-09 09:35:27'),
-(88, 1, 8, '0.95', '2017-05-09 09:35:27'),
-(89, 1, 4, '0.86', '2017-05-09 09:35:27'),
-(90, 1, 2, '0.77', '2017-05-09 09:35:27'),
-(91, 1, 7, '0.98', '2017-05-09 09:35:27'),
-(92, 1, 1, '0.59', '2017-05-09 09:35:27'),
-(93, 1, 5, '0.40', '2017-05-09 09:35:27'),
-(94, 1, 3, '0.31', '2017-05-09 09:35:27'),
-(95, 1, 0, '0.02', '2017-05-09 09:35:27'),
-(96, 1, 8, '0.13', '2017-05-09 09:35:27'),
-(97, 1, 6, '0.68', '2017-05-09 09:35:27'),
-(98, 1, 4, '0.23', '2017-05-09 09:35:27'),
-(99, 1, 1, '1.00', '2017-05-09 09:35:27'),
-(100, 1, 7, '0.82', '2017-05-09 09:35:27'),
-(101, 1, 3, '0.71', '2017-05-09 09:35:27'),
-(102, 1, 2, '0.64', '2017-05-09 09:35:27'),
-(103, 1, 5, '0.55', '2017-05-09 09:35:27'),
-(104, 1, 8, '0.42', '2017-05-09 09:35:27'),
-(105, 1, 6, '0.37', '2017-05-09 09:35:27'),
-(106, 1, 2, '0.28', '2017-05-09 09:35:27'),
-(107, 1, 4, '0.15', '2017-05-09 09:35:27'),
-(108, 1, 0, '0.03', '2017-05-09 09:35:27'),
-(109, 1, 8, '0.92', '2017-05-09 09:35:27');
+INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_timestamp`, `end_timestamp`) VALUES
+(1, 1, 0, '0.90', '2017-05-09 11:35:27', NULL),
+(2, 1, 0, '1.00', '2017-05-09 11:35:27', NULL),
+(3, 1, 4, '0.88', '2017-05-09 11:35:27', NULL),
+(4, 1, 4, '0.80', '2017-05-09 11:35:27', NULL),
+(5, 1, 4, '0.80', '2017-05-09 11:35:27', NULL),
+(6, 1, 2, '0.73', '2017-05-09 11:35:27', NULL),
+(7, 1, 7, '0.91', '2017-05-09 11:35:27', NULL),
+(8, 1, 1, '0.52', '2017-05-09 11:35:27', NULL),
+(9, 1, 5, '0.43', '2017-05-09 11:35:27', NULL),
+(10, 1, 3, '0.39', '2017-05-09 11:35:27', NULL),
+(11, 1, 0, '0.08', '2017-05-09 11:35:27', NULL),
+(12, 1, 8, '0.10', '2017-05-09 11:35:27', NULL),
+(13, 1, 6, '0.65', '2017-05-09 11:35:27', NULL),
+(14, 1, 4, '0.25', '2017-05-09 11:35:27', NULL),
+(15, 1, 1, '1.00', '2017-05-09 11:35:27', NULL),
+(16, 1, 7, '0.84', '2017-05-09 11:35:27', NULL),
+(17, 1, 3, '0.72', '2017-05-09 11:35:27', NULL),
+(18, 1, 2, '0.62', '2017-05-09 11:35:27', NULL),
+(19, 1, 5, '0.51', '2017-05-09 11:35:27', NULL),
+(20, 1, 8, '0.44', '2017-05-09 11:35:27', NULL),
+(21, 1, 6, '0.37', '2017-05-09 11:35:27', NULL),
+(22, 1, 2, '0.22', '2017-05-09 11:35:27', NULL),
+(23, 1, 4, '0.10', '2017-05-09 11:35:27', NULL),
+(24, 1, 0, '0.05', '2017-05-09 11:35:27', NULL),
+(25, 1, 8, '0.96', '2017-05-09 11:35:27', NULL),
+(26, 1, 4, '0.82', '2017-05-09 11:35:27', NULL),
+(27, 1, 2, '0.70', '2017-05-09 11:35:27', NULL),
+(28, 1, 7, '0.98', '2017-05-09 11:35:27', NULL),
+(29, 1, 1, '0.50', '2017-05-09 11:35:27', NULL),
+(30, 1, 5, '0.43', '2017-05-09 11:35:27', NULL),
+(31, 1, 3, '0.31', '2017-05-09 11:35:27', NULL),
+(32, 1, 0, '0.02', '2017-05-09 11:35:27', NULL),
+(33, 1, 8, '0.19', '2017-05-09 11:35:27', NULL),
+(34, 1, 6, '0.68', '2017-05-09 11:35:27', NULL),
+(35, 1, 4, '0.20', '2017-05-09 11:35:27', NULL),
+(36, 1, 1, '1.70', '2017-05-09 11:35:27', NULL),
+(37, 1, 7, '0.80', '2017-05-09 11:35:27', NULL),
+(38, 1, 3, '0.76', '2017-05-09 11:35:27', NULL),
+(39, 1, 2, '0.65', '2017-05-09 11:35:27', NULL),
+(40, 1, 5, '0.50', '2017-05-09 11:35:27', NULL),
+(41, 1, 8, '0.40', '2017-05-09 11:35:27', NULL),
+(42, 1, 6, '0.34', '2017-05-09 11:35:27', NULL),
+(43, 1, 2, '0.20', '2017-05-09 11:35:27', NULL),
+(44, 1, 4, '0.10', '2017-05-09 11:35:27', NULL),
+(45, 1, 0, '0.03', '2017-05-09 11:35:27', NULL),
+(46, 1, 8, '0.90', '2017-05-09 11:35:27', NULL),
+(47, 1, 4, '0.80', '2017-05-09 11:35:27', NULL),
+(48, 1, 2, '0.76', '2017-05-09 11:35:27', NULL),
+(49, 1, 7, '0.90', '2017-05-09 11:35:27', NULL),
+(50, 1, 1, '0.50', '2017-05-09 11:35:27', NULL),
+(51, 1, 5, '0.48', '2017-05-09 11:35:27', NULL),
+(52, 1, 3, '0.32', '2017-05-09 11:35:27', NULL),
+(53, 1, 0, '0.00', '2017-05-09 11:35:27', NULL),
+(54, 1, 8, '0.10', '2017-05-09 11:35:27', NULL),
+(55, 1, 6, '0.63', '2017-05-09 11:35:27', NULL),
+(56, 1, 4, '0.20', '2017-05-09 11:35:27', NULL),
+(57, 1, 1, '1.00', '2017-05-09 11:35:27', NULL),
+(58, 1, 7, '0.81', '2017-05-09 11:35:27', NULL),
+(59, 1, 3, '0.70', '2017-05-09 11:35:27', NULL),
+(60, 1, 2, '0.60', '2017-05-09 11:35:27', NULL),
+(61, 1, 5, '0.51', '2017-05-09 11:35:27', NULL),
+(62, 1, 8, '0.42', '2017-05-09 11:35:27', NULL),
+(63, 1, 6, '0.33', '2017-05-09 11:35:27', NULL),
+(64, 1, 2, '0.24', '2017-05-09 11:35:27', NULL),
+(65, 1, 4, '0.16', '2017-05-09 11:35:27', NULL),
+(66, 1, 0, '0.05', '2017-05-09 11:35:27', NULL),
+(67, 1, 8, '0.97', '2017-05-09 11:35:27', NULL),
+(68, 1, 4, '0.86', '2017-05-09 11:35:27', NULL),
+(69, 1, 2, '0.78', '2017-05-09 11:35:27', NULL),
+(70, 1, 7, '0.99', '2017-05-09 11:35:27', NULL),
+(71, 1, 1, '0.51', '2017-05-09 11:35:27', NULL),
+(72, 1, 5, '0.42', '2017-05-09 11:35:27', NULL),
+(73, 1, 3, '0.30', '2017-05-09 11:35:27', NULL),
+(74, 1, 0, '0.03', '2017-05-09 11:35:27', NULL),
+(75, 1, 8, '0.10', '2017-05-09 11:35:27', NULL),
+(76, 1, 6, '0.65', '2017-05-09 11:35:27', NULL),
+(77, 1, 4, '0.26', '2017-05-09 11:35:27', NULL),
+(78, 1, 1, '1.00', '2017-05-09 11:35:27', NULL),
+(79, 1, 7, '0.86', '2017-05-09 11:35:27', NULL),
+(80, 1, 3, '0.77', '2017-05-09 11:35:27', NULL),
+(81, 1, 2, '0.68', '2017-05-09 11:35:27', NULL),
+(82, 1, 5, '0.59', '2017-05-09 11:35:27', NULL),
+(83, 1, 8, '0.40', '2017-05-09 11:35:27', NULL),
+(84, 1, 6, '0.31', '2017-05-09 11:35:27', NULL),
+(85, 1, 2, '0.22', '2017-05-09 11:35:27', NULL),
+(86, 1, 4, '0.13', '2017-05-09 11:35:27', NULL),
+(87, 1, 0, '0.04', '2017-05-09 11:35:27', NULL),
+(88, 1, 8, '0.95', '2017-05-09 11:35:27', NULL),
+(89, 1, 4, '0.86', '2017-05-09 11:35:27', NULL),
+(90, 1, 2, '0.77', '2017-05-09 11:35:27', NULL),
+(91, 1, 7, '0.98', '2017-05-09 11:35:27', NULL),
+(92, 1, 1, '0.59', '2017-05-09 11:35:27', NULL),
+(93, 1, 5, '0.40', '2017-05-09 11:35:27', NULL),
+(94, 1, 3, '0.31', '2017-05-09 11:35:27', NULL),
+(95, 1, 0, '0.02', '2017-05-09 11:35:27', NULL),
+(96, 1, 8, '0.13', '2017-05-09 11:35:27', NULL),
+(97, 1, 6, '0.68', '2017-05-09 11:35:27', NULL),
+(98, 1, 4, '0.23', '2017-05-09 11:35:27', NULL),
+(99, 1, 1, '1.00', '2017-05-09 11:35:27', NULL),
+(100, 1, 7, '0.82', '2017-05-09 11:35:27', NULL),
+(101, 1, 3, '0.71', '2017-05-09 11:35:27', NULL),
+(102, 1, 2, '0.64', '2017-05-09 11:35:27', NULL),
+(103, 1, 5, '0.55', '2017-05-09 11:35:27', NULL),
+(104, 1, 8, '0.42', '2017-05-09 11:35:27', NULL),
+(105, 1, 6, '0.37', '2017-05-09 11:35:27', NULL),
+(106, 1, 2, '0.28', '2017-05-09 11:35:27', NULL),
+(107, 1, 4, '0.15', '2017-05-09 11:35:27', NULL),
+(108, 1, 0, '0.03', '2017-05-09 11:35:27', NULL),
+(109, 1, 8, '0.92', '2017-05-09 11:35:27', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_questions`
+-- Tabellenstruktur für Tabelle `quiz_questions`
 --
 
 CREATE TABLE `quiz_questions` (
@@ -1117,7 +1118,7 @@ CREATE TABLE `quiz_questions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tabellenstruktur für Tabelle `users`
 --
 
 CREATE TABLE `users` (
@@ -1129,7 +1130,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Daten für Tabelle `users`
 --
 
 INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
@@ -1144,11 +1145,11 @@ INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
 (9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `admins`
+-- Indizes für die Tabelle `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
@@ -1156,7 +1157,7 @@ ALTER TABLE `admins`
   ADD KEY `id` (`id`,`FK_users`);
 
 --
--- Indexes for table `answers`
+-- Indizes für die Tabelle `answers`
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
@@ -1165,21 +1166,21 @@ ALTER TABLE `answers`
   ADD KEY `correct` (`correct`);
 
 --
--- Indexes for table `avatars`
+-- Indizes für die Tabelle `avatars`
 --
 ALTER TABLE `avatars`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `categories`
+-- Indizes für die Tabelle `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `questions`
+-- Indizes für die Tabelle `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
@@ -1187,7 +1188,7 @@ ALTER TABLE `questions`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indexes for table `quizzes`
+-- Indizes für die Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD PRIMARY KEY (`id`),
@@ -1196,7 +1197,7 @@ ALTER TABLE `quizzes`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indexes for table `quiz_questions`
+-- Indizes für die Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD PRIMARY KEY (`id`),
@@ -1205,7 +1206,7 @@ ALTER TABLE `quiz_questions`
   ADD KEY `FK_quizzes` (`FK_quizzes`);
 
 --
--- Indexes for table `users`
+-- Indizes für die Tabelle `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1213,87 +1214,87 @@ ALTER TABLE `users`
   ADD KEY `id` (`id`,`FK_avatars`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `admins`
+-- AUTO_INCREMENT für Tabelle `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `answers`
+-- AUTO_INCREMENT für Tabelle `answers`
 --
 ALTER TABLE `answers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=746;
 --
--- AUTO_INCREMENT for table `avatars`
+-- AUTO_INCREMENT für Tabelle `avatars`
 --
 ALTER TABLE `avatars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT für Tabelle `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT für Tabelle `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
--- AUTO_INCREMENT for table `quizzes`
+-- AUTO_INCREMENT für Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 --
--- AUTO_INCREMENT for table `quiz_questions`
+-- AUTO_INCREMENT für Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- Constraints for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints for table `admins`
+-- Constraints der Tabelle `admins`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `answers`
+-- Constraints der Tabelle `answers`
 --
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`);
 
 --
--- Constraints for table `questions`
+-- Constraints der Tabelle `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `quizzes`
+-- Constraints der Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `quiz_questions`
+-- Constraints der Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD CONSTRAINT `quiz_questions_ibfk_1` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`),
   ADD CONSTRAINT `quiz_questions_ibfk_2` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`);
 
 --
--- Constraints for table `users`
+-- Constraints der Tabelle `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`);
