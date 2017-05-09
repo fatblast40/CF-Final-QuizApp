@@ -19,7 +19,8 @@ header h1 {
     height: 50px;
 }
 #header{
-    background-color: black;
+    /*background-color: rgba(43, 76, 175, 0.6);*/
+    background-color: rgba(77,141,255,0.4);
     height: 110px;
 }
 
@@ -134,10 +135,11 @@ body {
     margin-left:-10px;
     margin-right:-10px;
 
-    height: 200px;
+    
     border-radius: 22px 22px 22px 22px;
     -moz-border-radius: 22px 22px 22px 22px;
     -webkit-border-radius: 22px 22px 22px 22px;
+    height: 200px;
     height: 200px;
     line-height: 200px;
     text-align: center;
@@ -183,4 +185,31 @@ body {
 .wrapper:active {
     color:white;
     background-color: #4D97FF;
+}
+
+/*.a_category*/
+
+
+ /* unvisited link */
+.a_category:link {
+    color: black;
+    text-decoration: none;
+}
+
+/* visited link */
+.a_category:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.a_category:hover {
+    color: black;
+      text-decoration: none;
+}
+
+/* selected link */
+.a_category:active {
+    color: black;
+      text-decoration: none;
 }

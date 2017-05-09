@@ -49,11 +49,7 @@ require_once('includes/head_tag.php');
                 <div class="col-xs-12 margin-top">
                 <!-- add main content here -->
                     <?php
-    $categories = [[
-            'id' => 0,
-            'category' => 'mixed',
-            'image' => 'mixed_category.png'
-    ]];
+    $categories = [];
     while ($category = $categoriesResult->fetch_assoc()) {
         $categories[] = $category;
     }
@@ -66,7 +62,7 @@ require_once('includes/head_tag.php');
         endif;
         ?>
         <div class="col-xs-6 col-sm-3">
-            <a href="quiz_play.php?category=<?php echo $category['id']?>">
+            <a href="quiz_play.php?category=<?php echo $category['id']?>" class="a_category">
             <div class="panel panel-primary" id="category_panel">
                 <div class="text-center panel-heading" id="category_header">
                     <h3><?php echo $category['category']?></h3>
