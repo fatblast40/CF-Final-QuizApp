@@ -1,18 +1,17 @@
 <?php
-// Report:  score and games played per categories
+// Report:  score and games played for a specific category and user
 $query_categories = "
     SELECT 
-        category,
+        time_stamp,
         categories.id AS category_id,
-        count(quizzes.id) AS games_played,
-        avg(scores) AS average_score
+        scores
 
     FROM `quizzes`
     LEFT JOIN categories ON categories.id=quizzes.FK_categories
     where FK_users = ".$user_id."
-    GROUP by category
+    AND categories.id=".$category_id."
     ORDER BY 
-        category ASC;
+        scores DESC;
 ";
 
 $res_categories = mysqli_query($con, $query_categories);
