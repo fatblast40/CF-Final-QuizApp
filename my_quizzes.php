@@ -1,12 +1,6 @@
 <?php
 require_once('includes/start_session_user.php');
 
-$categoriesQuery = $con->prepare(<<<'SQL'
-SELECT id, category, image FROM categories;
-SQL
-);
-$categoriesQuery->execute();
-$categoriesResult = $categoriesQuery->get_result();
 ?>
 
 <!DOCTYPE html>

@@ -2,20 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
-<<<<<<< HEAD
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Mai 2017 um 10:12
+-- Erstellungszeit: 09. Mai 2017 um 10:21
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
-=======
--- Host: localhost
--- Generation Time: May 08, 2017 at 03:16 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
-DROP DATABASE quizapp;
-CREATE DATABASE quizapp;
-USE quizapp;
->>>>>>> 93b4b473a43b03133bc5bdf6142cfcb133f1b233
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -146,11 +136,7 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
 -- Tabellenstruktur für Tabelle `quizzes`
 --
 
-<<<<<<< HEAD
 CREATE TABLE `quizzes` (
-=======
-CREATE TABLE `quiz_questions` (
->>>>>>> 93b4b473a43b03133bc5bdf6142cfcb133f1b233
   `id` int(11) NOT NULL,
   `FK_users` int(11) NOT NULL,
   `FK_categories` int(11) NOT NULL,
@@ -252,11 +238,7 @@ ALTER TABLE `questions`
 --
 -- Indizes für die Tabelle `quizzes`
 --
-<<<<<<< HEAD
 ALTER TABLE `quizzes`
-=======
-ALTER TABLE `quiz_questions`
->>>>>>> 93b4b473a43b03133bc5bdf6142cfcb133f1b233
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`),
   ADD KEY `users` (`FK_users`),
@@ -311,13 +293,8 @@ ALTER TABLE `questions`
 --
 -- AUTO_INCREMENT für Tabelle `quizzes`
 --
-<<<<<<< HEAD
 ALTER TABLE `quizzes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-ALTER TABLE `quiz_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> 93b4b473a43b03133bc5bdf6142cfcb133f1b233
 --
 -- AUTO_INCREMENT für Tabelle `quiz_questions`
 --
@@ -353,15 +330,9 @@ ALTER TABLE `questions`
 --
 -- Constraints der Tabelle `quizzes`
 --
-<<<<<<< HEAD
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
-=======
-ALTER TABLE `quiz_questions`
-  ADD CONSTRAINT `quiz-questions_ibfk_1` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`),
-  ADD CONSTRAINT `quiz-questions_ibfk_2` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`);
->>>>>>> 93b4b473a43b03133bc5bdf6142cfcb133f1b233
 
 --
 -- Constraints der Tabelle `quiz_questions`
