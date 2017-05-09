@@ -218,3 +218,11 @@ table {
     background-color: white;
     opacity: 0.8;
 }
+
+.red {
+    color: red;
+}
+
+.green {
+    color: #1ff22d;
+}

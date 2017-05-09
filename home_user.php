@@ -1,5 +1,6 @@
 <?php
 require_once('includes/start_session_user.php');
+require_once('query/total_score.php');
 ?>
 
 <?php
@@ -43,6 +44,10 @@ require_once('includes/head_tag.php');
 		<main class="col-xs-12">
 			<section class="row">
 				<!-- add main content here -->
+				<div class="col-xs-12 white text-center">
+					<h2><?php echo $user_nickname; ?></h2>
+					<h2>Total Score: <?php echo $total_points; ?></h2>
+				</div>
 				<div class="col-xs-12" id="play_line">
 					<hr>
 				</div>
