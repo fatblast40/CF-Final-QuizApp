@@ -9,6 +9,7 @@
 DROP DATABASE quizapp;
 CREATE DATABASE quizapp;
 USE quizapp;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -137,7 +138,7 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
 -- Table structure for table `quiz-questions`
 --
 
-CREATE TABLE `quiz-questions` (
+CREATE TABLE `quiz_questions` (
   `id` int(11) NOT NULL,
   `FK_quizzes` int(11) NOT NULL,
   `FK_questions` int(11) NOT NULL
@@ -230,7 +231,7 @@ ALTER TABLE `questions`
 --
 -- Indexes for table `quiz-questions`
 --
-ALTER TABLE `quiz-questions`
+ALTER TABLE `quiz_questions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`,`FK_quizzes`,`FK_questions`),
   ADD KEY `FK_questions` (`FK_questions`),
@@ -284,7 +285,7 @@ ALTER TABLE `questions`
 --
 -- AUTO_INCREMENT for table `quiz-questions`
 --
-ALTER TABLE `quiz-questions`
+ALTER TABLE `quiz_questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `quizzes`
@@ -321,7 +322,7 @@ ALTER TABLE `questions`
 --
 -- Constraints for table `quiz-questions`
 --
-ALTER TABLE `quiz-questions`
+ALTER TABLE `quiz_questions`
   ADD CONSTRAINT `quiz-questions_ibfk_1` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`),
   ADD CONSTRAINT `quiz-questions_ibfk_2` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`);
 
