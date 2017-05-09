@@ -53,7 +53,7 @@ require_once('includes/head_tag.php');
 				</a>
 				<div class="col-xs-12  col-sm-8 col-sm-offset-2">
 					<div class="row">
-					<!-- my quizzes -->
+						<!-- my quizzes -->
 						<a href="my_quizzes.php">
 							<div class="col-xs-6">
 								<div class="wrapper text-center">
@@ -85,6 +85,25 @@ require_once('includes/head_tag.php');
 								</div>
 							</div>
 						</a>
+						<!-- go to admin view -->
+						<?php
+						if( isset($_SESSION['admin']) ) {
+							echo'
+							<a href="home_admin.php">
+								<div class="col-xs-6">
+									<div class="wrapper text-center">
+										<h2>Admin View</h2>
+									</div>
+								</div>
+							</a>
+
+
+							';
+						}
+						?>
+
+
+
 					</div>
 				</div>
 	
