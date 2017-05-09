@@ -27,8 +27,8 @@ require_once('includes/head_tag.php');
                     <img alt="back_button" src="pictures/back_button.png" id="back_button"/>
                 </a>
             </div>      
-            <div class="col-xs-6 white text-center">
-                <h1 class="heading_font">Menu</h1>
+            <div class="col-xs-6 white text-center margin-top">
+                <h1 class="heading_font">Pick a Category</h1>
             </div>                      
         <?php
         echo'
@@ -65,7 +65,7 @@ require_once('includes/head_tag.php');
         <?php
         endif;
         ?>
-        <div class="col-xs-6 col-md-3">
+        <div class="col-xs-6 col-sm-3">
             <a href="quiz_play.php?category=<?php echo $category['id']?>">
             <div class="panel panel-primary" id="category_panel">
                 <div class="text-center panel-heading" id="category_header">
