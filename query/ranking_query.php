@@ -1,7 +1,10 @@
 <?php
 // Report:  ranking
+
+
 $query_ranking = "
-    SELECT t1.*,
+    SELECT 
+        t1.*,
         first_name,
         family_name,
         nickname, 
