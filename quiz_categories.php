@@ -2,7 +2,7 @@
 require_once('includes/start_session_user.php');
 
 $categoriesQuery = $con->prepare(<<<'SQL'
-SELECT id, category, image FROM categories;
+SELECT category, image FROM categories;
 SQL
 );
 $categoriesQuery->execute();
@@ -62,7 +62,7 @@ require_once('includes/head_tag.php');
         endif;
         ?>
         <div class="col-xs-6 col-sm-3">
-            <a href="quiz_play.php?category=<?php echo $category['id']?>" class="a_category">
+            <a href="quiz_play.php?category=<?php echo $category['category']?>" class="a_category">
             <div class="panel panel-primary" id="category_panel">
                 <div class="text-center panel-heading" id="category_header">
                     <h3><?php echo $category['category']?></h3>
