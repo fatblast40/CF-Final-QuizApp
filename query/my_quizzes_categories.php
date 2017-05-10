@@ -5,7 +5,8 @@ $query_categories = "
         category,
         categories.id AS category_id,
         count(quizzes.id) AS games_played,
-        avg(scores) AS average_score
+        avg(scores) AS average_score,
+        max(start_timestamp) AS latest_timestamp
 
     FROM `quizzes`
     LEFT JOIN categories ON categories.id=quizzes.FK_categories

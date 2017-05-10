@@ -50,7 +50,24 @@ require_once('includes/head_tag.php');
                     $category = $row_categories['category'];
                     $category_id=$row_categories['category_id'];
                     $average_score=$row_categories['average_score'];
+                    $latest_timestamp=$row_categories['latest_timestamp'];
                     $games_played=$row_categories['games_played'];
+
+                    $query_latest_result = "
+                        SELECT 
+                            scores AS latest_score
+
+                        FROM `quizzes`
+                        LEFT JOIN categories ON categories.id=quizzes.FK_categories
+                        where FK_users = ".$user_id."
+                        AND categories.id=".$category_id."
+                        AND start_timestamp='".$latest_timestamp."'"
+                        
+                    ;
+
+                    $res_latest_result = mysqli_query($con, $query_latest_result);
+                    $latest_result = mysqli_fetch_array($res_latest_result);
+                    $latest_score = $latest_result['latest_score'];
                     
                     echo '
                         
@@ -63,9 +80,9 @@ require_once('includes/head_tag.php');
                             </div>
 
                             <div class="panel-body text-center">
-                                <h4><b>Games Played </b><br><br>'.$games_played.'</h4>
+                                <h4><b>Tries </b><br><br>'.$games_played.'</h4>
                                 <h4><b>Average Score </b><br><br>'.number_format($average_score*100).'%</h4>
-                                <h4><b>Total Points </b><br><br>'.number_format($average_score*100*$games_played).'</h4>
+                                <h4><b>Latest Result </b><br><br>'.number_format($latest_score*100).'%</h4>
                             </div>
                         </div>
                     </a>

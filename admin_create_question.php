@@ -18,32 +18,44 @@ require_once('includes/start_session_admin.php');
 		$category = strip_tags($category);
 		$category = htmlspecialchars($category);
 
-		$answer1 = trim($_POST['answer1']);
-		$answer1 = strip_tags($answer1);
-		$answer1 = htmlspecialchars($answer1);
+		$correct_answers = trim($_POST['correct_answers']);
+		$correct_answers = strip_tags($correct_answers);
+		$correct_answers = htmlspecialchars($correct_answers);
+		$correct_answers = preg_replace( "/[\r\n]+/", "\n", $correct_answers);
+		// creating an array with all the correct answers
+		$correct_answers = preg_split("/(\r\n|\n|\r)/", $correct_answers);
 
-		$answer2 = trim($_POST['answer2']);
-		$answer2 = strip_tags($answer2);
-		$answer2 = htmlspecialchars($answer2);
 
-		$answer3 = trim($_POST['answer3']);
-		$answer3 = strip_tags($answer3);
-		$answer3 = htmlspecialchars($answer3);
+		$wrong_answers = trim($_POST['wrong_answers']);
+		$wrong_answers = strip_tags($wrong_answers);
+		$wrong_answers = htmlspecialchars($wrong_answers);
+		$wrong_answers = preg_replace( "/[\r\n]+/", "\n", $wrong_answers);
+		// creating an array with all the wrong answers
+		$wrong_answers = preg_split("/(\r\n|\n|\r)/", $wrong_answers);
 
-		$answer4 = trim($_POST['answer4']);
-		$answer4 = strip_tags($answer4);
-		$answer4 = htmlspecialchars($answer4);
+		$display = trim($_POST['display']);
+		$display = strip_tags($display);
+		$display = htmlspecialchars($display);
+
 
   	
 		// if there's no error, continue to save in db (with attr require in input fields I dont need the emtpy() validation in php)
 
-		$query_question= "INSERT INTO questions(question, FK_categories) VALUES('$question', $category)";
+		// question
+		$query_question= "INSERT INTO questions(question, FK_categories, id_string, answers_displayed) VALUES('$question', $category, UUID(), $display)";
 		$res_question= mysqli_query($con, $query_question);
 		$question_id = mysqli_insert_id($con);
 
 
-		$query_answers= "INSERT INTO answers(answer, FK_question, correct) VALUES('$answer1', $question_id, 1), ('$answer2', $question_id, 0), ('$answer3', $question_id, 0), ('$answer4', $question_id, 0)";
-		$res_answers= mysqli_query($con, $query_answers);
+		foreach ($correct_answers as $correct_answer) {
+			$query_answers= "INSERT INTO answers(answer, FK_question, correct, id_string) VALUES('$correct_answer', $question_id, 1, UUID())";
+			$res_answers= mysqli_query($con, $query_answers);
+		}
+
+		foreach ($wrong_answers as $wrong_answer) {
+			$query_answers= "INSERT INTO answers(answer, FK_question, correct, id_string) VALUES('$wrong_answer', $question_id, 0, UUID())";
+			$res_answers= mysqli_query($con, $query_answers);
+		}
 
 		if ($res_question AND $res_answers) {
 				$errTyp = "alert alert-success";
@@ -126,26 +138,26 @@ require_once('includes/head_tag.php');
 
 				  </select>
 			</div>
-			<div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center margin-top">
+			<div class="col-xs-12 text-center">
 				<div class="row">
-					<div class="col-xs-6">
-						<h4><label class="green">Correct Answer</label></h4>			
-						<input type="text" name="answer1" id="answer1" class="form-control" required>
+					<div class="col-xs-12 col-sm-4 col-sm-offset-2 text-center margin-top">
+						<h4><label class="green">Correct Answers</label></h4>
+						<p class="white">(separate answers with a line break)</p>			
+						<textarea id="correct_answers" name="correct_answers" class="form-control" required></textarea>
 					</div>
-					<div class="col-xs-6">
-						<h4><label class="red">Wrong Answer</label></h4>			
-						<input type="text" name="answer2" id="answer2" class="form-control" required>
-					</div>
-					<div class="col-xs-6">
-						<h4><label class="red">Wrong Answer</label></h4>			
-						<input type="text" name="answer3" id="answer3" class="form-control" required>
-					</div>
-					<div class="col-xs-6">
-						<h4><label class="red">Wrong Answer</label></h4>			
-						<input type="text" name="answer4" id="answer4" class="form-control" required>
+					<div class="col-xs-12 col-sm-4 text-center margin-top">
+						<h4><label class="red">Wrong Answers</label></h4>
+						<p class="white">(separate answers with a line break)</p>			
+						<textarea id="wrong_answers" name="wrong_answers" class="form-control" required></textarea>
 					</div>
 				</div>
 			</div>
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center margin-top">
+				<h4><label class="white">Number of answers displayed in Quizz</label></h4>	
+				<p class="white">(incl. only one right answer)</p>
+				<input type="number" id="display" name="display" class="form-control" required min="2">
+			</div>
+			
 			<div class="col-xs-12 text-center margin-top">
 				<button type="submit" name="btn-submit" class="btn btn-primary">Add Question</button>
 			</div>
@@ -165,7 +177,21 @@ require_once('includes/head_tag.php');
 	<?php
 require_once('includes/footer.php');
 	?>
-	 
+	<script>
+		// autogrowing of textarea
+$('textarea').on('paste input', autogrow);
+// $('textarea').load(autogrow); doesnt work anyways
+
+
+    function autogrow () {
+    if ($(this).outerHeight() > this.scrollHeight){
+        $(this).height(1)
+    }
+    while ($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))){
+        $(this).height($(this).height() + 1)
+    }
+};
+	</script> 
 </body>
 </html>
 <?php ob_end_flush(); ?>

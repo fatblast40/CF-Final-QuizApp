@@ -11,7 +11,7 @@ $query_categories = "
     where FK_users = ".$user_id."
     AND categories.id=".$category_id."
     ORDER BY 
-        scores DESC;
+        start_timestamp DESC;
 ";
 
 $res_categories = mysqli_query($con, $query_categories);
