@@ -62,7 +62,7 @@ function QuizAnswer(prompt, answer) {
 
     this.DOM.click(function (event) {
         self.prompt.pickAnswer(self.answer);
-        if (questionIndex <= 0) {
+        if (questionIndex <= 1) {
             submitResults();
         } else {
             nextPrompt();
@@ -87,6 +87,13 @@ function submitResults() {
         }),
         processData: false,
         statusCode: {
+            500: function (response) {
+                // for 400 responses the data is contained within the responseJSON property.
+                var message = response.responseJSON.message;
+                showMessage(message, 'alert-danger');
+
+            },
+
             400: function (response) {
                 // for 400 responses the data is contained within the responseJSON property.
                 var message = response.responseJSON.message;
@@ -100,12 +107,11 @@ function submitResults() {
 
 
             },
-            201: function (response) {
+            200: function (response) {
                 // for 2XX responses the data is contained right in the object.
                 var message = response.message;
                 showMessage(message, 'alert-success');
-                $('#alert_message').addClass('alert-success');
-                $('#seat-picker').empty();
+
 
             }
         }
