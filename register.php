@@ -47,7 +47,18 @@
   $nickname = strip_tags($nickname);
   $nickname = htmlspecialchars($nickname);
 
+  $first_name = trim($_POST['first_name']);
+  $first_name = strip_tags($first_name);
+  $first_name = htmlspecialchars($first_name);
 
+  $family_name = trim($_POST['family_name']);
+  $family_name = strip_tags($family_name);
+  $family_name = htmlspecialchars($family_name);
+
+  $date = trim($_POST['date']);
+  $date = strip_tags($date);
+  $date = htmlspecialchars($date);
+  $date = date('Y-m-d', strtotime($date));
   
   $avatar = $_POST['avatar'];
     // if (empty($avatar)){
@@ -117,8 +128,8 @@
   // if there's no error, continue to signup
   if( $error == 0 ) {
    // echo "no error";
-    
-   $query_user = "INSERT INTO users (nickname, email, password, FK_avatars) VALUES('$nickname', '$email', '$password', $avatar)";
+    // echo'$first_name', '$family_name', $nickname', '$email', '$password', $avatar, '$date';
+   $query_user = "INSERT INTO users (first_name, family_name, nickname, email, password, FK_avatars, date_of_birth) VALUES('$first_name', '$family_name', '$nickname', '$email', '$password', $avatar, '$date')";
    $res_user = mysqli_query($con, $query_user);
    
    if ($res_user) {
@@ -130,6 +141,7 @@
     unset($email);
     unset($password);
     unset($nickname);
+
     // unset($DOB);
    } else {
     $errTyp = "alert-danger";
@@ -154,54 +166,73 @@ require_once('includes/head_tag.php');
 <div id="wrap">
   <div id="main" class="container clear-top">
 
-    <header class="row shadow">
-    <div class="col-xs-6">
-      <span class="margin-top"><img id="logo" src="pictures/logo.png" alt="logo"></span>
-      <!-- <span><h1 class="brandfont color_bc1">Code Bus</h1></span> -->
-    </div>
-  </header>
+    
       <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 text-center shadow" id="header">
         
-          <h2 class="color_bc1">Sign Up</h2>
-          <hr />
-          <?php
-            if ( isset($_POST['btn-signup']) ) {
-              echo '<div class="alert '.$errTyp.'">'.$errMSG.'</div>';
-            }
-          ?>
-      </div>
-      <form method="post" class="<?php echo $hidden; ?>" action="register.php" autocomplete="off">
-      <!-- first_row -->
-      <div class="col-xs-12 col-md-4">
-          <!-- NICKNAME -->
-          <h4>User Name:</h4>
-          <input type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" />
-          <span class="text-danger"><?php echo $nameError; ?></span>
+          <h2 class="white">Sign Up</h2>
 
-          
-          
-        
       </div>
-      <!-- second row -->
-      <div class="col-xs-12 col-md-4">
-        <!-- EMAIL -->
-          <h4 class="color_bc1">E-Mail:</h4>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40">
-          <span class="text-danger"><?php echo $emailError; ?></span>
-          
-      </div>
-      <!-- third row -->
-      <div class="col-xs-12 col-md-4">
-        <!-- PASSWORD -->
-        <h4 class="color_bc1">Password:</h4>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
-        <span class="text-danger"><?php echo $passError; ?></span>
-          
+      <?php
+        require_once 'includes/alert_box.php'
+      ?>
+
+      <form method="post" class="<?php echo $hidden; ?>" action="register.php" autocomplete="off">
+      <div class="col-xs-12">
+        <div class="row">
+          <!-- first_row -->
+          <div class="col-xs-12 col-md-4">
+            <!-- FIRSTNAME -->
+              <h4 class="white">First name:</h4>
+              <input required type="text" id="first_name" name="first_name" class="form-control" placeholder="Enter first name" /> 
+
+            
+          </div>
+          <!-- second row -->
+          <div class="col-xs-12 col-md-4">
+           <!-- FAMILYNAME -->
+              <h4 class="white">Family name:</h4>
+              <input type="text" id="family_name" name="family_name" class="form-control" placeholder="Enter family name" />
+            
+          </div>
+          <!-- third row -->
+          <div class="col-xs-12 col-md-4">
+            <!-- DATE OF BIRTH -->
+            <h4 class="white">Date</h4>
+            <input required class="form-control text-center" type="text" name="date" id="date">
+             
+          </div>
+        </div>
+        <div class="row">
+          <!-- first_row -->
+          <div class="col-xs-12 col-md-4">
+            <!-- NICKNAME -->
+              <h4 class="white">User Name:</h4>
+              <input required type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" />
+              <span class="text-danger"><?php echo $nameError; ?></span>
+   
+          </div>
+          <!-- second row -->
+          <div class="col-xs-12 col-md-4">
+           <!-- EMAIL -->
+              <h4 class="white">E-Mail:</h4>
+              <input required type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40">
+              <span class="text-danger"><?php echo $emailError; ?></span>
+              
+          </div>
+          <!-- third row -->
+          <div class="col-xs-12 col-md-4">
+            <!-- PASSWORD -->
+            <h4 class="white">Password:</h4>
+            <input required type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
+            <span class="text-danger"><?php echo $passError; ?></span>
+              
+          </div>
+        </div>
       </div>
       <div class="col-xs-12 text-center">
         <hr>
-        <h4 class="color_bc1">Pick an avatar:</h4>
+        <h4 class="white">Pick an avatar:</h4>
         <hr>
 
         <?php
@@ -213,7 +244,7 @@ require_once('includes/head_tag.php');
             $avatar_id = $avatarRow['id'];
 
             echo    '<label class="radio-inline">
-                      <input type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar" >
+                      <input required type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar" >
                     </label>';
           }
         ?>
@@ -237,6 +268,12 @@ require_once('includes/head_tag.php');
   <?php
 require_once('includes/footer.php');
   ?>
+
+  <script>
+    $( function() {
+      $( "#date" ).datepicker();
+    } );
+  </script>
 
 </body>
 </html>

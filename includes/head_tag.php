@@ -28,6 +28,12 @@
 		  height: 100%;
 		}
 
+		
+		#white_background {
+		    background-color: white;
+		    opacity: 1 !important;
+		}
+
 		#telephone_h4 {
 		    margin-top: -5px;
 		    /*background-color: black;*/

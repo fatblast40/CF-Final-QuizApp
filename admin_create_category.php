@@ -116,7 +116,7 @@ require_once('includes/head_tag.php');
 					<div class="row">
 						<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 							<h3><label class="white">Category Name</label></h3>					
-							<input type="text" name="category" id="category" class="form-control" required>
+							<input type="text" name="category" id="category" class="form-control" required maxlength="13">
 						</div>
 					</div>
 				</div>

@@ -18,6 +18,15 @@ $error = 0;
 
  if ( isset($_POST['btn-change_data']) ) {
   // sanitize user input to prevent sql injection
+  
+  $first_name = trim($_POST['first_name']);
+  $first_name = strip_tags($first_name);
+  $first_name = htmlspecialchars($first_name);
+
+  $family_name = trim($_POST['family_name']);
+  $family_name = strip_tags($family_name);
+  $family_name = htmlspecialchars($family_name);
+
   $username = trim($_POST['nickname']);
   $username = strip_tags($username);
   $username = htmlspecialchars($username);
@@ -116,6 +125,8 @@ $error = 0;
 
 	   if($row_user['password']==$password_old ) {
 		   $query_user = "UPDATE users SET
+       first_name = '$first_name',
+       family_name = '$family_name',
 		   nickname='$username',
 		   email='$email',
 		   password='$password', 
@@ -194,16 +205,29 @@ require_once('includes/head_tag.php');
               <div class="col-xs-12">
                 <div class="row">
                   <div class="col-xs-12 col-md-6">
+                    <!-- First Name -->
+                    <h4 class="white">First Name:</h4>
+                    <input required type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter your first name" maxlength="50" value="<?php echo $user_first_name ;?>"/>
+                  </div>
+                  <!-- second row -->
+                  <div class="col-xs-12 col-md-6">
+                    <!-- Family Name -->
+                    <h4 class="white">Family Name:</h4>
+                    <input required type="text" id="family_name" name="family_name" class="form-control" placeholder="Enter your family name" maxlength="50" value="<?php echo $user_family_name ;?>">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
                     <!-- NICKNAME -->
                     <h4 class="white">User Name:</h4>
-                    <input type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" value="<?php echo $user_nickname ;?>"/>
+                    <input required type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" value="<?php echo $user_nickname ;?>"/>
                     <span class="text-danger"><?php echo $nameError; ?></span>         
                   </div>
                   <!-- second row -->
                   <div class="col-xs-12 col-md-6">
                     <!-- EMAIL -->
                     <h4 class="white">E-Mail:</h4>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $user_email ;?>">
+                    <input required type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $user_email ;?>">
                     <span class="text-danger"><?php echo $emailError; ?></span>         
                   </div>
                 </div>
@@ -213,14 +237,14 @@ require_once('includes/head_tag.php');
                   <div class="col-xs-12 col-md-6">
                     <!-- Old PASSWORD -->
                     <h4 class="white">Current Password:</h4>
-                    <input type="password" id="password_old" name="password_old" class="form-control" placeholder="Enter Password"/>
+                    <input required type="password" id="password_old" name="password_old" class="form-control" placeholder="Enter Password"/>
                     <span class="text-danger"><?php echo $passError; ?></span>
                   </div>
                   <!-- second row -->
                   <div class="col-xs-12 col-md-6">
                     <!-- NEW PASSWORD -->
                     <h4 class="white">New Password:</h4>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
+                    <input required type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
                     <span class="text-danger"><?php echo $passError; ?></span>   
                   </div>
                 </div>
@@ -241,7 +265,7 @@ require_once('includes/head_tag.php');
                     $avatar_id = $avatarRow['id'];
 
                     echo    '<label class="radio-inline">
-                              <input type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar" >
+                              <input required type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar" >
                             </label>';
                   }
                 ?>
