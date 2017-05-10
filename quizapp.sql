@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 09. Mai 2017 um 14:51
--- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 5.6.30
+-- Host: localhost
+-- Generation Time: May 10, 2017 at 10:44 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `quizapp`
+-- Database: `quizapp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `admins`
+-- Table structure for table `admins`
 --
 
 CREATE TABLE `admins` (
@@ -32,7 +32,7 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `FK_users`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `admins` (`id`, `FK_users`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `answers`
+-- Table structure for table `answers`
 --
 
 CREATE TABLE `answers` (
@@ -52,7 +52,7 @@ CREATE TABLE `answers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `answers`
+-- Dumping data for table `answers`
 --
 
 INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
@@ -231,23 +231,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (173, 'Austria', 16, 0),
 (174, 'France', 16, 0),
 (175, 'Germany', 16, 0),
-(178, 'test correct', 38, 1),
-(179, 'test correct', 39, 1),
-(180, 'test correct', 40, 1),
-(181, 'test correct', 41, 1),
+(178, 'Alexander Van der Bellen', 38, 1),
+(179, 'Angela Merkel', 39, 1),
+(180, '100', 40, 1),
+(181, 'Independence Party', 41, 1),
 (182, 'test correct', 42, 1),
 (183, 'test correct', 43, 1),
 (184, 'test correct', 44, 1),
 (185, 'test correct', 45, 1),
 (186, 'test correct', 46, 1),
 (187, 'test correct', 47, 1),
-(188, 'test correct', 48, 1),
-(189, 'test correct', 49, 1),
-(190, 'test correct', 41, 1),
-(191, 'test correct', 50, 1),
-(192, 'test correct', 51, 1),
-(193, 'test correct', 52, 1),
-(194, 'test correct', 53, 1),
+(188, '8', 48, 0),
+(189, 'Mel Gibson', 49, 0),
+(191, 'Normandy, France', 50, 1),
+(192, 'Cyberdyne Systems', 51, 1),
+(193, 'Salzburg', 52, 1),
+(194, '1982', 53, 0),
 (195, 'test correct', 54, 1),
 (196, 'test correct', 55, 1),
 (197, 'test correct', 56, 1),
@@ -302,23 +301,23 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (246, 'test correct', 105, 1),
 (247, 'test correct', 106, 1),
 (248, 'test correct', 107, 1),
-(249, 'wrong1', 38, 0),
-(250, 'wrong1', 39, 0),
-(251, 'wrong1', 40, 0),
-(252, 'wrong1', 41, 0),
+(249, 'Heinz Fischer', 38, 0),
+(250, 'Manuel Neuer', 39, 0),
+(251, '52', 40, 0),
+(252, 'Bright Future', 41, 0),
 (253, 'wrong1', 42, 0),
 (254, 'wrong1', 43, 0),
 (255, 'wrong1', 44, 0),
 (256, 'wrong1', 45, 0),
 (257, 'wrong1', 46, 0),
 (258, 'wrong1', 47, 0),
-(259, 'wrong1', 48, 0),
-(260, 'wrong1', 49, 0),
-(261, 'wrong1', 41, 0),
-(262, 'wrong1', 50, 0),
-(263, 'wrong1', 51, 0),
-(264, 'wrong1', 52, 0),
-(265, 'wrong1', 53, 0),
+(259, '5', 48, 1),
+(260, 'Arnold Schwarzenegger', 49, 0),
+(261, 'Pirate Party', 41, 0),
+(262, 'London, England', 50, 0),
+(263, 'CodeFactory', 51, 0),
+(264, 'Paris', 52, 0),
+(265, '2002', 53, 0),
 (266, 'wrong1', 54, 0),
 (267, 'wrong1', 55, 0),
 (268, 'wrong1', 56, 0),
@@ -373,23 +372,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (317, 'wrong1', 105, 0),
 (318, 'wrong1', 106, 0),
 (319, 'wrong1', 107, 0),
-(320, 'wrong2', 38, 0),
-(321, 'wrong2', 39, 0),
-(322, 'wrong2', 40, 0),
-(323, 'wrong2', 41, 0),
+(320, 'Amadeus Mozart', 38, 0),
+(321, 'Hermann Goring', 39, 0),
+(322, '49', 40, 0),
+(323, 'Republican Party', 41, 0),
 (324, 'wrong2', 42, 0),
 (325, 'wrong2', 43, 0),
 (326, 'wrong2', 44, 0),
 (327, 'wrong2', 45, 0),
 (328, 'wrong2', 46, 0),
 (329, 'wrong2', 47, 0),
-(330, 'wrong2', 48, 0),
-(331, 'wrong2', 49, 0),
-(332, 'wrong2', 41, 0),
-(333, 'wrong2', 50, 0),
-(334, 'wrong2', 51, 0),
-(335, 'wrong2', 52, 0),
-(336, 'wrong2', 53, 0),
+(330, '6', 48, 0),
+(331, 'Hugh Jackman', 49, 1),
+(333, 'New York, USA', 50, 0),
+(334, 'Samsung', 51, 0),
+(335, 'Budapest', 52, 0),
+(336, '1989', 53, 0),
 (337, 'wrong2', 54, 0),
 (338, 'wrong2', 55, 0),
 (339, 'wrong2', 56, 0),
@@ -444,23 +442,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (388, 'wrong2', 105, 0),
 (389, 'wrong2', 106, 0),
 (390, 'wrong2', 107, 0),
-(391, 'wrong3', 38, 0),
-(392, 'wrong3', 39, 0),
-(393, 'wrong3', 40, 0),
-(394, 'wrong3', 41, 0),
+(391, 'Reinhold Mitterlehner', 38, 0),
+(392, 'Horst Köhler', 39, 0),
+(393, '101', 40, 0),
 (395, 'wrong3', 42, 0),
 (396, 'wrong3', 43, 0),
 (397, 'wrong3', 44, 0),
 (398, 'wrong3', 45, 0),
 (399, 'wrong3', 46, 0),
 (400, 'wrong3', 47, 0),
-(401, 'wrong3', 48, 0),
-(402, 'wrong3', 49, 0),
-(403, 'wrong3', 41, 0),
-(404, 'wrong3', 50, 0),
-(405, 'wrong3', 51, 0),
-(406, 'wrong3', 52, 0),
-(407, 'wrong3', 53, 0),
+(401, '4', 48, 0),
+(402, 'Tom Cruise', 49, 0),
+(403, 'Social Democratic Alliance', 41, 0),
+(404, 'Tangiers, Morocco', 50, 0),
+(405, 'Apple', 51, 0),
+(406, 'New York', 52, 0),
+(407, '2012', 53, 0),
 (408, 'wrong3', 54, 0),
 (409, 'wrong3', 55, 0),
 (410, 'wrong3', 56, 0),
@@ -515,23 +512,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (459, 'wrong3', 105, 0),
 (460, 'wrong3', 106, 0),
 (461, 'wrong3', 107, 0),
-(462, 'wrong4', 38, 0),
-(463, 'wrong4', 39, 0),
-(464, 'wrong4', 40, 0),
-(465, 'wrong4', 41, 0),
+(462, 'Rudolf Hundstorfer', 38, 0),
+(463, 'David Hasselhoff', 39, 0),
+(464, '51', 40, 0),
+(465, 'Left-Green Movement', 41, 0),
 (466, 'wrong4', 42, 0),
 (467, 'wrong4', 43, 0),
 (468, 'wrong4', 44, 0),
 (469, 'wrong4', 45, 0),
 (470, 'wrong4', 46, 0),
 (471, 'wrong4', 47, 0),
-(472, 'wrong4', 48, 0),
-(473, 'wrong4', 49, 0),
-(474, 'wrong4', 41, 0),
-(475, 'wrong4', 50, 0),
-(476, 'wrong4', 51, 0),
-(477, 'wrong4', 52, 0),
-(478, 'wrong4', 53, 0),
+(472, '9', 48, 0),
+(473, 'Russel Crowe', 49, 1),
+(475, 'Vienna, Austria', 50, 0),
+(476, 'Microsoft', 51, 0),
+(477, 'Innsbruck', 52, 0),
+(478, '1991', 53, 1),
 (479, 'wrong4', 54, 0),
 (480, 'wrong4', 55, 0),
 (481, 'wrong4', 56, 0),
@@ -586,23 +582,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (530, 'wrong4', 105, 0),
 (531, 'wrong4', 106, 0),
 (532, 'wrong4', 107, 0),
-(533, 'wrong5', 38, 0),
-(534, 'wrong5', 39, 0),
-(535, 'wrong5', 40, 0),
-(536, 'wrong5', 41, 0),
+(533, 'Sebastian Kurz', 38, 0),
+(534, 'Gerhard Schröder', 39, 0),
+(535, '50', 40, 0),
 (537, 'wrong5', 42, 0),
 (538, 'wrong5', 43, 0),
 (539, 'wrong5', 44, 0),
 (540, 'wrong5', 45, 0),
 (541, 'wrong5', 46, 0),
 (542, 'wrong5', 47, 0),
-(543, 'wrong5', 48, 0),
-(544, 'wrong5', 49, 0),
-(545, 'wrong5', 41, 0),
-(546, 'wrong5', 50, 0),
-(547, 'wrong5', 51, 0),
-(548, 'wrong5', 52, 0),
-(549, 'wrong5', 53, 0),
+(543, '7', 48, 0),
+(544, 'Hugh Grant', 49, 0),
+(545, 'Reform Party', 41, 0),
+(546, 'Berlin, Germany', 50, 0),
+(547, 'Billa', 51, 0),
+(548, 'Munich', 52, 0),
+(549, '1992', 53, 0),
 (550, 'wrong5', 54, 0),
 (551, 'wrong5', 55, 0),
 (552, 'wrong5', 56, 0),
@@ -657,23 +652,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (601, 'wrong5', 105, 0),
 (602, 'wrong5', 106, 0),
 (603, 'wrong5', 107, 0),
-(604, 'wrong6', 38, 0),
-(605, 'wrong6', 39, 0),
-(606, 'wrong6', 40, 0),
-(607, 'wrong6', 41, 0),
+(604, 'Arnold Schwarzenegger', 38, 0),
+(605, 'Wolfgang Schäuble', 39, 0),
+(606, '7', 40, 0),
+(607, 'Democratic Party', 41, 0),
 (608, 'wrong6', 42, 0),
 (609, 'wrong6', 43, 0),
 (610, 'wrong6', 44, 0),
 (611, 'wrong6', 45, 0),
 (612, 'wrong6', 46, 0),
 (613, 'wrong6', 47, 0),
-(614, 'wrong6', 48, 0),
-(615, 'wrong6', 49, 0),
-(616, 'wrong6', 41, 0),
-(617, 'wrong6', 50, 0),
-(618, 'wrong6', 51, 0),
-(619, 'wrong6', 52, 0),
-(620, 'wrong6', 53, 0),
+(614, '100', 48, 0),
+(615, 'David Hasselhoff', 49, 0),
+(617, 'Paris, France', 50, 0),
+(618, 'Fox Studios', 51, 0),
+(619, 'Milan', 52, 0),
+(620, '1990', 53, 0),
 (621, 'wrong6', 54, 0),
 (622, 'wrong6', 55, 0),
 (623, 'wrong6', 56, 0),
@@ -728,23 +722,22 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (672, 'wrong6', 105, 0),
 (673, 'wrong6', 106, 0),
 (674, 'wrong6', 107, 0),
-(675, 'wrong7', 38, 0),
-(676, 'wrong7', 39, 0),
-(677, 'wrong7', 40, 0),
-(678, 'wrong7', 41, 0),
+(675, 'Norbert Hofer', 38, 0),
+(676, 'Franz Joseph', 39, 0),
+(677, '102', 40, 0),
 (679, 'wrong7', 42, 0),
 (680, 'wrong7', 43, 0),
 (681, 'wrong7', 44, 0),
 (682, 'wrong7', 45, 0),
 (683, 'wrong7', 46, 0),
 (684, 'wrong7', 47, 0),
-(685, 'wrong7', 48, 0),
-(686, 'wrong7', 49, 0),
-(687, 'wrong7', 41, 0),
-(688, 'wrong7', 50, 0),
-(689, 'wrong7', 51, 0),
-(690, 'wrong7', 52, 0),
-(691, 'wrong7', 53, 0),
+(685, '3', 48, 0),
+(686, 'Nicole Kidman', 49, 1),
+(687, 'Progressive Party', 41, 0),
+(688, 'Okinawa, Japan', 50, 0),
+(689, 'Novomatic', 51, 0),
+(690, 'Vienna', 52, 0),
+(691, '1984', 53, 0),
 (692, 'wrong7', 54, 0),
 (693, 'wrong7', 55, 0),
 (694, 'wrong7', 56, 0),
@@ -798,12 +791,96 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`) VALUES
 (742, 'wrong7', 104, 0),
 (743, 'wrong7', 105, 0),
 (744, 'wrong7', 106, 0),
-(745, 'wrong7', 107, 0);
+(745, 'wrong7', 107, 0),
+(875, 'wrong7', 24, 1),
+(876, 'wrong7', 24, 0),
+(877, 'wrong7', 24, 0),
+(878, 'wrong7', 24, 0),
+(879, 'wrong7', 24, 0),
+(880, 'wrong7', 24, 0),
+(881, 'wrong7', 25, 1),
+(882, 'wrong7', 25, 0),
+(883, 'wrong7', 25, 0),
+(884, 'wrong7', 25, 0),
+(885, 'wrong7', 25, 0),
+(886, 'wrong7', 25, 0),
+(887, 'wrong7', 26, 1),
+(888, 'wrong7', 26, 0),
+(889, 'wrong7', 26, 0),
+(890, 'wrong7', 26, 0),
+(891, 'wrong7', 26, 0),
+(892, 'wrong7', 26, 0),
+(893, 'wrong7', 27, 1),
+(894, 'wrong7', 27, 0),
+(895, 'wrong7', 27, 0),
+(896, 'wrong7', 27, 0),
+(897, 'wrong7', 27, 0),
+(898, 'wrong7', 27, 0),
+(899, 'wrong7', 28, 1),
+(900, 'wrong7', 28, 0),
+(901, 'wrong7', 28, 0),
+(902, 'wrong7', 28, 0),
+(903, 'wrong7', 28, 0),
+(904, 'wrong7', 28, 0),
+(905, 'wrong7', 29, 1),
+(906, 'wrong7', 29, 0),
+(907, 'wrong7', 29, 0),
+(908, 'wrong7', 29, 0),
+(909, 'wrong7', 29, 0),
+(910, 'wrong7', 29, 0),
+(911, 'wrong7', 30, 1),
+(912, 'wrong7', 30, 0),
+(913, 'wrong7', 30, 0),
+(914, 'wrong7', 30, 0),
+(915, 'wrong7', 30, 0),
+(916, 'wrong7', 30, 0),
+(917, 'wrong7', 31, 1),
+(918, 'wrong7', 31, 0),
+(919, 'wrong7', 31, 0),
+(920, 'wrong7', 31, 0),
+(921, 'wrong7', 31, 0),
+(922, 'wrong7', 31, 0),
+(923, 'wrong7', 32, 1),
+(924, 'wrong7', 32, 0),
+(925, 'wrong7', 32, 0),
+(926, 'wrong7', 32, 0),
+(927, 'wrong7', 32, 0),
+(928, 'wrong7', 32, 0),
+(929, 'wrong7', 33, 1),
+(930, 'wrong7', 33, 0),
+(931, 'wrong7', 33, 0),
+(932, 'wrong7', 33, 0),
+(933, 'wrong7', 33, 0),
+(934, 'wrong7', 33, 0),
+(935, 'wrong7', 34, 1),
+(936, 'wrong7', 34, 0),
+(937, 'wrong7', 34, 0),
+(938, 'wrong7', 34, 0),
+(939, 'wrong7', 34, 0),
+(940, 'wrong7', 34, 0),
+(941, 'wrong7', 35, 1),
+(942, 'wrong7', 35, 0),
+(943, 'wrong7', 35, 0),
+(944, 'wrong7', 35, 0),
+(945, 'wrong7', 35, 0),
+(946, 'wrong7', 35, 0),
+(947, 'Barack Obama', 36, 1),
+(948, 'Hillary Clinton', 36, 0),
+(949, 'Joseph Biden', 36, 0),
+(950, 'Donald Trump', 36, 0),
+(951, 'Bill Clinton', 36, 0),
+(952, 'George Bush', 36, 0),
+(953, 'George Bush', 37, 1),
+(954, 'Barack Obama', 37, 0),
+(955, 'Mike Pence', 37, 0),
+(956, 'Bill Clinton', 37, 0),
+(957, 'Al Gore', 37, 0),
+(958, 'John McCain', 37, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `avatars`
+-- Table structure for table `avatars`
 --
 
 CREATE TABLE `avatars` (
@@ -812,7 +889,7 @@ CREATE TABLE `avatars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `avatars`
+-- Dumping data for table `avatars`
 --
 
 INSERT INTO `avatars` (`id`, `location`) VALUES
@@ -830,7 +907,7 @@ INSERT INTO `avatars` (`id`, `location`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -841,7 +918,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`) VALUES
@@ -858,7 +935,7 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `questions`
+-- Table structure for table `questions`
 --
 
 CREATE TABLE `questions` (
@@ -868,7 +945,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `questions`
+-- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
@@ -902,22 +979,22 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
 (35, 'How many runs are scored in baseball from a Grand Slam?', 2),
 (36, 'Who was the 44th President of the USA?', 3),
 (37, 'Who was the 43rd President of the USA?', 3),
-(38, 'test question?', 3),
-(39, 'test question?', 3),
-(40, 'test question?', 3),
-(41, 'test question?', 3),
+(38, 'Who is the President of Austria?', 3),
+(39, 'Who is the Chancellor of Germany?', 3),
+(40, 'How many Senators are in the Congress of the USA?', 3),
+(41, 'Which political party has the most seats in the Parliament of Iceland?', 3),
 (42, 'test question?', 3),
 (43, 'test question?', 3),
 (44, 'test question?', 3),
 (45, 'test question?', 3),
 (46, 'test question?', 3),
 (47, 'test question?', 3),
-(48, 'test question?', 4),
-(49, 'test question?', 4),
-(50, 'test question?', 4),
-(51, 'test question?', 4),
-(52, 'test question?', 4),
-(53, 'test question?', 4),
+(48, 'How many Terminator films have been produced?', 4),
+(49, 'Which famous actor is from Australia?', 4),
+(50, 'What is the setting of the famous D-Day invasion scene of the film Saving Private Ryan?', 4),
+(51, 'Which company produces the Terminator machines?', 4),
+(52, 'What is the primary city depicted in the film The Sound of Music?', 4),
+(53, 'What year was the film Terminator 2 released?', 4),
 (54, 'test question?', 4),
 (55, 'test question?', 4),
 (56, 'test question?', 4),
@@ -976,7 +1053,7 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `quizzes`
+-- Table structure for table `quizzes`
 --
 
 CREATE TABLE `quizzes` (
@@ -989,7 +1066,7 @@ CREATE TABLE `quizzes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `quizzes`
+-- Dumping data for table `quizzes`
 --
 
 INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_timestamp`, `end_timestamp`) VALUES
@@ -1106,7 +1183,7 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `quiz_questions`
+-- Table structure for table `quiz_questions`
 --
 
 CREATE TABLE `quiz_questions` (
@@ -1118,7 +1195,7 @@ CREATE TABLE `quiz_questions` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -1130,7 +1207,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
@@ -1145,11 +1222,11 @@ INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`) VALUES
 (9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `admins`
+-- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
@@ -1157,7 +1234,7 @@ ALTER TABLE `admins`
   ADD KEY `id` (`id`,`FK_users`);
 
 --
--- Indizes für die Tabelle `answers`
+-- Indexes for table `answers`
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
@@ -1166,21 +1243,21 @@ ALTER TABLE `answers`
   ADD KEY `correct` (`correct`);
 
 --
--- Indizes für die Tabelle `avatars`
+-- Indexes for table `avatars`
 --
 ALTER TABLE `avatars`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indizes für die Tabelle `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indizes für die Tabelle `questions`
+-- Indexes for table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
@@ -1188,7 +1265,7 @@ ALTER TABLE `questions`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indizes für die Tabelle `quizzes`
+-- Indexes for table `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD PRIMARY KEY (`id`),
@@ -1197,7 +1274,7 @@ ALTER TABLE `quizzes`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indizes für die Tabelle `quiz_questions`
+-- Indexes for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD PRIMARY KEY (`id`),
@@ -1206,7 +1283,7 @@ ALTER TABLE `quiz_questions`
   ADD KEY `FK_quizzes` (`FK_quizzes`);
 
 --
--- Indizes für die Tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1214,87 +1291,87 @@ ALTER TABLE `users`
   ADD KEY `id` (`id`,`FK_avatars`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `admins`
+-- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT für Tabelle `answers`
+-- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=746;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=959;
 --
--- AUTO_INCREMENT für Tabelle `avatars`
+-- AUTO_INCREMENT for table `avatars`
 --
 ALTER TABLE `avatars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT für Tabelle `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT für Tabelle `questions`
+-- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
--- AUTO_INCREMENT für Tabelle `quizzes`
+-- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 --
--- AUTO_INCREMENT für Tabelle `quiz_questions`
+-- AUTO_INCREMENT for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT für Tabelle `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `admins`
+-- Constraints for table `admins`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`);
 
 --
--- Constraints der Tabelle `answers`
+-- Constraints for table `answers`
 --
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`);
 
 --
--- Constraints der Tabelle `questions`
+-- Constraints for table `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
 
 --
--- Constraints der Tabelle `quizzes`
+-- Constraints for table `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
 
 --
--- Constraints der Tabelle `quiz_questions`
+-- Constraints for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD CONSTRAINT `quiz_questions_ibfk_1` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`),
   ADD CONSTRAINT `quiz_questions_ibfk_2` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`);
 
 --
--- Constraints der Tabelle `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`);
