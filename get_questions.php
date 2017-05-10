@@ -1,7 +1,6 @@
-<?php require_once 'dbconnect.php'?>
-<?php
+<?php require_once 'dbconnect.php';
+require_once 'includes/api_helpers.php';
 
-header('Content-Type: application/json');
 $allQuestionsQuery = $con->prepare(<<<'SQL'
 SELECT id, question FROM questions ORDER BY RAND() LIMIT ?;
 SQL
@@ -60,15 +59,10 @@ SQL
 );
 
 
-function showError($httpCode, $message) {
-    global $con;
-    http_response_code($httpCode);
-    echo json_encode(['status' => 'error', 'message' => $message, 'dberror' => $con->error]);
-    exit();
-}
 
 
-//$userId = (int)$con->real_escape_string($_SESSION['user']);
+
+//
 $userId = 1;
 $categoryName = $con->real_escape_string($_GET['category']);
 $getCategoryIdQuery->bind_param('s', $categoryName);
@@ -129,7 +123,7 @@ function createQuiz() {
 
 function addQuizQuestion($quizId, $questionId) {
     global $addQuizQuestionsQuery;
-    $addQuizQuestionsQuery->bind_param('ii', $quizId, $question);
+    $addQuizQuestionsQuery->bind_param('ii', $quizId, $questionId);
     $addQuizQuestionsQuery->execute();
 
 }
