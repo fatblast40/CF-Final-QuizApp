@@ -99,7 +99,7 @@ require_once('includes/head_tag.php');
 			                while ($row_all_categories  = mysqli_fetch_array($res_all_categories)){
 
 			                    $category = $row_all_categories['category'];
-			                    $category_id=$row_all_categories['category_id'];
+			                    $category_id=$row_all_categories['id'];
 			                    $passed_at = $row_all_categories['passed_at'];
 
 			                    
