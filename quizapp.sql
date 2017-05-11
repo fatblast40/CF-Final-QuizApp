@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2017 um 10:33
+-- Erstellungszeit: 11. Mai 2017 um 10:40
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `quizapp`
 --
-CREATE DATABASE IF NOT EXISTS `quizapp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `quizapp`;
 
 -- --------------------------------------------------------
 
@@ -28,14 +26,10 @@ USE `quizapp`;
 -- Tabellenstruktur für Tabelle `admins`
 --
 
-DROP TABLE IF EXISTS `admins`;
-CREATE TABLE IF NOT EXISTS `admins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `FK_users` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`FK_users`),
-  KEY `id` (`id`,`FK_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `FK_users` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `admins`
@@ -50,18 +44,13 @@ INSERT INTO `admins` (`id`, `FK_users`) VALUES
 -- Tabellenstruktur für Tabelle `answers`
 --
 
-DROP TABLE IF EXISTS `answers`;
-CREATE TABLE IF NOT EXISTS `answers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `answers` (
+  `id` int(11) NOT NULL,
   `answer` varchar(255) NOT NULL,
   `FK_question` int(11) NOT NULL,
   `correct` tinyint(1) NOT NULL DEFAULT '0',
-  `id_string` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `answer` (`answer`),
-  KEY `FK_question` (`FK_question`),
-  KEY `correct` (`correct`)
-) ENGINE=InnoDB AUTO_INCREMENT=962 DEFAULT CHARSET=latin1;
+  `id_string` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `answers`
@@ -895,13 +884,10 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 -- Tabellenstruktur für Tabelle `avatars`
 --
 
-DROP TABLE IF EXISTS `avatars`;
-CREATE TABLE IF NOT EXISTS `avatars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `location` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+CREATE TABLE `avatars` (
+  `id` int(11) NOT NULL,
+  `location` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `avatars`
@@ -925,17 +911,14 @@ INSERT INTO `avatars` (`id`, `location`) VALUES
 -- Tabellenstruktur für Tabelle `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
   `category` varchar(13) NOT NULL,
   `image` varchar(255) NOT NULL DEFAULT 'default.png',
   `amount_questions` int(11) NOT NULL DEFAULT '8',
   `tries` int(11) NOT NULL DEFAULT '5',
-  `passed_at` decimal(3,2) NOT NULL DEFAULT '0.60',
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `passed_at` decimal(3,2) NOT NULL DEFAULT '0.60'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `categories`
@@ -958,17 +941,13 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`
 -- Tabellenstruktur für Tabelle `questions`
 --
 
-DROP TABLE IF EXISTS `questions`;
-CREATE TABLE IF NOT EXISTS `questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `questions` (
+  `id` int(11) NOT NULL,
   `question` varchar(200) NOT NULL,
   `FK_categories` int(11) NOT NULL,
   `id_string` varchar(255) DEFAULT NULL,
-  `answers_displayed` int(11) NOT NULL DEFAULT '4',
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `FK_categories` (`FK_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+  `answers_displayed` int(11) NOT NULL DEFAULT '4'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `questions`
@@ -1082,19 +1061,14 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answer
 -- Tabellenstruktur für Tabelle `quizzes`
 --
 
-DROP TABLE IF EXISTS `quizzes`;
-CREATE TABLE IF NOT EXISTS `quizzes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `quizzes` (
+  `id` int(11) NOT NULL,
   `FK_users` int(11) NOT NULL,
   `FK_categories` int(11) NOT NULL,
   `scores` decimal(3,2) DEFAULT NULL,
   `start_timestamp` datetime NOT NULL,
-  `end_timestamp` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `users` (`FK_users`),
-  KEY `FK_categories` (`FK_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=latin1;
+  `end_timestamp` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `quizzes`
@@ -1283,16 +1257,11 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 -- Tabellenstruktur für Tabelle `quiz_questions`
 --
 
-DROP TABLE IF EXISTS `quiz_questions`;
-CREATE TABLE IF NOT EXISTS `quiz_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `quiz_questions` (
+  `id` int(11) NOT NULL,
   `FK_quizzes` int(11) NOT NULL,
-  `FK_questions` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`,`FK_quizzes`,`FK_questions`),
-  KEY `FK_questions` (`FK_questions`),
-  KEY `FK_quizzes` (`FK_quizzes`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `FK_questions` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `quiz_questions`
@@ -1316,20 +1285,16 @@ INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
 -- Tabellenstruktur für Tabelle `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `FK_avatars` int(11) NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `family_name` varchar(255) NOT NULL,
-  `date_of_birth` date NOT NULL DEFAULT '1993-07-30',
-  PRIMARY KEY (`id`),
-  KEY `FK_avatars` (`FK_avatars`),
-  KEY `id` (`id`,`FK_avatars`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `date_of_birth` date NOT NULL DEFAULT '1993-07-30'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `users`
@@ -1347,6 +1312,119 @@ INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`, `first
 (9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30'),
 (10, 5, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30');
 
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`FK_users`),
+  ADD KEY `id` (`id`,`FK_users`);
+
+--
+-- Indizes für die Tabelle `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `answer` (`answer`),
+  ADD KEY `FK_question` (`FK_question`),
+  ADD KEY `correct` (`correct`);
+
+--
+-- Indizes für die Tabelle `avatars`
+--
+ALTER TABLE `avatars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indizes für die Tabelle `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indizes für die Tabelle `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `FK_categories` (`FK_categories`);
+
+--
+-- Indizes für die Tabelle `quizzes`
+--
+ALTER TABLE `quizzes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `users` (`FK_users`),
+  ADD KEY `FK_categories` (`FK_categories`);
+
+--
+-- Indizes für die Tabelle `quiz_questions`
+--
+ALTER TABLE `quiz_questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`,`FK_quizzes`,`FK_questions`),
+  ADD KEY `FK_questions` (`FK_questions`),
+  ADD KEY `FK_quizzes` (`FK_quizzes`);
+
+--
+-- Indizes für die Tabelle `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_avatars` (`FK_avatars`),
+  ADD KEY `id` (`id`,`FK_avatars`);
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT für Tabelle `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=962;
+--
+-- AUTO_INCREMENT für Tabelle `avatars`
+--
+ALTER TABLE `avatars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT für Tabelle `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT für Tabelle `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+--
+-- AUTO_INCREMENT für Tabelle `quizzes`
+--
+ALTER TABLE `quizzes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+--
+-- AUTO_INCREMENT für Tabelle `quiz_questions`
+--
+ALTER TABLE `quiz_questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT für Tabelle `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints der exportierten Tabellen
 --
