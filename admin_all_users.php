@@ -1,36 +1,7 @@
 <?php
 require_once('includes/start_session_admin.php');
 ?>
-<?php 
-	$errTyp="";
-	$errMSG="";
-	$hidden="";
-	$highlight="";
-	$passed="";
 
-
-	if(isset($_GET['selected_category_id'])){
-
-
-
-		$selected_category_id = $_GET['selected_category_id'];
-
-		$query_category_name = "
-		    SELECT category FROM `categories` where categories.id = ".$selected_category_id;
-
-		$res_category_name = mysqli_query($con, $query_category_name);
-		$row_category_name  = mysqli_fetch_array($res_category_name);
-		$category_name_selected = $row_category_name['category'];
-		// $count_category_name = mysqli_num_rows($res_category_name);
-
-
-	} else {
-		// $selected_category_id = '%';
-		$selected_category_id = '-1';
-		$category_name_selected = "Pick a category from above";
-	}
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -86,13 +57,13 @@ require_once('includes/head_tag.php');
 
 				<div class="col-xs-12 margin-top">
 				<div class="table-responsive">
-                        <table class="table-hover text-center" >
+                        <table class="table-hover text-center" id="all_users_table">
                             <thead>
                             	
                                 <tr id="white_background">
                                 	<th class="text-center"><h5>First<br>Name</h5></th>
                                 	<th class="text-center"><h5>Family<br>Name</h5></th>
-                                    <th class="text-center"><h5>E-Mail</h5></th>
+                                    <!-- <th class="text-center"><h5>E-Mail</h5></th> -->
                                     <?php
 										require('query/my_quizzes_categories.php');
 						                while ($row_categories  = mysqli_fetch_array($res_categories)){
@@ -117,34 +88,36 @@ require_once('includes/head_tag.php');
  							$family_name = $row_all_users['family_name'];
  							$email = $row_all_users['email'];
 
+
                             echo '
                                 <tr>
                                     <td><h4>'.$first_name.'</h4></td>
                                     <td><h4>'.$family_name.'</h4></td>
-                                    <td>'.$email.'</td>';
+                                    ';
 
                             require('query/categories_query.php');
 			                while ($row_all_categories  = mysqli_fetch_array($res_all_categories)){
 
 			                    $category = $row_all_categories['category'];
 			                    $category_id=$row_all_categories['category_id'];
+			                    $passed_at = $row_all_categories['passed_at'];
 
 			                    
 
 			                   require('query/score_per_cat_per_user.php');
 				                while ($row_scores_per_cat_per_user  = mysqli_fetch_array($res_scores_per_cat_per_user)){
 				                    $score = $row_scores_per_cat_per_user['scores'];
-				       				if (!isset($count_scores_per_cat_per_user)){
-				       					echo'
-										<td><h4>not taken</h4></td>
-
-					       				';
-				       				} else{
-					       				echo'
-										<td><h4>'.$count_scores_per_cat_per_user.'</h4></td>
-
-					       				';
+				       				if ($score>=$passed_at){
+				       					// passed
+				       					$passed="green_background";
+				       				} else {
+				       					$passed="red_background";
 				       				}
+					       				echo'
+										<td class="'.$passed.'"><h4>'.($score*100).'%</h4></td>
+
+					       				';
+				       				
 				                   
 				                		
 				                }

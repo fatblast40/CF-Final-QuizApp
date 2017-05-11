@@ -2,8 +2,7 @@
 // Report:  score and games played per categories
 $query_all_categories = "
     SELECT 
-        category,
-        categories.id AS category_id
+        *
 
 
     FROM `categories`

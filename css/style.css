@@ -253,12 +253,13 @@ tbody {
 }
 
 .red_background {
-    background-color: red;
+    background-color: #d32727;
     color:white;
 }
 
 .green_background {
-    background-color: #1ff22d;
+    background-color: #39b526;
+    color:white;
 }
 
 
@@ -271,3 +272,6 @@ tbody {
     width:100%;
 }
 
+#all_users_table td {
+    width: 1%;
+}
