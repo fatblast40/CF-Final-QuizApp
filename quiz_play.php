@@ -12,7 +12,7 @@ $categoriesResult = $categoriesQuery->get_result();
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Categories</title>
+        <title><?php echo $_GET['category']?></title>
         <?php
         require_once('includes/head_tag.php');
         ?>
@@ -23,12 +23,12 @@ $categoriesResult = $categoriesQuery->get_result();
             <!-- header -->
             <header class="row shadow" id="header">
                 <div class="col-xs-3">
-                    <a href="home_user.php">
+                    <a href="#" id="back_link">
                         <img alt="back_button" src="pictures/back_button.png" id="back_button"/>
                     </a>
                 </div>
                 <div class="col-xs-6 white text-center margin-top">
-                    <h1 class="heading_font">Pick a Category</h1>
+                    <h1 class="heading_font"><?php echo $_GET['category']?></h1>
                 </div>
                 <?php
                 echo'
