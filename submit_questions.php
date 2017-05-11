@@ -82,9 +82,9 @@ if (isset($_POST)) {
 
         $quizData = getQueryData($quizDataQuery, 'ii', $userId, $quizId);
         $selectedQuestions = getQueryData($selectedQuestionsQuery, 'ii', $userId, $quizId);
-        if (count($submittedAnswers) != count($selectedQuestions)) {
+/*        if (count($submittedAnswers) != count($selectedQuestions)) {
             showError(400, 'Incorrect number of Answers submitted.');
-        }
+        }*/
         $score = 0;
         foreach ($selectedQuestions as $question) {
             $selectedQuestionId = $question['id'];
