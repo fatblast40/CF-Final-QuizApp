@@ -107,6 +107,12 @@ require_once('includes/head_tag.php');
                         <table class="table-hover text-center" >
                             <thead  id="white_background">
                                 <tr>
+                                	<th colspan="4" class="text-center"><h3><?php echo $category;  ?></h3></th>
+                                	<!-- <th class="text-center"><h3>User</h3></th>
+                                    <th class="text-center"><h3>Score</h3></th>
+                                    <th class="text-center"><h3>Date</h3></th>  --> 
+                                </tr>
+                                <tr>
                                 	<th class="text-center"><h3>Rank</h3></th>
                                 	<th class="text-center"><h3>User</h3></th>
                                     <th class="text-center"><h3>Score</h3></th>
