@@ -18,10 +18,11 @@ function QuizPrompt(questionString, answers) {
 
     this.DOM = $('<div class="black">');
     this.questionContainerDOM =
-        $('<div class="col-xs-8 col-xs-offset-2 text-center margin-top left_round_side warning">').appendTo(this.DOM);
-    this.questionDOM = $('<h3>').appendTo(this.questionContainerDOM);
+        $('<div class="col-xs-8 col-xs-offset-2 text-center margin-top left_round_side warning" id="play_button">').appendTo(this.DOM);
+    this.questionContainerDOM.before($('<div class="col-xs-12" id="play_line"><hr></div>'));
+    this.questionDOM = $('<h1>').appendTo(this.questionContainerDOM);
     this.questionDOM.text(this.questionString);
-    this.answersDOM = $('<div class="col-xs-12  col-sm-8 col-sm-offset-2">').appendTo(this.DOM);
+    this.answersDOM = $('<div class="col-xs-12 col-sm-8 col-sm-offset-2">').appendTo(this.DOM);
 
     this.setQuestion = function (question) {
         this.question = question;
@@ -55,9 +56,9 @@ function QuizAnswer(prompt, answer) {
     var self = this;
     this.prompt = prompt;
     this.answer = answer;
-    this.DOM = $('<div class="panel">');
+    this.DOM = $('<div class="wrapper2 text-center">');
     this.bodyDOM = $('<div class="panel-body">').appendTo(this.DOM);
-    this.textDOM = $('<p>').appendTo(this.bodyDOM);
+    this.textDOM = $('<h3>').appendTo(this.bodyDOM);
     this.textDOM.text(this.answer);
 
     this.DOM.click(function (event) {
@@ -143,11 +144,15 @@ function showMessage(message, className) {
     messageBoxDOM.addClass(className);
     var messageTextDOM = $('<h3>').appendTo(messageBoxDOM);
     messageTextDOM.text(message);
-    mainDOM.after(columnDom);
+    mainDOM.append(columnDom);
 }
 
 
 $(document).ready(function (event) {
     getQuestions(quizCategory);
+    $('#back_link').click(function (event) {
+        event.preventDefault();
+        history.go(-1);
+    });
 });
 
