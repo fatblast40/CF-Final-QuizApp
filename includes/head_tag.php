@@ -34,10 +34,11 @@
 		    opacity: 1 !important;
 		}
 
-		#telephone_h4 {
-		    margin-top: -5px;
-		    /*background-color: black;*/
+		#first_row_table {
+		    background-color: #4D97FF;
 		}
+
+		
 
 		.avatar {
         width: 120px;

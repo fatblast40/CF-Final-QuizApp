@@ -66,14 +66,7 @@ require_once('includes/head_tag.php');
 								</div>
 							</div>
 						</a>
-						<!-- Statistics -->
-						<a href="my_statistics.php">
-							<div class="col-xs-6">
-								<div class="wrapper text-center">
-									<h2>My Statistics</h2>
-								</div>
-							</div>
-						</a>
+						
 						<!-- Top 10 -->
 						<a href="top_10.php">
 							<div class="col-xs-6">

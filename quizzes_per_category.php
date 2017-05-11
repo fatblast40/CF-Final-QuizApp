@@ -51,7 +51,7 @@ require_once('includes/head_tag.php');
                      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin-top">
                         <table class="table-hover text-center">
                             <thead>
-                                <tr>
+                                <tr id="white_background">
                                     <th class="text-center"><h3>Scores</h3></th>
                                     <th class="text-center"><h3>Date</h3></th>  
                                 </tr>

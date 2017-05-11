@@ -15,9 +15,19 @@ require_once('includes/start_session_admin.php');
 
 		$selected_category_id = $_GET['selected_category_id'];
 
+		$query_category_name = "
+		    SELECT category FROM `categories` where categories.id = ".$selected_category_id;
+
+		$res_category_name = mysqli_query($con, $query_category_name);
+		$row_category_name  = mysqli_fetch_array($res_category_name);
+		$category_name_selected = $row_category_name['category'];
+		// $count_category_name = mysqli_num_rows($res_category_name);
+
+
 	} else {
 		// $selected_category_id = '%';
 		$selected_category_id = '-1';
+		$category_name_selected = "Pick a category from above";
 	}
 
 ?>
@@ -105,8 +115,11 @@ require_once('includes/head_tag.php');
 
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin-top">
                         <table class="table-hover text-center" >
-                            <thead  id="white_background">
-                                <tr>
+                            <thead>
+                            	<tr id="first_row_table" class="white">
+                                	<th colspan="4" class="text-center success"><h3><?php echo $category_name_selected;  ?></h3></th>
+                                </tr>
+                                <tr id="white_background">
                                 	<th class="text-center"><h3>Rank</h3></th>
                                 	<th class="text-center"><h3>User</h3></th>
                                     <th class="text-center"><h3>Score</h3></th>

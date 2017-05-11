@@ -16,7 +16,7 @@ $query_ranking = "
       ON t1.FK_users = t2.FK_users 
             AND t1.start_timestamp < t2.start_timestamp
     WHERE t2.FK_users IS NULL 
-    and t1.fk_categories LIKE '".$selected_category_id."'
+    and t1.fk_categories = ".$selected_category_id."
     ORDER BY 
         scores Desc
 ";
