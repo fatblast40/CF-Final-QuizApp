@@ -112,6 +112,7 @@ function submitResults() {
                 // for 2XX responses the data is contained right in the object.
                 var message = response.message;
                 showMessage(message, 'alert-success');
+                setTimeout("location.href = 'quiz_score.php';",200);
 
 
             }
