@@ -7,7 +7,7 @@ require_once('includes/start_session_admin.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ranking</title>
+	<title>Edit Categories</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -23,7 +23,7 @@ require_once('includes/head_tag.php');
 				</a>
 			</div>		
 			<div class="col-xs-6 white text-center margin-top">
-                <h1 class="heading_font">Ranking</h1>
+                <h1 class="heading_font">Edit Categories</h1>
             </div>                      
         <?php
         echo'
@@ -52,9 +52,13 @@ require_once('includes/head_tag.php');
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin-top">
                         <table class="table-hover text-center" >
                             <thead>
-                            
+                            	<tr id="first_row_table" class="white">
+                                	<th colspan="5" class="text-center"><h3>Click on a Category to change it</h3></th>
+                                	
+                                </tr>
                                 <tr id="white_background">
                                 	<th class="text-center"><h3>Category</h3></th>
+                                	<th class="text-center"><h3>Questions/<br>Quiz</h3></th>
                                 	<th class="text-center"><h3>Tries</h3></th>
                                     <th class="text-center"><h3>Passed at</h3></th>
                                     <th class="text-center"><h3>Questions</h3></th>
@@ -68,17 +72,19 @@ require_once('includes/head_tag.php');
 
 			                    $category = $row_all_categories['category'];
 			                    $category_id=$row_all_categories['id'];
+			                    $questions=$row_all_categories['amount_questions'];
 			                    $tries=$row_all_categories['tries'];
 			                    $passed_at = $row_all_categories['passed_at'];
 
 
                             echo '
 								<a href="change_category.php?category_selected='.$category_id.'">
-	                                <tr class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'">
-	                                    <td><h4>'.$category.'</h4></td>
-	                                    <td><h4>'.$tries.'</h4></td>
-	                                    <td><h4>'.($passed_at*100).'%</h4></td>
-	                                    
+	                                <tr>
+	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$category.'</h4></td>
+	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$questions.'</h4></td>
+	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$tries.'</h4></td>
+	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.($passed_at*100).'%</h4></td>
+	                                    <td><h4><input class="btn btn-info btn-display_games" type="submit" data-href="questions_of_category.php?category_selected='.$category_id.'"  value="Questions"></h4></td>
 	                                </tr>
                                 </a>
 
@@ -105,11 +111,19 @@ require_once('includes/head_tag.php');
 require_once('includes/footer.php');
 	?>
 	 <script>
-			 	jQuery(document).ready(function($) {
-		    $(".clickable-row").click(function() {
-		        window.location = $(this).data("href");
-		    });
-		});
+			jQuery(document).ready(function($) {
+			    $(".clickable-row").click(function() {
+			        window.location = $(this).data("href");
+			    });
+
+			    $(".btn-display_games").click(function() {
+			        window.location = $(this).data("href");
+			    });
+			});
+
+
+
+				 	
 	 </script>
 </body>
 </html>

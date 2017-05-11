@@ -275,3 +275,8 @@ tbody {
 #all_users_table td {
     width: 1%;
 }
+
+.padding-left {
+    padding-left: 20px;
+    width: 50%
+}
