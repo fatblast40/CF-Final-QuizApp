@@ -2,8 +2,8 @@
 require_once('includes/start_session_user.php');
 
 $categoriesQuery = $con->prepare(<<<'SQL'
-SELECT category, image, tries, count(quizzes.id) AS tried, categories.tries - count(quizzes.id) AS tries_left FROM categories
-LEFT JOIN quizzes ON categories.id = quizzes.FK_categories
+SELECT category, image, tries, count(qui.id) AS tried, categories.tries - count(qui.id) AS tries_left FROM categories
+LEFT JOIN (SELECT * FROM quizzes WHERE FK_users = ?) as qui ON qui.FK_categories = categories.id
 GROUP BY categories.id
 ;
 SQL

@@ -2,11 +2,22 @@
 require_once('includes/start_session_user.php');
 
 $categoriesQuery = $con->prepare(<<<'SQL'
-SELECT category, image FROM categories;
+SELECT category, image, tries, count(qui.id) AS tried, categories.tries - count(qui.id) AS tries_left FROM categories
+LEFT JOIN (SELECT * FROM quizzes WHERE FK_users = ?) as qui ON qui.FK_categories = categories.id
+WHERE category = ?
+GROUP BY categories.id
+;
 SQL
 );
+$categoriesQuery->bind_param('is', $_SESSION['user'], $_GET['category']);
 $categoriesQuery->execute();
 $categoriesResult = $categoriesQuery->get_result();
+$categoryData = $categoriesResult->fetch_assoc();
+
+if ((int)$categoryData['tries_left'] <= 0) {
+    header('Location: quiz_categories.php');
+    exit();
+}
 ?>
 
     <!DOCTYPE html>
