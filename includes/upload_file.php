@@ -1,3 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/css/fileinput.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.9/js/fileinput.min.js"></script>
+
+
+    <!-- NEW PASSWORD -->
+    <h4 class="white">Upload Avatar image</h4>
+    <input id="input-1a" type="file" class="file" data-show-preview="false">
+
+
+
+
 <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
