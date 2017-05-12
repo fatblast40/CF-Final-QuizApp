@@ -132,7 +132,16 @@ require_once('includes/head_tag.php');
 				              while($categoryRow=mysqli_fetch_array($res_question)){
 				                $category = $categoryRow['category'];
 				                $category_id = $categoryRow['id'];
-				                echo "<option value='".$category_id."'>".$category."</option>";
+
+
+				               		if ($category_id==$FK_categories_old) {
+
+				                    	echo "<option value='".$category_id."' selected='selected
+				                    	'>".$category."</option>";
+				                    } else {
+
+				                    	echo "<option value='".$category_id."'>".$category."</option>";
+				                    }
 				              }
 				            ?>
 

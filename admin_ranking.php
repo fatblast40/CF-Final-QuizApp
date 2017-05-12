@@ -110,7 +110,7 @@ require_once('includes/head_tag.php');
 
 									} else {
 					                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
-
+					                    	$selected_class_id=$class_id;
 					                    	echo "<option value='".$class_id."' selected='selected
 					                    	'>".$class."</option>";
 					                    } else {

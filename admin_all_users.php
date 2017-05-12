@@ -79,7 +79,7 @@ require_once('includes/head_tag.php');
 
 									} else {
 					                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
-
+					                    	$selected_class_id=$class_id;
 					                    	echo "<option value='".$class_id."' selected='selected
 					                    	'>".$class."</option>";
 					                    } else {
@@ -148,29 +148,43 @@ require_once('includes/head_tag.php');
                             require('query/categories_query.php');
 			                while ($row_all_categories  = mysqli_fetch_array($res_all_categories)){
 
-			                    $category = $row_all_categories['category'];
+			                    $category1 = $row_all_categories['category'];
 			                    $category_id=$row_all_categories['id'];
 			                    $passed_at = $row_all_categories['passed_at'];
 
-			                    
+
 
 			                   require('query/score_per_cat_per_user.php');
-				                while ($row_scores_per_cat_per_user  = mysqli_fetch_array($res_scores_per_cat_per_user)){
-				                    $score = $row_scores_per_cat_per_user['scores'];
-				                    $category = $row_scores_per_cat_per_user['category'];
-				       				if ($score>=$passed_at){
-				       					// passed
-				       					$passed="green_background";
-				       				} else {
-				       					$passed="red_background";
-				       				}
-					       				echo'
-										<td class="'.$passed.'"><h4>'.($score*100).'%</h4></td>
+			                   if ($count_scores_per_cat_per_user>0){
+					                while ($row_scores_per_cat_per_user  = mysqli_fetch_array($res_scores_per_cat_per_user)){
+					                    $score = $row_scores_per_cat_per_user['scores'];
+					                    $category = $row_scores_per_cat_per_user['category'];
 
-					       				';
-				       				
-				                   
-				                		
+					                    if($score<0 || $score>100){
+					                    	echo'
+											<td class=""><h4>('.$score.')</h4></td>
+
+						       				';
+					                    } else {
+					       				if ($score>=$passed_at){
+					       					// passed
+					       					$passed="green_background";
+					       				} else {
+					       					$passed="red_background";
+					       				}
+						       				echo'
+											<td class="'.$passed.'"><h4>'.($score*100).'%</h4></td>
+
+						       				';
+					       				}
+					                   
+					                		
+					                }
+				                } else {
+				                	echo'
+											<td class=""><h4></h4></td>
+
+						       				';
 				                }
 
 						    }

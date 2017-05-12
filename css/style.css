@@ -272,7 +272,7 @@ tbody {
     width:100%;
 }
 
-#all_users_table td {
+#all_users_table td, #all_users_table th {
     width: 1%;
 }
 

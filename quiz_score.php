@@ -14,7 +14,7 @@ WHERE quizzes.scores IS NOT NULL
 AND quizzes.end_timestamp IS NOT NULL 
 AND category = ? AND FK_users = ?
 GROUP BY categories.id
-ORDER BY end_timestamp DESC
+ORDER BY end_timestamp ASC
 ;
 SQL
 );
@@ -77,20 +77,29 @@ SQL
 
 
                                 ?>
-                            <div class="text-center alert alert-info col-xs-8 col-xs-offset-2 margin-top">
+                            
                                 <?php if($hasPassed): ?>
-                                <h1>Congratulations you did pass,</h1>
-                                <h1>you have</h1>
-                                <br><br><br>
+                                <div class="text-center alert alert-success col-xs-8 col-xs-offset-2 margin-top">
+                                    <h1>Congratulations, <?php echo $user_first_name;?>!</h1>
+                                    <h3>You passed the test.</h3>
+                                    <h3>Your score is:</h3>
+                                    <br>
                                 <?php else: ?>
-                                    <h1>Sorry you didn't pass,</h1>
-                                    <h1>you have</h1>
-                                    <br><br><br>
+                                <div class="text-center alert alert-danger col-xs-8 col-xs-offset-2 margin-top">
+                                    <h1>Sorry, <?php echo $user_first_name;?>!</h1>
+                                    <h3>You didn't pass this time.</h3>
+                                    <h3>Your score is:</h3>
+                                    <br>
                                 <?php endif; ?>
 
                                 <h1 class="<?php echo $hasPassed ? 'text-success' : 'text-danger'?>">
                                     <?php echo 100*$latestScoreData['scores'].'%'?>
                                 </h1>
+                                <?php if($hasPassed): ?>
+                                <?php else: ?>
+                                    <h4><input class="btn btn-info btn-display_games" type="submit" data-href="quiz_categories.php"  value="Try again"></h4>
+                                <?php endif; ?>
+
                             </div>
                             <?php endif;?>
                         
