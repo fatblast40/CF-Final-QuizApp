@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Tabellenstruktur für Tabelle `admins`
 --
+create database quizapp;
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
