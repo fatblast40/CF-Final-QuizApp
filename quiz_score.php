@@ -99,7 +99,7 @@ SQL
                                 </h1>
                                 <?php if($hasPassed): ?>
                                 <?php else: ?>
-                                    <h4><input class="btn btn-info btn-display_games" type="submit" data-href="quiz_categories.php"  value="Try again"></h4>
+                                    <a href="quiz_categories.php"><h4>Try Again</h4></a>
                                 <?php endif; ?>
 
                             </div>

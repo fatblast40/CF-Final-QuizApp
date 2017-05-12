@@ -27,9 +27,9 @@ $error = 0;
   $family_name = strip_tags($family_name);
   $family_name = htmlspecialchars($family_name);
 
-  $username = trim($_POST['nickname']);
-  $username = strip_tags($username);
-  $username = htmlspecialchars($username);
+  $class = trim($_POST['class']);
+  $class = strip_tags($class);
+  $class = htmlspecialchars($class);
  
   $email = trim($_POST['email']);
   $email = strip_tags($email);
@@ -49,22 +49,22 @@ $error = 0;
     // }
 
   // basic username validation
-  if (empty($username)) {
-   $error = 1;
-   $nameError = "Please enter your user name.";
-  } else if (strlen($username) < 3) {
-   $error = 1;
-   $nameError = "Name must have atleat 3 characters.";
-  } else {
+  // if (empty($username)) {
+  //  $error = 1;
+  //  $nameError = "Please enter your user name.";
+  // } else if (strlen($username) < 3) {
+  //  $error = 1;
+  //  $nameError = "Name must have atleat 3 characters.";
+  // } else {
    // check whether the nickname exist or not
-   $query_nickname = "SELECT nickname FROM users WHERE users.nickname='$username' AND users.id!=".$_SESSION['user'];
-   $result_nickname = mysqli_query($con, $query_nickname);
-   $count_nickname = mysqli_num_rows($result_nickname);
-   if($count_nickname!=0){
-    $error = 1;
-    $nameError = "Provided user name is already in use.";
-   }
-  }
+  //  $query_nickname = "SELECT nickname FROM users WHERE users.nickname='$username' AND users.id!=".$_SESSION['user'];
+  //  $result_nickname = mysqli_query($con, $query_nickname);
+  //  $count_nickname = mysqli_num_rows($result_nickname);
+  //  if($count_nickname!=0){
+  //   $error = 1;
+  //   $nameError = "Provided user name is already in use.";
+  //  }
+  // }
   // echo " username: $error<br>";
  
   //basic email validation
@@ -127,7 +127,7 @@ $error = 0;
 		   $query_user = "UPDATE users SET
        first_name = '$first_name',
        family_name = '$family_name',
-		   nickname='$username',
+		   FK_classes='$class',
 		   email='$email',
 		   password='$password', 
 		   FK_avatars=$avatar
@@ -218,10 +218,36 @@ require_once('includes/head_tag.php');
                 </div>
                 <div class="row">
                   <div class="col-xs-12 col-md-6">
-                    <!-- NICKNAME -->
-                    <h4 class="white">User Name:</h4>
-                    <input required type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" value="<?php echo $user_nickname ;?>"/>
-                    <span class="text-danger"><?php echo $nameError; ?></span>         
+                    <!-- CLASS -->
+                    <h4 class="white">Class:</h4>
+                    <select class="form-control" id="class" name="class">
+                  <!--  <option value='5'>TESTEST</option>"  -->      
+                    <?php 
+
+                      require_once('query/all_classes_query.php');
+                      while ($row_classes  = mysqli_fetch_array($res_classes)){
+                          $class = $row_classes['name'];
+                          $class_id = $row_classes['id'];
+                          $from = $row_classes['from'];
+                          $from = strtotime($from);
+                          $from = date('Y-m-d',$from);
+                          $to = $row_classes['to'];
+                          $to = strtotime($to);
+                          $to = date('Y-m-d',$to);
+
+                          if ($class_id==$selected_class_id) {
+                            echo "<option value='".$class_id."' selected='selected
+                            '>".$class."</option>";
+                          } else {
+
+                           
+                          }
+                        
+                      }
+
+
+                     ?>
+                     </select>
                   </div>
                   <!-- second row -->
                   <div class="col-xs-12 col-md-6">
@@ -276,6 +302,7 @@ require_once('includes/head_tag.php');
                 ?>
                 <div class="text-center text-danger margin-top"><?php echo $avatarError; ?></div>  
               </div>
+
               <div class="col-xs-12">
                 <!-- SUBMIT -->
                   <hr />

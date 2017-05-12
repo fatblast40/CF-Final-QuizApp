@@ -43,9 +43,9 @@
   $password = strip_tags($password);
   $password = htmlspecialchars($password);
 
-  $nickname = trim($_POST['nickname']);
-  $nickname = strip_tags($nickname);
-  $nickname = htmlspecialchars($nickname);
+  $class = trim($_POST['class']);
+  $class = strip_tags($class);
+  $class = htmlspecialchars($class);
 
   $first_name = trim($_POST['first_name']);
   $first_name = strip_tags($first_name);
@@ -66,22 +66,22 @@
     // }
 
   // basic nickname validation
-  if (empty($nickname)) {
-   $error = 1;
-   $nameError = "Please enter your user name.";
-  } else if (strlen($nickname) < 3) {
-   $error = 1;
-   $nameError = "Name must have atleat 3 characters.";
-  } else {
+  // if (empty($nickname)) {
+  //  $error = 1;
+  //  $nameError = "Please enter your user name.";
+  // } else if (strlen($nickname) < 3) {
+  //  $error = 1;
+  //  $nameError = "Name must have atleat 3 characters.";
+  // } else {
    // check whether the nickname exist or not
-   $query_nickname = "SELECT nickname FROM users WHERE users.nickname='$nickname'";
-   $result_nickname = mysqli_query($con, $query_nickname);
-   $count_nickname = mysqli_num_rows($result_nickname);
-   if($count_nickname!=0){
-    $error = 1;
-    $nameError = "Provided user name is already in use.";
-   }
-  }
+  //  $query_nickname = "SELECT nickname FROM users WHERE users.nickname='$nickname'";
+  //  $result_nickname = mysqli_query($con, $query_nickname);
+  //  $count_nickname = mysqli_num_rows($result_nickname);
+  //  if($count_nickname!=0){
+  //   $error = 1;
+  //   $nameError = "Provided user name is already in use.";
+  //  }
+  // }
   // echo " nickname: $error<br>";
  
   //basic email validation
@@ -128,8 +128,8 @@
   // if there's no error, continue to signup
   if( $error == 0 ) {
    // echo "no error";
-    // echo'$first_name', '$family_name', $nickname', '$email', '$password', $avatar, '$date';
-   $query_user = "INSERT INTO users (first_name, family_name, nickname, email, password, FK_avatars, date_of_birth) VALUES('$first_name', '$family_name', '$nickname', '$email', '$password', $avatar, '$date')";
+    // echo'$first_name', '$family_name', $class', '$email', '$password', $avatar, '$date';
+   $query_user = "INSERT INTO users (first_name, family_name, FK_classes, email, password, FK_avatars, date_of_birth) VALUES('$first_name', '$family_name', $class, '$email', '$password', $avatar, '$date')";
    $res_user = mysqli_query($con, $query_user);
    
    if ($res_user) {
@@ -206,10 +206,38 @@ require_once('includes/head_tag.php');
         <div class="row">
           <!-- first_row -->
           <div class="col-xs-12 col-md-4">
-            <!-- NICKNAME -->
-              <h4 class="white">User Name:</h4>
-              <input required type="text" name="nickname" id="nickname" class="form-control" placeholder="Enter nickname" maxlength="50" />
-              <span class="text-danger"><?php echo $nameError; ?></span>
+            <!-- CLASS -->
+              <h4 class="white">Pick a Class:</h4>
+          <select class="form-control" id="class" name="class">
+                  <!--  <option value='5'>TESTEST</option>"  -->      
+          <?php 
+
+            require_once('query/all_classes_query.php');
+                        while ($row_classes  = mysqli_fetch_array($res_classes)){
+                            $class = $row_classes['name'];
+                            $class_id = $row_classes['id'];
+                            $from = $row_classes['from'];
+                            $from = strtotime($from);
+                            $from = date('Y-m-d',$from);
+                            $to = $row_classes['to'];
+                            $to = strtotime($to);
+                            $to = date('Y-m-d',$to);
+
+                            if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
+                              $selected_class_id=$class_id;
+                              echo "<option value='".$class_id."' selected='selected
+                              '>".$class."</option>";
+                            } else {
+
+                              echo "<option value='".$class_id."'>".$class."</option>";
+                            }
+                          
+                        }
+
+
+           ?>
+
+          </select>
    
           </div>
           <!-- second row -->
