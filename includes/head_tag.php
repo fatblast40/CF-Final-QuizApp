@@ -19,7 +19,7 @@
 
     <!-- additional jquery for date picker-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="css/BootstrapXL.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<style type="text/css">

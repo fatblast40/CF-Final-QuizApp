@@ -2,10 +2,9 @@
 require_once('includes/start_session_user.php');
 
 $categoriesQuery = $con->prepare(<<<'SQL'
-SELECT category, image, tries - count(quizzes.id) AS tries_left FROM categories
-INNER JOIN quizzes ON categories.id = quizzes.FK_categories
-WHERE quizzes.scores IS NOT NULL AND FK_users = ?
-GROUP BY categories.id;
+SELECT category, image, tries, count(quizzes.id) AS tried, categories.tries - count(quizzes.id) AS tries_left FROM categories
+LEFT JOIN quizzes ON categories.id = quizzes.FK_categories
+GROUP BY categories.id
 ;
 SQL
 );
@@ -54,23 +53,24 @@ $categoriesResult = $categoriesQuery->get_result();
                 <main class="col-xs-12">
                     <section class="row">
                         <div class="col-xs-12 margin-top">
+                            <div class="row">
+
                             <!-- add main content here -->
                             <?php
                             $categories = [];
                             while ($category = $categoriesResult->fetch_assoc()) {
+                                $category['tries_left'] = max(0, $category['tries_left']);
                                 $categories[] = $category;
                             }
 
                             foreach ($categories as $key => $category):
-                                if ($key % 4 == 0):
-                                    ?>
-                                    <div class="row">
-                                    <?php
-                                endif;
+
                                 ?>
-                                <div class="col-xs-6 col-sm-3">
+                                <div class="col-xs-6 col-sm-4 col-md-3 col-xl-2">
+                                    <?php if ($category['tries_left'] > 0): ?>
                                     <a href="quiz_play.php?category=<?php echo $category['category'] ?>"
                                        class="a_category">
+                                        <?php endif;?>
                                         <div class="panel panel-primary" id="category_panel">
                                             <div class="text-left panel-heading" id="category_header">
                                                 <div>
@@ -90,16 +90,17 @@ $categoriesResult = $categoriesQuery->get_result();
 
                                             </div>
                                         </div>
+                                        <?php if ($category['tries_left'] > 0): ?>
+
                                     </a>
+                                    <?php endif;?>
+
                                 </div>
                                 <?php
-                                if ($key % 4 == 3 || $key >= count($categories)):
-                                    ?>
-                                    </div>
-                                    <?php
-                                endif;
+
                             endforeach;
                             ?>
+                            </div>
 
 
                         </div>
