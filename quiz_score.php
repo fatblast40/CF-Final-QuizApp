@@ -2,19 +2,20 @@
 require_once('includes/start_session_user.php');
 
 $latestScoreQuery = $con->prepare(<<<'SQL'
-SELECT
-    passed_at,
-    scores, 
-    end_timestamp - quizzes.start_timestamp AS duration, 
-    category, 
-    tries - count(quizzes.id) AS tries_left
-FROM categories 
-INNER JOIN quizzes ON categories.id = quizzes.FK_categories
-WHERE quizzes.scores IS NOT NULL 
-AND quizzes.end_timestamp IS NOT NULL 
-AND category = ? AND FK_users = ?
-GROUP BY categories.id
-ORDER BY end_timestamp DESC
+SELECT 
+  passed_at,
+  end_timestamp,
+  qui.scores,
+  categories.category,
+  image, 
+  tries, 
+  count(qui.id) AS tried, 
+  categories.tries - count(qui.id) AS tries_left 
+FROM categories
+LEFT JOIN (SELECT end_timestamp,id, scores, FK_categories FROM quizzes WHERE FK_users = ?) AS qui ON qui.FK_categories = categories.id
+WHERE category = ?
+GROUP BY categories.id, qui.scores, end_timestamp
+ORDER BY end_timestamp DESC 
 ;
 SQL
 );
@@ -40,7 +41,7 @@ SQL
                     </a>
                 </div>
                 <div class="col-xs-6 white text-center margin-top">
-                    <h1 class="heading_font"><?php echo $_GET['category']?></h1>
+                    <h1 class="heading_font"><?php echo $_GET['category'] ?></h1>
                 </div>
                 <?php
                 echo '
@@ -59,41 +60,40 @@ SQL
                 <main class="col-xs-12">
                     <section class="row">
                         <!-- <div class=""> -->
-                            <!-- add main content here -->
-                            <?php if (!isset($_GET['category'])):?>
+                        <!-- add main content here -->
+                        <?php if (!isset($_GET['category'])): ?>
                             <div class="text-center white margin-top">
                                 <h1>No category was selected.</h1>
                             </div>
-                            <?php else:
-    $category = $con->real_escape_string($_GET['category']);
-    $userId = $con->real_escape_string($_SESSION['user']);
+                        <?php else:
+                            $category = $con->real_escape_string($_GET['category']);
+                            $userId = $con->real_escape_string($_SESSION['user']);
 
-    $latestScoreQuery->bind_param('si', $category, $userId);
-    $latestScoreQuery->execute();
-    $latestScoreResult = $latestScoreQuery->get_result();
-    $latestScoreData = $latestScoreResult->fetch_assoc();
-    $hasPassed = $latestScoreData['scores'] >= $latestScoreData['passed_at'];
+                            $latestScoreQuery->bind_param('is', $userId, $category);
+                            $latestScoreQuery->execute();
+                            $latestScoreResult = $latestScoreQuery->get_result();
+                            $latestScoreData = $latestScoreResult->fetch_assoc();
+                            $hasPassed = $latestScoreData['scores'] >= $latestScoreData['passed_at'];
 
 
-
-                                ?>
+                            ?>
                             <div class="text-center alert alert-info col-xs-8 col-xs-offset-2 margin-top">
-                                <?php if($hasPassed): ?>
-                                <h1>Congratulations you did pass,</h1>
-                                <h1>you have</h1>
-                                <br><br><br>
+                                <?php if ($hasPassed): ?>
+                                    <h1>Congratulations you did pass,</h1>
+                                    <h1>you have</h1>
+                                    <br><br><br>
                                 <?php else: ?>
                                     <h1>Sorry you didn't pass,</h1>
                                     <h1>you have</h1>
                                     <br><br><br>
                                 <?php endif; ?>
 
-                                <h1 class="<?php echo $hasPassed ? 'text-success' : 'text-danger'?>">
-                                    <?php echo 100*$latestScoreData['scores'].'%'?>
+                                <h1 class="<?php echo $hasPassed ? 'text-success' : 'text-danger' ?>">
+                                    <?php echo 100 * $latestScoreData['scores'] . '%' ?>
                                 </h1>
                             </div>
-                            <?php endif;?>
-                        
+                        <?php endif; ?>
+
                     </section>
                 </main>
             </div>
