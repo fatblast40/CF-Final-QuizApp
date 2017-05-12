@@ -25,7 +25,11 @@ SET time_zone = "+00:00";
 --
 -- Tabellenstruktur für Tabelle `admins`
 --
-create database quizapp;
+
+DROP DATABASE quizapp;
+CREATE DATABASE quizapp CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;
+USE quizapp;
+
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
