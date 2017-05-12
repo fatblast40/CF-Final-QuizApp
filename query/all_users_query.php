@@ -6,7 +6,8 @@ $query_all_users = "
 
     FROM `users`
     join avatars on users.fk_avatars=avatars.id
-    
+    where
+    	users.FK_classes=".$selected_class_id."
     ORDER BY 
         family_name DESC;
 ";

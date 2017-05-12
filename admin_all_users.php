@@ -1,7 +1,11 @@
 <?php
 require_once('includes/start_session_admin.php');
 ?>
-
+<?php 
+	if(isset($_GET['class_id'])){
+		$selected_class_id=$_GET['class_id'];
+	} 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,16 +45,59 @@ require_once('includes/head_tag.php');
 		<main class="col-xs-12">
 			<section class="row">
 				<!-- add main content here -->
-				<!-- choose category -->
-				<div class="col-xs-12 text-center margin-top">
+				<!-- pick a class -->
+				<div class="col-xs-12 margin-top">
 					<div class="row">
-						
-						
-						
-							<!-- <div class="col-xs-12">
-								<hr>
-							</div> -->
-	                </div>
+						<div class="col-xs-12 col-sm-2">
+
+					<label class="white">Pick a Class</label>
+					<select class="form-control" id="class" name="class">
+				          	<option value='5'>TESTEST</option>"			  
+					<?php 
+
+						require_once('query/all_classes_query.php');
+				                while ($row_classes  = mysqli_fetch_array($res_classes)){
+				                    $class = $row_classes['name'];
+				                    $class_id = $row_classes['id'];
+				                    $from = $row_classes['from'];
+				                    $from = strtotime($from);
+				                    $from = date('Y-m-d',$from);
+				                    $to = $row_classes['to'];
+				                    $to = strtotime($to);
+				                    $to = date('Y-m-d',$to);
+
+				                    if(isset($_GET['class_id'])){
+
+				                    	if ($class_id==$selected_class_id) {
+
+					                    	echo "<option value='".$class_id."' selected='selected
+					                    	'>".$class."</option>";
+					                    } else {
+
+					                    	echo "<option value='".$class_id."'>".$class."</option>";
+					                    }
+
+									} else {
+					                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
+
+					                    	echo "<option value='".$class_id."' selected='selected
+					                    	'>".$class."</option>";
+					                    } else {
+
+					                    	echo "<option value='".$class_id."'>".$class."</option>";
+					                    }
+				                	}
+				                }
+
+
+					 ?>
+
+					</select>
+
+					
+						</div>
+					</div>
+					<hr>
 				</div>
 
 				<!-- Table -->
@@ -154,7 +201,14 @@ require_once('includes/head_tag.php');
 	<?php
 require_once('includes/footer.php');
 	?>
-	 
+	<script>
+	 	var selectClassDOM = $('select[name="class"]');
+	 	selectClassDOM.change(function(){
+	 		var selectedClass = selectClassDOM.val()
+	 		location.href="admin_all_users.php?class_id="+selectedClass;
+	 	});
+
+	</script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

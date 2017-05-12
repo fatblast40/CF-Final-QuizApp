@@ -12,11 +12,13 @@ $query_ranking = "
     FROM quizzes AS t1
     LEFT JOIN categories ON categories.id=t1.FK_categories
     JOIN users ON users.id = t1.FK_users
+    JOIN classes on classes.id=users.FK_classes
     LEFT JOIN quizzes AS t2
       ON t1.FK_users = t2.FK_users 
             AND t1.start_timestamp < t2.start_timestamp
     WHERE t2.FK_users IS NULL 
     and t1.fk_categories = ".$selected_category_id."
+    and classes.id=".$selected_class_id."
     ORDER BY 
         scores Desc
 ";

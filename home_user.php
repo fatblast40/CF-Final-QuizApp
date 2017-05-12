@@ -45,8 +45,7 @@ require_once('includes/head_tag.php');
 			<section class="row">
 				<!-- add main content here -->
 				<div class="col-xs-12 white text-center">
-					<h2><?php echo $user_nickname; ?></h2>
-					<h2>Total Score: <?php echo $total_points; ?></h2>
+					<h2><?php echo $user_first_name." ".$user_family_name; ?></h2>
 				</div>
 				<div class="col-xs-12" id="play_line">
 					<hr>
