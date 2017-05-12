@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Mai 2017 um 15:33
+-- Erstellungszeit: 12. Mai 2017 um 18:39
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -831,7 +831,18 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (955, 'Mike Pence', 37, 0, NULL),
 (956, 'Bill Clinton', 37, 0, NULL),
 (957, 'Al Gore', 37, 0, NULL),
-(958, 'John McCain', 37, 0, NULL);
+(958, 'John McCain', 37, 0, NULL),
+(963, '4', 109, 1, '65552602-3723-11e7-8b17-d0bf9cde7694'),
+(964, '3', 109, 0, '6555c445-3723-11e7-8b17-d0bf9cde7694'),
+(965, '2', 109, 0, '6556032c-3723-11e7-8b17-d0bf9cde7694'),
+(966, '5', 109, 0, '6556400d-3723-11e7-8b17-d0bf9cde7694'),
+(967, '6', 109, 0, '65567ea8-3723-11e7-8b17-d0bf9cde7694'),
+(968, '0', 109, 0, '6556c4d2-3723-11e7-8b17-d0bf9cde7694'),
+(969, '10', 110, 1, '752959d5-3723-11e7-8b17-d0bf9cde7694'),
+(970, '11', 110, 0, '75299a5c-3723-11e7-8b17-d0bf9cde7694'),
+(971, '9', 110, 0, '7529d31a-3723-11e7-8b17-d0bf9cde7694'),
+(972, '8', 110, 0, '752a097b-3723-11e7-8b17-d0bf9cde7694'),
+(973, '12', 110, 0, '752a4342-3723-11e7-8b17-d0bf9cde7694');
 
 -- --------------------------------------------------------
 
@@ -886,9 +897,10 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`
 (3, 'Politics', 'cat3.png', 8, 5, '0.60'),
 (4, 'Entertainment', 'cat4.png', 8, 5, '0.60'),
 (5, 'Travel', 'cat5.png', 8, 5, '0.60'),
-(6, 'Food', 'cat6.png', 8, 5, '0.60'),
+(6, 'Food', 'cat6.png', 8, 500, '0.60'),
 (7, 'Animals', 'cat7.png', 8, 5, '0.60'),
-(8, 'Programming', 'cat8.png', 8, 3, '0.90');
+(8, 'Programming', 'cat8.png', 8, 3, '0.90'),
+(12, 'Test category', 'default.png', 2, 1000, '0.50');
 
 -- --------------------------------------------------------
 
@@ -1023,7 +1035,9 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answer
 (104, 'test question?', 8, NULL, 4),
 (105, 'test question?', 8, NULL, 4),
 (106, 'test question?', 8, NULL, 4),
-(107, 'test question?', 8, NULL, 4);
+(107, 'test question?', 8, NULL, 4),
+(109, '2+2', 12, '6554b089-3723-11e7-8b17-d0bf9cde7694', 2),
+(110, '5+5', 12, '7528e509-3723-11e7-8b17-d0bf9cde7694', 2);
 
 -- --------------------------------------------------------
 
@@ -1223,7 +1237,16 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 (180, 1, 1, '0.67', '2017-05-11 17:10:05', '2017-05-11 17:10:09'),
 (181, 1, 1, '0.44', '2017-05-11 17:12:33', '2017-05-11 17:12:38'),
 (182, 1, 1, '0.11', '2017-05-11 17:18:37', '2017-05-11 17:18:58'),
-(183, 1, 8, NULL, '2017-05-11 17:33:26', NULL);
+(183, 1, 8, NULL, '2017-05-11 17:33:26', NULL),
+(184, 1, 12, '1.00', '2017-05-12 16:59:14', '2017-05-12 17:00:25'),
+(185, 1, 12, '0.00', '2017-05-12 17:09:46', '2017-05-12 17:09:50'),
+(186, 1, 12, '0.00', '2017-05-12 17:10:30', '2017-05-12 17:10:36'),
+(187, 1, 12, '0.50', '2017-05-12 17:11:31', '2017-05-12 17:11:34'),
+(188, 1, 12, '0.00', '2017-05-12 17:14:25', '2017-05-12 17:14:29'),
+(189, 1, 12, '0.50', '2017-05-12 17:18:11', '2017-05-12 17:18:15'),
+(190, 1, 12, '0.50', '2017-05-12 17:27:54', '2017-05-12 17:27:55'),
+(191, 1, 12, '0.50', '2017-05-12 18:17:19', '2017-05-12 18:17:22'),
+(192, 1, 12, '0.00', '2017-05-12 18:17:29', '2017-05-12 18:17:34');
 
 -- --------------------------------------------------------
 
@@ -1296,7 +1319,25 @@ INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
 (62, 183, 98),
 (63, 183, 101),
 (64, 183, 99),
-(65, 183, 106);
+(65, 183, 106),
+(66, 184, 110),
+(67, 184, 109),
+(68, 185, 110),
+(69, 185, 109),
+(70, 186, 109),
+(71, 186, 110),
+(72, 187, 110),
+(73, 187, 109),
+(74, 188, 109),
+(75, 188, 110),
+(76, 189, 109),
+(77, 189, 110),
+(78, 190, 109),
+(79, 190, 110),
+(80, 191, 110),
+(81, 191, 109),
+(82, 192, 110),
+(83, 192, 109);
 
 -- --------------------------------------------------------
 
@@ -1321,7 +1362,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `FK_avatars`, `FK_classes`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`) VALUES
-(1, 6, 1, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30'),
+(1, 6, 1, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Max', 'Mustermann', '1993-07-30'),
 (2, 1, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30'),
 (3, 1, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30'),
 (4, 2, 1, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30'),
@@ -1330,7 +1371,9 @@ INSERT INTO `users` (`id`, `FK_avatars`, `FK_classes`, `nickname`, `email`, `pas
 (7, 1, 1, 'Test', 'test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Test', 'Test', '1993-07-30'),
 (8, 1, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Christoph', 'Test', '1993-07-30'),
 (9, 2, 1, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30'),
-(10, 5, 1, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30');
+(10, 5, 1, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30'),
+(11, 1, 1, '', '$email', '$password', '$first_name', '$family_name', '1993-07-30'),
+(12, 2, 1, '', 'maria@musterfrau.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Maria', 'Musterfrau', '2017-03-14');
 
 --
 -- Indizes der exportierten Tabellen
@@ -1422,7 +1465,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT für Tabelle `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=963;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=974;
 --
 -- AUTO_INCREMENT für Tabelle `avatars`
 --
@@ -1432,7 +1475,7 @@ ALTER TABLE `avatars`
 -- AUTO_INCREMENT für Tabelle `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT für Tabelle `classes`
 --
@@ -1442,22 +1485,22 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT für Tabelle `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 --
 -- AUTO_INCREMENT für Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 --
 -- AUTO_INCREMENT für Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints der exportierten Tabellen
 --
