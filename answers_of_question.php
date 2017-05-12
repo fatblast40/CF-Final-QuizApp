@@ -3,17 +3,23 @@ require_once('includes/start_session_admin.php');
 ?>
 <?php 
 
-	if(isset($_GET['answer_selected'])){
+	if(isset($_GET['question_selected'])){
 
-		$answer_id=$_GET['answer_selected'];
-		$query_get_answers = "SELECT * FROM `answers` where answers.id=".$answers_id;
+		$question_id=$_GET['question_selected'];
+		$query_get_questions = "SELECT * FROM `questions` where questions.id=".$question_id;
 
 
-		$res_get_answers = mysqli_query($con, $query_get_answers);
-		$row_get_answers  = mysqli_fetch_array($res_get_answers);
-		$category_old = $row_get_answers['answer'];
+		$res_get_questions = mysqli_query($con, $query_get_questions);
+		$row_get_questions  = mysqli_fetch_array($res_get_questions);
+		$question_old = $row_get_questions['question'];
+		$category_id = $row_get_questions['FK_categories'];
+
+	} else {
+		header("Location: questions_of_category.php");
+	  	exit;
 
 	}
+
 
  ?>
 
@@ -22,22 +28,21 @@ require_once('includes/start_session_admin.php');
  	$errTyp="";
 	$errMSG="";
 	$hidden="";
- 	if(isset($_GET['question_selected'])){
+ 	if(isset($_GET['answer_selected'])){
 
-		$question_id=$_GET['question_selected'];
+		$answer_id=$_GET['answer_selected'];
 
 
 		// $query_answers = "delete FROM `answers` where answers.FK_question=".$question_id;
 		// $res_delete_answers = mysqli_query($con, $query_answers);
 
-		$query_delete_question = "delete FROM `questions` where questions.id=".$question_id;
-		$res_delete_question = mysqli_query($con, $query_delete_question);
-		if ($res_delete_question) {
+		$query_delete_answer = "delete FROM `answers` where answers.id=".$answer_id;
+		$res_delete_answer = mysqli_query($con, $query_delete_answer);
+		if ($res_delete_answer) {
 				$errTyp = "alert alert-success";
 				$errMSG = "Successfully deleted!";
 				$hidden="hidden";
 				// echo $errMSG;
-				unset($category);
 			} else {
 				$errTyp = "alert alert-danger";
 				$errMSG = "Something went wrong, try again later...";
@@ -56,7 +61,7 @@ require_once('includes/start_session_admin.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Questions</title>
+	<title>Edit Answer</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -67,12 +72,12 @@ require_once('includes/head_tag.php');
 	<!-- header -->
 	<header class="row shadow" id="header">
 			<div class="col-xs-3">
-				<a href="admin_all_questions.php">
+				<a href="questions_of_category.php?category_selected=<?php echo $category_id; ?>">
 					<img alt="back_button" src="pictures/back_button.png" id="back_button"/>
 				</a>
 			</div>		
 			<div class="col-xs-6 white text-center margin-top">
-                <h1 class="heading_font">Edit Questions</h1>
+                <h1 class="heading_font">Edit Answer</h1>
             </div>                      
         <?php
         echo'
@@ -104,40 +109,47 @@ require_once('includes/head_tag.php');
 				<div class="col-xs-12">
                         <table class="table-hover text-center" >
                             <thead>
+
                             	<tr id="first_row_table" class="white">
-                                	<th colspan="5" class="text-center"><h3>Click on a Question to change it</h3></th>
+                                	<th colspan="5" class="text-center"><h3>Click on an answer to change it or <input class="btn btn-success btn-display_games" type="submit" data-href="add_answer.php?question_selected=<?php echo $question_id;?>"  value="add a new answer here"></h3></th>
                                 	
                                 </tr>
+                            	<tr id="first_row_table" class="white">
+                                	<th colspan="5" class="text-center"><h3><?php echo $question_old;?></h3></th>
+                                	
+                                </tr>
+                            	
                                 <tr id="white_background">
-                                	<th class="text-center"><h3>Question</h3></th>
-                                	<th class="text-center"><h3>Category</h3></th>
-                                	<th class="text-center"><h3>Answers<br>displayed</h3></th>
-                                    <th class="text-center"><h3>Answers</h3></th>
+                                	<th class="text-center"><h3>Answer</h3></th>
+                                	<th class="text-center"><h3>Correct</h3></th>
                                     <th class="text-center"><h3>Delete</h3></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                  <?php 
-                        include ('query/questions_query.php');
-			                while ($row_all_questions = mysqli_fetch_array($res_all_questions)){
+                        include ('query/answers_query.php');
+			                while ($row_all_answers = mysqli_fetch_array($res_all_answers)){
 
-			                    $category = $row_all_questions['category'];
-			                    $question_id=$row_all_questions['question_id'];
-			                    $question=$row_all_questions['question'];
-			                    $answers_displayed=$row_all_questions['answers_displayed'];
+			                    $answer_id=$row_all_answers['id'];
+			                    $answer=$row_all_answers['answer'];
+			                    $correct=$row_all_answers['correct'];
+
+			                    if ($correct==1) {
+			                    	$correct="Correct";
+			                    } else {
+			                    	$correct="Incorrect";
+			                    }
 			                    
 
 
                             echo '
-								<a href="change_question.php?question_selected='.$question_id.'">
+								<a href="change_answer.php?answer_selected='.$answer_id.'">
 	                                <tr>
-	                                    <td class="clickable-row text-left padding-left" data-href="change_question.php?question_selected='.$question_id.'"><h4>'.$question.'</h4></td>
-	                                    <td class="clickable-row" data-href="change_question.php?question_selected='.$question_id.'"><h4>'.$category.'</h4></td>
-	                                    <td class="clickable-row" data-href="change_question.php?question_selected='.$question_id.'"><h4>'.$answers_displayed.'</h4></td>
+	                                    <td class="clickable-row text-left padding-left" data-href="change_answer.php?answer_selected='.$answer_id.'"><h4>'.$answer.'</h4></td>
+	                                    <td class="clickable-row" data-href="change_answer.php?answer_selected='.$answer_id.'"><h4>'.$correct.'</h4></td>
 	                                    
-	                                    <td><h4><input class="btn btn-info btn-display_games" type="submit" data-href="answers_of_question.php?question_selected='.$question_id.'"  value="Answers"></h4></td>
-	                                    <td><h4><input class="btn btn-danger btn-display_games" type="submit" data-href="questions_of_category.php?category_selected='.$category_id.'&question_selected='.$question_id.'"  value="Delete"></h4></td>
+	                                    <td><h4><input class="btn btn-danger btn-display_games" type="submit" data-href="answers_of_question.php?question_selected='.$question_id.'&answer_selected='.$answer_id.'"  value="Delete"></h4></td>
 	                                </tr>
                                 </a>
 
