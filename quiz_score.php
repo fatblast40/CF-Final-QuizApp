@@ -58,10 +58,10 @@ SQL
             <div class="row">
                 <main class="col-xs-12">
                     <section class="row">
-                        <div class="col-xs-12 margin-top">
+                        <!-- <div class=""> -->
                             <!-- add main content here -->
                             <?php if (!isset($_GET['category'])):?>
-                            <div class="text-center white">
+                            <div class="text-center white margin-top">
                                 <h1>No category was selected.</h1>
                             </div>
                             <?php else:
@@ -77,7 +77,7 @@ SQL
 
 
                                 ?>
-                            <div class="text-center white">
+                            <div class="text-center alert alert-info col-xs-8 col-xs-offset-2 margin-top">
                                 <?php if($hasPassed): ?>
                                 <h1>Congratulations you did pass,</h1>
                                 <h1>you have</h1>
@@ -93,7 +93,7 @@ SQL
                                 </h1>
                             </div>
                             <?php endif;?>
-                        </div>
+                        
                     </section>
                 </main>
             </div>

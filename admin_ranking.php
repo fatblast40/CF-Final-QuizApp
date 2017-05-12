@@ -82,7 +82,7 @@ require_once('includes/head_tag.php');
 								</div>
 							</a> -->
 							<?php
-								require_once('query/my_quizzes_categories.php');
+								require_once('query/admin_ranking_query.php');
 				                while ($row_categories  = mysqli_fetch_array($res_categories)){
 				                    $category = $row_categories['category'];
 				                    $category_id=$row_categories['category_id'];

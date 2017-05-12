@@ -3,22 +3,17 @@ require_once('includes/start_session_admin.php');
 ?>
 <?php 
 
-	if(isset($_GET['category_selected'])){
+	if(isset($_GET['answer_selected'])){
 
-		$category_id=$_GET['category_selected'];
-		$query_get_categories = "SELECT * FROM `categories` where categories.id=".$category_id;
+		$answer_id=$_GET['answer_selected'];
+		$query_get_answers = "SELECT * FROM `answers` where answers.id=".$answers_id;
 
 
-		$res_get_categories = mysqli_query($con, $query_get_categories);
-		$row_get_categories  = mysqli_fetch_array($res_get_categories);
-		$category_old = $row_get_categories['category'];
-
-	} else {
-		header("Location: admin_all_questions.php");
-	  	exit;
+		$res_get_answers = mysqli_query($con, $query_get_answers);
+		$row_get_answers  = mysqli_fetch_array($res_get_answers);
+		$category_old = $row_get_answers['answer'];
 
 	}
-
 
  ?>
 

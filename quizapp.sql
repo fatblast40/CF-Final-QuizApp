@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2017 um 10:40
+-- Erstellungszeit: 12. Mai 2017 um 14:10
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -57,29 +57,11 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VALUES
-(1, 'Vienna', 1, 1, NULL),
-(2, 'New York Jets', 2, 1, NULL),
 (3, 'Emmanuel Macron', 3, 1, NULL),
 (4, 'cat', 4, 1, NULL),
 (5, '196', 5, 1, NULL),
 (6, 'Wienerschnitzel', 6, 1, NULL),
 (7, 'Arnold Schwarzenegger', 7, 1, NULL),
-(8, 'Bratislava', 1, 0, NULL),
-(9, 'Budapest', 1, 0, NULL),
-(10, 'Berlin', 1, 0, NULL),
-(11, 'Salzburg', 1, 0, NULL),
-(12, 'Innsbruck', 1, 0, NULL),
-(13, 'Venice', 1, 0, NULL),
-(14, 'Warsaw', 1, 0, NULL),
-(15, 'Vientiane', 1, 0, NULL),
-(16, 'Sydney', 1, 0, NULL),
-(17, 'Canberra', 1, 0, NULL),
-(18, 'New York Giants', 2, 0, NULL),
-(19, 'Los Angeles Rams', 2, 0, NULL),
-(20, 'Las Vegas Raiders', 2, 0, NULL),
-(21, 'Miami Dolphins', 2, 0, NULL),
-(22, 'Dallas Cowboys', 2, 0, NULL),
-(23, 'San Francisco 49ers', 2, 0, NULL),
 (24, 'Napoleon Bonaparte', 3, 0, NULL),
 (25, 'Marine Le Pen', 3, 0, NULL),
 (26, 'Charles De Gaulle', 3, 0, NULL),
@@ -266,8 +248,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (210, 'test correct', 69, 1, NULL),
 (211, 'test correct', 70, 1, NULL),
 (212, 'test correct', 71, 1, NULL),
-(213, 'test correct', 72, 1, NULL),
-(214, 'test correct', 73, 1, NULL),
 (215, 'test correct', 74, 1, NULL),
 (216, 'test correct', 75, 1, NULL),
 (217, 'test correct', 76, 1, NULL),
@@ -278,7 +258,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (222, 'test correct', 81, 1, NULL),
 (223, 'test correct', 82, 1, NULL),
 (224, 'test correct', 83, 1, NULL),
-(225, 'test correct', 84, 1, NULL),
 (226, 'test correct', 85, 1, NULL),
 (227, 'test correct', 86, 1, NULL),
 (228, 'test correct', 87, 1, NULL),
@@ -337,8 +316,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (281, 'wrong1', 69, 0, NULL),
 (282, 'wrong1', 70, 0, NULL),
 (283, 'wrong1', 71, 0, NULL),
-(284, 'wrong1', 72, 0, NULL),
-(285, 'wrong1', 73, 0, NULL),
 (286, 'wrong1', 74, 0, NULL),
 (287, 'wrong1', 75, 0, NULL),
 (288, 'wrong1', 76, 0, NULL),
@@ -349,7 +326,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (293, 'wrong1', 81, 0, NULL),
 (294, 'wrong1', 82, 0, NULL),
 (295, 'wrong1', 83, 0, NULL),
-(296, 'wrong1', 84, 0, NULL),
 (297, 'wrong1', 85, 0, NULL),
 (298, 'wrong1', 86, 0, NULL),
 (299, 'wrong1', 87, 0, NULL),
@@ -407,8 +383,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (352, 'wrong2', 69, 0, NULL),
 (353, 'wrong2', 70, 0, NULL),
 (354, 'wrong2', 71, 0, NULL),
-(355, 'wrong2', 72, 0, NULL),
-(356, 'wrong2', 73, 0, NULL),
 (357, 'wrong2', 74, 0, NULL),
 (358, 'wrong2', 75, 0, NULL),
 (359, 'wrong2', 76, 0, NULL),
@@ -419,7 +393,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (364, 'wrong2', 81, 0, NULL),
 (365, 'wrong2', 82, 0, NULL),
 (366, 'wrong2', 83, 0, NULL),
-(367, 'wrong2', 84, 0, NULL),
 (368, 'wrong2', 85, 0, NULL),
 (369, 'wrong2', 86, 0, NULL),
 (370, 'wrong2', 87, 0, NULL),
@@ -477,8 +450,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (423, 'wrong3', 69, 0, NULL),
 (424, 'wrong3', 70, 0, NULL),
 (425, 'wrong3', 71, 0, NULL),
-(426, 'wrong3', 72, 0, NULL),
-(427, 'wrong3', 73, 0, NULL),
 (428, 'wrong3', 74, 0, NULL),
 (429, 'wrong3', 75, 0, NULL),
 (430, 'wrong3', 76, 0, NULL),
@@ -489,7 +460,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (435, 'wrong3', 81, 0, NULL),
 (436, 'wrong3', 82, 0, NULL),
 (437, 'wrong3', 83, 0, NULL),
-(438, 'wrong3', 84, 0, NULL),
 (439, 'wrong3', 85, 0, NULL),
 (440, 'wrong3', 86, 0, NULL),
 (441, 'wrong3', 87, 0, NULL),
@@ -547,8 +517,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (494, 'wrong4', 69, 0, NULL),
 (495, 'wrong4', 70, 0, NULL),
 (496, 'wrong4', 71, 0, NULL),
-(497, 'wrong4', 72, 0, NULL),
-(498, 'wrong4', 73, 0, NULL),
 (499, 'wrong4', 74, 0, NULL),
 (500, 'wrong4', 75, 0, NULL),
 (501, 'wrong4', 76, 0, NULL),
@@ -559,7 +527,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (506, 'wrong4', 81, 0, NULL),
 (507, 'wrong4', 82, 0, NULL),
 (508, 'wrong4', 83, 0, NULL),
-(509, 'wrong4', 84, 0, NULL),
 (510, 'wrong4', 85, 0, NULL),
 (511, 'wrong4', 86, 0, NULL),
 (512, 'wrong4', 87, 0, NULL),
@@ -617,8 +584,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (565, 'wrong5', 69, 0, NULL),
 (566, 'wrong5', 70, 0, NULL),
 (567, 'wrong5', 71, 0, NULL),
-(568, 'wrong5', 72, 0, NULL),
-(569, 'wrong5', 73, 0, NULL),
 (570, 'wrong5', 74, 0, NULL),
 (571, 'wrong5', 75, 0, NULL),
 (572, 'wrong5', 76, 0, NULL),
@@ -629,7 +594,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (577, 'wrong5', 81, 0, NULL),
 (578, 'wrong5', 82, 0, NULL),
 (579, 'wrong5', 83, 0, NULL),
-(580, 'wrong5', 84, 0, NULL),
 (581, 'wrong5', 85, 0, NULL),
 (582, 'wrong5', 86, 0, NULL),
 (583, 'wrong5', 87, 0, NULL),
@@ -687,8 +651,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (636, 'wrong6', 69, 0, NULL),
 (637, 'wrong6', 70, 0, NULL),
 (638, 'wrong6', 71, 0, NULL),
-(639, 'wrong6', 72, 0, NULL),
-(640, 'wrong6', 73, 0, NULL),
 (641, 'wrong6', 74, 0, NULL),
 (642, 'wrong6', 75, 0, NULL),
 (643, 'wrong6', 76, 0, NULL),
@@ -699,7 +661,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (648, 'wrong6', 81, 0, NULL),
 (649, 'wrong6', 82, 0, NULL),
 (650, 'wrong6', 83, 0, NULL),
-(651, 'wrong6', 84, 0, NULL),
 (652, 'wrong6', 85, 0, NULL),
 (653, 'wrong6', 86, 0, NULL),
 (654, 'wrong6', 87, 0, NULL),
@@ -757,8 +718,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (707, 'wrong7', 69, 0, NULL),
 (708, 'wrong7', 70, 0, NULL),
 (709, 'wrong7', 71, 0, NULL),
-(710, 'wrong7', 72, 0, NULL),
-(711, 'wrong7', 73, 0, NULL),
 (712, 'wrong7', 74, 0, NULL),
 (713, 'wrong7', 75, 0, NULL),
 (714, 'wrong7', 76, 0, NULL),
@@ -769,7 +728,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (719, 'wrong7', 81, 0, NULL),
 (720, 'wrong7', 82, 0, NULL),
 (721, 'wrong7', 83, 0, NULL),
-(722, 'wrong7', 84, 0, NULL),
 (723, 'wrong7', 85, 0, NULL),
 (724, 'wrong7', 86, 0, NULL),
 (725, 'wrong7', 87, 0, NULL),
@@ -926,14 +884,14 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`, `passed_at`) VALUES
 (0, 'Mixed', 'mixed_category.png', 8, 5, '0.60'),
-(1, 'Geography', 'cat1.png', 8, 5, '0.60'),
+(1, 'Geography', 'cat1.png', 8, 5, '0.90'),
 (2, 'Sports', 'cat2.png', 8, 5, '0.60'),
 (3, 'Politics', 'cat3.png', 8, 5, '0.60'),
 (4, 'Entertainment', 'cat4.png', 8, 5, '0.60'),
 (5, 'Travel', 'cat5.png', 8, 5, '0.60'),
 (6, 'Food', 'cat6.png', 8, 5, '0.60'),
 (7, 'Animals', 'cat7.png', 8, 5, '0.60'),
-(8, 'Programming', 'cat8.png', 8, 5, '0.60');
+(8, 'Programming', 'cat8.png', 8, 3, '0.90');
 
 -- --------------------------------------------------------
 
@@ -954,10 +912,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answers_displayed`) VALUES
-(1, 'What is the capital of Austria?', 1, NULL, 4),
-(2, 'Which American Football team has a primary color of green?', 2, NULL, 4),
 (3, 'Who is the new President of France?', 3, NULL, 4),
-(4, 'What is the funniest animal on Youtube?', 7, NULL, 4),
+(4, 'What is the funniest animal on Youtube?', 3, NULL, 4),
 (5, 'How many countries are there in the world?', 5, NULL, 4),
 (6, 'What is the signature dish from Austria?', 6, NULL, 4),
 (7, 'Who is the most famous celebrity from Austria?', 4, NULL, 4),
@@ -970,7 +926,7 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answer
 (14, 'What is the capital city of Turkey?', 1, NULL, 4),
 (15, 'What is the capital of the European Union?', 1, NULL, 4),
 (16, 'Which countries border the USA?', 1, NULL, 4),
-(24, 'Which is the most famous soccer team in Germany?', 2, NULL, 4),
+(24, 'Which is the most famous soccer team in Germany?', 2, NULL, 3),
 (25, 'Who is the best soccer player in the world?', 2, NULL, 4),
 (26, 'What sport was brought to Japan by the Americans during World War 2?', 2, NULL, 4),
 (27, 'Which NBA basketball team is from New York?', 2, NULL, 4),
@@ -1018,8 +974,6 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answer
 (69, 'test question?', 5, NULL, 4),
 (70, 'test question?', 5, NULL, 4),
 (71, 'test question?', 5, NULL, 4),
-(72, 'test question?', 6, NULL, 4),
-(73, 'test question?', 6, NULL, 4),
 (74, 'test question?', 6, NULL, 4),
 (75, 'test question?', 6, NULL, 4),
 (76, 'test question?', 6, NULL, 4),
@@ -1030,7 +984,6 @@ INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answer
 (81, 'test question?', 6, NULL, 4),
 (82, 'test question?', 6, NULL, 4),
 (83, 'test question?', 6, NULL, 4),
-(84, 'test question?', 7, NULL, 4),
 (85, 'test question?', 7, NULL, 4),
 (86, 'test question?', 7, NULL, 4),
 (87, 'test question?', 7, NULL, 4),
@@ -1089,7 +1042,6 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 (12, 1, 8, '0.10', '2017-05-12 09:14:20', NULL),
 (13, 1, 6, '0.65', '2017-05-12 09:14:20', NULL),
 (14, 1, 4, '0.25', '2017-05-10 23:14:20', NULL),
-(15, 2, 1, '1.00', '2017-05-08 13:18:00', NULL),
 (16, 1, 7, '0.84', '2017-05-10 23:14:20', NULL),
 (17, 1, 3, '0.72', '2017-05-10 23:14:20', NULL),
 (18, 1, 2, '0.62', '2017-05-10 23:14:20', NULL),
@@ -1249,7 +1201,12 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 (172, 8, 8, '0.92', '2017-04-19 08:14:20', NULL),
 (173, 8, 1, '0.47', '2017-04-19 08:14:20', NULL),
 (176, 1, 2, NULL, '2017-05-10 23:14:20', NULL),
-(177, 1, 1, '0.10', '2017-05-10 17:45:55', '2017-05-10 17:46:05');
+(177, 1, 1, '0.10', '2017-05-10 17:45:55', '2017-05-10 17:46:05'),
+(179, 1, 1, '1.00', '2017-05-11 17:07:12', '2017-05-11 17:08:02'),
+(180, 1, 1, '0.67', '2017-05-11 17:10:05', '2017-05-11 17:10:09'),
+(181, 1, 1, '0.44', '2017-05-11 17:12:33', '2017-05-11 17:12:38'),
+(182, 1, 1, '0.11', '2017-05-11 17:18:37', '2017-05-11 17:18:58'),
+(183, 1, 8, NULL, '2017-05-11 17:33:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -1273,11 +1230,56 @@ INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
 (3, 177, 9),
 (4, 177, 15),
 (5, 177, 11),
-(6, 177, 1),
 (7, 177, 14),
 (8, 177, 13),
 (9, 177, 16),
-(10, 177, 12);
+(10, 177, 12),
+(20, 179, 10),
+(21, 179, 8),
+(22, 179, 9),
+(23, 179, 15),
+(24, 179, 12),
+(25, 179, 11),
+(26, 179, 16),
+(27, 179, 13),
+(28, 179, 14),
+(29, 180, 14),
+(30, 180, 16),
+(31, 180, 10),
+(32, 180, 15),
+(33, 180, 12),
+(34, 180, 9),
+(35, 180, 11),
+(36, 180, 8),
+(37, 180, 13),
+(38, 181, 15),
+(39, 181, 10),
+(40, 181, 14),
+(41, 181, 11),
+(42, 181, 8),
+(43, 181, 12),
+(44, 181, 16),
+(45, 181, 9),
+(46, 181, 13),
+(47, 182, 12),
+(48, 182, 11),
+(49, 182, 13),
+(50, 182, 8),
+(51, 182, 10),
+(52, 182, 14),
+(53, 182, 15),
+(54, 182, 16),
+(55, 182, 9),
+(56, 183, 107),
+(57, 183, 103),
+(58, 183, 102),
+(59, 183, 100),
+(60, 183, 97),
+(61, 183, 105),
+(62, 183, 98),
+(63, 183, 101),
+(64, 183, 99),
+(65, 183, 106);
 
 -- --------------------------------------------------------
 
@@ -1301,7 +1303,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`) VALUES
-(1, 5, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30'),
+(1, 6, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30'),
 (2, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30'),
 (3, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30'),
 (4, 2, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30'),
@@ -1404,7 +1406,7 @@ ALTER TABLE `avatars`
 -- AUTO_INCREMENT für Tabelle `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `questions`
 --
@@ -1414,12 +1416,12 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT für Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 --
 -- AUTO_INCREMENT für Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
@@ -1439,27 +1441,27 @@ ALTER TABLE `admins`
 -- Constraints der Tabelle `answers`
 --
 ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`);
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `questions`
 --
 ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
-  ADD CONSTRAINT `quiz_questions_ibfk_1` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`),
-  ADD CONSTRAINT `quiz_questions_ibfk_2` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`);
+  ADD CONSTRAINT `quiz_questions_ibfk_3` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `quiz_questions_ibfk_4` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `users`

@@ -2,7 +2,38 @@
 require_once('includes/start_session_admin.php');
 ?>
 
+<?php 
 
+ 	$errTyp="";
+	$errMSG="";
+	$hidden="";
+ 	if(isset($_GET['category_selected'])){
+
+		$category_id=$_GET['category_selected'];
+
+
+		// $query_answers = "delete FROM `answers` where answers.FK_question=".$question_id;
+		// $res_delete_answers = mysqli_query($con, $query_answers);
+
+		$query_delete_question = "delete FROM `categories` where categories.id=".$category_id;
+		$res_delete_question = mysqli_query($con, $query_delete_question);
+		if ($res_delete_question) {
+				$errTyp = "alert alert-success";
+				$errMSG = "Successfully deleted!";
+				$hidden="hidden";
+				// echo $errMSG;
+				
+			} else {
+				$errTyp = "alert alert-danger";
+				$errMSG = "Something went wrong, try again later...";
+				$hidden="hidden";
+				// echo $errMSG;
+			}
+
+	} 
+
+
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -42,6 +73,10 @@ require_once('includes/head_tag.php');
 		<main class="col-xs-12">
 			<section class="row">
 				<!-- add main content here -->
+
+				<?php 
+					require 'includes/alert_box.php'
+				 ?>
 				<!-- choose category -->
 				<div class="col-xs-12 text-center margin-top">
 					<div class="row">
@@ -49,19 +84,20 @@ require_once('includes/head_tag.php');
 							
 				<!-- Table -->
 
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin-top">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
                         <table class="table-hover text-center" >
                             <thead>
                             	<tr id="first_row_table" class="white">
-                                	<th colspan="5" class="text-center"><h3>Click on a Category to change it</h3></th>
+                                	<th colspan="6" class="text-center"><h3>Click on a Category to change it</h3></th>
                                 	
                                 </tr>
                                 <tr id="white_background">
-                                	<th class="text-center"><h3>Category</h3></th>
-                                	<th class="text-center"><h3>Questions/<br>Quiz</h3></th>
-                                	<th class="text-center"><h3>Tries</h3></th>
-                                    <th class="text-center"><h3>Passed at</h3></th>
-                                    <th class="text-center"><h3>Questions</h3></th>
+                                	<th class="text-center"><h4>Category</h4></th>
+                                	<th class="text-center"><h4>Questions/<br>Quiz</h4></th>
+                                	<th class="text-center"><h4>Tries</h4></th>
+                                    <th class="text-center"><h4>Passed at</h4></th>
+                                    <th class="text-center"><h4>Questions</h4></th>
+                                    <th class="text-center"><h4>Delete</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,21 +111,25 @@ require_once('includes/head_tag.php');
 			                    $questions=$row_all_categories['amount_questions'];
 			                    $tries=$row_all_categories['tries'];
 			                    $passed_at = $row_all_categories['passed_at'];
+			                    if($category_id==0){} else{
 
 
-                            echo '
-								<a href="change_category.php?category_selected='.$category_id.'">
-	                                <tr>
-	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$category.'</h4></td>
-	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$questions.'</h4></td>
-	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$tries.'</h4></td>
-	                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.($passed_at*100).'%</h4></td>
-	                                    <td><h4><input class="btn btn-info btn-display_games" type="submit" data-href="questions_of_category.php?category_selected='.$category_id.'"  value="Questions"></h4></td>
-	                                </tr>
-                                </a>
+			                    
 
-                                ';      
-                          
+	                            echo '
+									<a href="change_category.php?category_selected='.$category_id.'">
+		                                <tr>
+		                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$category.'</h4></td>
+		                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$questions.'</h4></td>
+		                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.$tries.'</h4></td>
+		                                    <td class="clickable-row" data-href="change_category.php?category_selected='.$category_id.'"><h4>'.($passed_at*100).'%</h4></td>
+		                                    <td><h4><input class="btn btn-info btn-display_games" type="submit" data-href="questions_of_category.php?category_selected='.$category_id.'"  value="Questions"></h4></td>
+		                                    <td><h4><input class="btn btn-danger btn-display_games" type="submit" data-href="admin_all_questions.php?category_selected='.$category_id.'"  value="Delete"></h4></td>
+		                                </tr>
+	                                </a>
+
+	                                ';      
+                          		}
                         }
                         ?>
                                 

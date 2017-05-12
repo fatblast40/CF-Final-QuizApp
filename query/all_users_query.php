@@ -2,9 +2,10 @@
 // Report:  score and games played for a specific category and user
 $query_all_users = "
     SELECT 
-        id, first_name, family_name, email
+        users.id, first_name, family_name, email, location as avatar
 
     FROM `users`
+    join avatars on users.fk_avatars=avatars.id
     
     ORDER BY 
         family_name DESC;

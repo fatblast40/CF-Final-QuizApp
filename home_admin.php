@@ -80,7 +80,7 @@ require_once('includes/head_tag.php');
 						<a href="admin_all_questions.php">
 							<div class="col-xs-6">
 								<div class="wrapper text-center">
-									<h2>All Questions</h2>
+									<h2>Make Changes</h2>
 								</div>
 							</div>
 						</a>

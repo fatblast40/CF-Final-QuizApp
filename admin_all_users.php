@@ -47,9 +47,9 @@ require_once('includes/head_tag.php');
 						
 						
 						
-							<div class="col-xs-12">
+							<!-- <div class="col-xs-12">
 								<hr>
-							</div>
+							</div> -->
 	                </div>
 				</div>
 
@@ -61,6 +61,7 @@ require_once('includes/head_tag.php');
                             <thead>
                             	
                                 <tr id="white_background">
+                                	<th class="text-center"></th>
                                 	<th class="text-center"><h5>First<br>Name</h5></th>
                                 	<th class="text-center"><h5>Family<br>Name</h5></th>
                                     <!-- <th class="text-center"><h5>E-Mail</h5></th> -->
@@ -87,10 +88,12 @@ require_once('includes/head_tag.php');
  							$first_name = $row_all_users['first_name'];
  							$family_name = $row_all_users['family_name'];
  							$email = $row_all_users['email'];
+ 							$avatar = $row_all_users['avatar'];
 
 
                             echo '
                                 <tr>
+                                	<td><img src="'.$avatar.'" class="img-circle all_users_img" alt="'.$first_name.' '.$family_name.'"></td>
                                     <td><h4>'.$first_name.'</h4></td>
                                     <td><h4>'.$family_name.'</h4></td>
                                     ';
@@ -107,6 +110,7 @@ require_once('includes/head_tag.php');
 			                   require('query/score_per_cat_per_user.php');
 				                while ($row_scores_per_cat_per_user  = mysqli_fetch_array($res_scores_per_cat_per_user)){
 				                    $score = $row_scores_per_cat_per_user['scores'];
+				                    $category = $row_scores_per_cat_per_user['category'];
 				       				if ($score>=$passed_at){
 				       					// passed
 				       					$passed="green_background";

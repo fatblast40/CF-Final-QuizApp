@@ -6,6 +6,7 @@ $query_all_categories = "
 
 
     FROM `categories`
+    order by category ASC
 ";
 
 $res_all_categories = mysqli_query($con, $query_all_categories);
