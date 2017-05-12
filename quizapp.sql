@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Mai 2017 um 14:10
+-- Erstellungszeit: 12. Mai 2017 um 15:33
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -83,12 +83,10 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (42, '100', 5, 0, NULL),
 (43, '179', 5, 0, NULL),
 (44, '169', 5, 0, NULL),
-(45, 'Hamburger', 6, 0, NULL),
 (46, 'Milka', 6, 0, NULL),
 (47, 'Billa', 6, 0, NULL),
 (48, 'frankfurter', 6, 0, NULL),
 (49, 'croissant', 6, 0, NULL),
-(50, 'eggs', 6, 0, NULL),
 (51, 'bratwurst', 6, 0, NULL),
 (52, 'David Hasselhoff', 7, 0, NULL),
 (53, 'Lisa Duschek', 7, 0, NULL),
@@ -326,7 +324,6 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (293, 'wrong1', 81, 0, NULL),
 (294, 'wrong1', 82, 0, NULL),
 (295, 'wrong1', 83, 0, NULL),
-(297, 'wrong1', 85, 0, NULL),
 (298, 'wrong1', 86, 0, NULL),
 (299, 'wrong1', 87, 0, NULL),
 (300, 'wrong1', 88, 0, NULL),
@@ -896,6 +893,26 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `classes`
+--
+
+CREATE TABLE `classes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `from` date NOT NULL,
+  `to` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `classes`
+--
+
+INSERT INTO `classes` (`id`, `name`, `from`, `to`) VALUES
+(1, 'SS2017', '2017-02-12', '2017-05-12');
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `questions`
 --
 
@@ -1290,6 +1307,7 @@ INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `FK_avatars` int(11) NOT NULL,
+  `FK_classes` int(11) NOT NULL DEFAULT '1',
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -1302,17 +1320,17 @@ CREATE TABLE `users` (
 -- Daten für Tabelle `users`
 --
 
-INSERT INTO `users` (`id`, `FK_avatars`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`) VALUES
-(1, 6, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30'),
-(2, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30'),
-(3, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30'),
-(4, 2, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30'),
-(5, 2, 'Nathalie', 'nathalie.stiefsohn@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nathalie', 'Stiefsohn', '1993-07-30'),
-(6, 1, 'Nicky', 'nicky.pallas@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nicky', 'Pallas', '1993-07-30'),
-(7, 1, 'Test', 'test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Test', 'Test', '1993-07-30'),
-(8, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Christoph', 'Test', '1993-07-30'),
-(9, 2, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30'),
-(10, 5, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30');
+INSERT INTO `users` (`id`, `FK_avatars`, `FK_classes`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`) VALUES
+(1, 6, 1, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30'),
+(2, 1, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30'),
+(3, 1, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30'),
+(4, 2, 1, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30'),
+(5, 2, 1, 'Nathalie', 'nathalie.stiefsohn@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nathalie', 'Stiefsohn', '1993-07-30'),
+(6, 1, 1, 'Nicky', 'nicky.pallas@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nicky', 'Pallas', '1993-07-30'),
+(7, 1, 1, 'Test', 'test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Test', 'Test', '1993-07-30'),
+(8, 1, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Christoph', 'Test', '1993-07-30'),
+(9, 2, 1, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30'),
+(10, 5, 1, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30');
 
 --
 -- Indizes der exportierten Tabellen
@@ -1350,6 +1368,13 @@ ALTER TABLE `categories`
   ADD KEY `id` (`id`);
 
 --
+-- Indizes für die Tabelle `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indizes für die Tabelle `questions`
 --
 ALTER TABLE `questions`
@@ -1381,7 +1406,8 @@ ALTER TABLE `quiz_questions`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_avatars` (`FK_avatars`),
-  ADD KEY `id` (`id`,`FK_avatars`);
+  ADD KEY `id` (`id`,`FK_avatars`),
+  ADD KEY `FK_classes` (`FK_classes`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -1396,7 +1422,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT für Tabelle `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=962;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=963;
 --
 -- AUTO_INCREMENT für Tabelle `avatars`
 --
@@ -1407,6 +1433,11 @@ ALTER TABLE `avatars`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT für Tabelle `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `questions`
 --
@@ -1467,7 +1498,8 @@ ALTER TABLE `quiz_questions`
 -- Constraints der Tabelle `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`),
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`FK_classes`) REFERENCES `classes` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
