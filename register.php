@@ -228,6 +228,11 @@ require_once('includes/head_tag.php');
             <span class="text-danger"><?php echo $passError; ?></span>
               
           </div>
+            <div class="col-xs-12 col-md-4">
+
+            <?php require_once 'includes/upload_file.php'; ?>
+            </div>
+
         </div>
       </div>
       <div class="col-xs-12 text-center">

@@ -247,6 +247,11 @@ require_once('includes/head_tag.php');
                     <input required type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
                     <span class="text-danger"><?php echo $passError; ?></span>   
                   </div>
+                    <div class="col-xs-12 col-md-6">
+
+                    <?php require_once 'includes/upload_file.php'; ?>
+                    </div>
+
                 </div>
               </div>
     
