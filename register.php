@@ -177,7 +177,7 @@ require_once('includes/head_tag.php');
         require_once 'includes/alert_box.php'
       ?>
 
-      <form method="post" class="<?php echo $hidden; ?>" action="register.php" autocomplete="off">
+      <form method="post" class="<?php echo $hidden; ?>" action="register.php" autocomplete="off" enctype="multipart/form-data">
       <div class="col-xs-12">
         <div class="row">
           <!-- first_row -->

@@ -200,7 +200,7 @@ require_once('includes/head_tag.php');
         <section class="row">
           <div class="col-xs-12 margin-top">
             <!-- add main content here -->
-            <form method="post" class="row <?php echo $hidden; ?>" autocomplete="off">
+            <form method="post" class="row <?php echo $hidden; ?>" autocomplete="off" enctype="multipart/form-data">
               <!-- first_row -->
               <div class="col-xs-12">
                 <div class="row">
