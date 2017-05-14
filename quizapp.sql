@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.6deb1+deb.cihar.com~trusty.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 12. Mai 2017 um 18:39
--- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 5.6.30
+-- Host: localhost
+-- Generation Time: May 13, 2017 at 09:56 PM
+-- Server version: 5.7.18-log
+-- PHP Version: 5.6.30-10+deb.sury.org~trusty+2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,19 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `quizapp`
+-- Database: `quizapp`
 --
+CREATE DATABASE IF NOT EXISTS `quizapp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `quizapp`;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `admins`
+-- Table structure for table `admins`
 --
-
-DROP DATABASE quizapp;
-CREATE DATABASE quizapp CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;
-USE quizapp;
-
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
@@ -37,7 +34,7 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `FK_users`) VALUES
@@ -46,7 +43,7 @@ INSERT INTO `admins` (`id`, `FK_users`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `answers`
+-- Table structure for table `answers`
 --
 
 CREATE TABLE `answers` (
@@ -58,7 +55,7 @@ CREATE TABLE `answers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `answers`
+-- Dumping data for table `answers`
 --
 
 INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VALUES
@@ -836,23 +833,12 @@ INSERT INTO `answers` (`id`, `answer`, `FK_question`, `correct`, `id_string`) VA
 (955, 'Mike Pence', 37, 0, NULL),
 (956, 'Bill Clinton', 37, 0, NULL),
 (957, 'Al Gore', 37, 0, NULL),
-(958, 'John McCain', 37, 0, NULL),
-(963, '4', 109, 1, '65552602-3723-11e7-8b17-d0bf9cde7694'),
-(964, '3', 109, 0, '6555c445-3723-11e7-8b17-d0bf9cde7694'),
-(965, '2', 109, 0, '6556032c-3723-11e7-8b17-d0bf9cde7694'),
-(966, '5', 109, 0, '6556400d-3723-11e7-8b17-d0bf9cde7694'),
-(967, '6', 109, 0, '65567ea8-3723-11e7-8b17-d0bf9cde7694'),
-(968, '0', 109, 0, '6556c4d2-3723-11e7-8b17-d0bf9cde7694'),
-(969, '10', 110, 1, '752959d5-3723-11e7-8b17-d0bf9cde7694'),
-(970, '11', 110, 0, '75299a5c-3723-11e7-8b17-d0bf9cde7694'),
-(971, '9', 110, 0, '7529d31a-3723-11e7-8b17-d0bf9cde7694'),
-(972, '8', 110, 0, '752a097b-3723-11e7-8b17-d0bf9cde7694'),
-(973, '12', 110, 0, '752a4342-3723-11e7-8b17-d0bf9cde7694');
+(958, 'John McCain', 37, 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `avatars`
+-- Table structure for table `avatars`
 --
 
 CREATE TABLE `avatars` (
@@ -861,7 +847,7 @@ CREATE TABLE `avatars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `avatars`
+-- Dumping data for table `avatars`
 --
 
 INSERT INTO `avatars` (`id`, `location`) VALUES
@@ -879,7 +865,7 @@ INSERT INTO `avatars` (`id`, `location`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -892,7 +878,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`, `passed_at`) VALUES
@@ -902,15 +888,14 @@ INSERT INTO `categories` (`id`, `category`, `image`, `amount_questions`, `tries`
 (3, 'Politics', 'cat3.png', 8, 5, '0.60'),
 (4, 'Entertainment', 'cat4.png', 8, 5, '0.60'),
 (5, 'Travel', 'cat5.png', 8, 5, '0.60'),
-(6, 'Food', 'cat6.png', 8, 500, '0.60'),
+(6, 'Food', 'cat6.png', 8, 5, '0.60'),
 (7, 'Animals', 'cat7.png', 8, 5, '0.60'),
-(8, 'Programming', 'cat8.png', 8, 3, '0.90'),
-(12, 'Test category', 'default.png', 2, 1000, '0.50');
+(8, 'Programming', 'cat8.png', 8, 3, '0.90');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `classes`
+-- Table structure for table `classes`
 --
 
 CREATE TABLE `classes` (
@@ -921,7 +906,7 @@ CREATE TABLE `classes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `classes`
+-- Dumping data for table `classes`
 --
 
 INSERT INTO `classes` (`id`, `name`, `from`, `to`) VALUES
@@ -930,7 +915,7 @@ INSERT INTO `classes` (`id`, `name`, `from`, `to`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `questions`
+-- Table structure for table `questions`
 --
 
 CREATE TABLE `questions` (
@@ -942,112 +927,110 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `questions`
+-- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `FK_categories`, `id_string`, `answers_displayed`) VALUES
-(3, 'Who is the new President of France?', 3, NULL, 4),
-(4, 'What is the funniest animal on Youtube?', 3, NULL, 4),
-(5, 'How many countries are there in the world?', 5, NULL, 4),
-(6, 'What is the signature dish from Austria?', 6, NULL, 4),
-(7, 'Who is the most famous celebrity from Austria?', 4, NULL, 4),
-(8, 'Which country is furthest north?', 1, NULL, 4),
-(9, 'Which country does not share a border with France?', 1, NULL, 4),
-(10, 'How many countries border Thailand?', 1, NULL, 4),
-(11, 'Which continent is Egypt located in?', 1, NULL, 4),
-(12, 'Which country does not speak Spanish as a primary language?', 1, NULL, 4),
-(13, 'What is the capital city of Germany?', 1, NULL, 4),
-(14, 'What is the capital city of Turkey?', 1, NULL, 4),
-(15, 'What is the capital of the European Union?', 1, NULL, 4),
-(16, 'Which countries border the USA?', 1, NULL, 4),
-(24, 'Which is the most famous soccer team in Germany?', 2, NULL, 3),
-(25, 'Who is the best soccer player in the world?', 2, NULL, 4),
-(26, 'What sport was brought to Japan by the Americans during World War 2?', 2, NULL, 4),
-(27, 'Which NBA basketball team is from New York?', 2, NULL, 4),
-(28, 'How many points are scored for a free-throw shot in basketball?', 2, NULL, 4),
-(29, 'Which baseball team is from New York?', 2, NULL, 4),
-(30, 'Which hockey team is from New York City?', 2, NULL, 4),
-(31, 'What is the primary color of Bayern Munchen?', 2, NULL, 4),
-(32, 'How many players are on the field for the defensive team in baseball?', 2, NULL, 4),
-(33, 'How many quarterbacks are on the field in American Football?', 2, NULL, 4),
-(34, 'How many points are scored from one Touchdown in American Football?', 2, NULL, 4),
-(35, 'How many runs are scored in baseball from a Grand Slam?', 2, NULL, 4),
-(36, 'Who was the 44th President of the USA?', 3, NULL, 4),
-(37, 'Who was the 43rd President of the USA?', 3, NULL, 4),
-(38, 'Who is the President of Austria?', 3, NULL, 4),
-(39, 'Who is the Chancellor of Germany?', 3, NULL, 4),
-(40, 'How many Senators are in the Congress of the USA?', 3, NULL, 4),
-(41, 'Which political party has the most seats in the Parliament of Iceland?', 3, NULL, 4),
-(42, 'test question?', 3, NULL, 4),
-(43, 'test question?', 3, NULL, 4),
-(44, 'test question?', 3, NULL, 4),
-(45, 'test question?', 3, NULL, 4),
-(46, 'test question?', 3, NULL, 4),
-(47, 'test question?', 3, NULL, 4),
-(48, 'How many Terminator films have been produced?', 4, NULL, 4),
-(49, 'Which famous actor is from Australia?', 4, NULL, 4),
-(50, 'What is the setting of the famous D-Day invasion scene of the film Saving Private Ryan?', 4, NULL, 4),
-(51, 'Which company produces the Terminator machines?', 4, NULL, 4),
-(52, 'What is the primary city depicted in the film The Sound of Music?', 4, NULL, 4),
-(53, 'What year was the film Terminator 2 released?', 4, NULL, 4),
-(54, 'test question?', 4, NULL, 4),
-(55, 'test question?', 4, NULL, 4),
-(56, 'test question?', 4, NULL, 4),
-(57, 'test question?', 4, NULL, 4),
-(58, 'test question?', 4, NULL, 4),
-(59, 'test question?', 4, NULL, 4),
-(60, 'test question?', 5, NULL, 4),
-(61, 'test question?', 5, NULL, 4),
-(62, 'test question?', 5, NULL, 4),
-(63, 'test question?', 5, NULL, 4),
-(64, 'test question?', 5, NULL, 4),
-(65, 'test question?', 5, NULL, 4),
-(66, 'test question?', 5, NULL, 4),
-(67, 'test question?', 5, NULL, 4),
-(68, 'test question?', 5, NULL, 4),
-(69, 'test question?', 5, NULL, 4),
-(70, 'test question?', 5, NULL, 4),
-(71, 'test question?', 5, NULL, 4),
-(74, 'test question?', 6, NULL, 4),
-(75, 'test question?', 6, NULL, 4),
-(76, 'test question?', 6, NULL, 4),
-(77, 'test question?', 6, NULL, 4),
-(78, 'test question?', 6, NULL, 4),
-(79, 'test question?', 6, NULL, 4),
-(80, 'test question?', 6, NULL, 4),
-(81, 'test question?', 6, NULL, 4),
-(82, 'test question?', 6, NULL, 4),
-(83, 'test question?', 6, NULL, 4),
-(85, 'test question?', 7, NULL, 4),
-(86, 'test question?', 7, NULL, 4),
-(87, 'test question?', 7, NULL, 4),
-(88, 'test question?', 7, NULL, 4),
-(89, 'test question?', 7, NULL, 4),
-(90, 'test question?', 7, NULL, 4),
-(91, 'test question?', 7, NULL, 4),
-(92, 'test question?', 7, NULL, 4),
-(93, 'test question?', 7, NULL, 4),
-(94, 'test question?', 7, NULL, 4),
-(95, 'test question?', 7, NULL, 4),
-(96, 'test question?', 8, NULL, 4),
-(97, 'test question?', 8, NULL, 4),
-(98, 'test question?', 8, NULL, 4),
-(99, 'test question?', 8, NULL, 4),
-(100, 'test question?', 8, NULL, 4),
-(101, 'test question?', 8, NULL, 4),
-(102, 'test question?', 8, NULL, 4),
-(103, 'test question?', 8, NULL, 4),
-(104, 'test question?', 8, NULL, 4),
-(105, 'test question?', 8, NULL, 4),
-(106, 'test question?', 8, NULL, 4),
-(107, 'test question?', 8, NULL, 4),
-(109, '2+2', 12, '6554b089-3723-11e7-8b17-d0bf9cde7694', 2),
-(110, '5+5', 12, '7528e509-3723-11e7-8b17-d0bf9cde7694', 2);
+(3, 'Who is the new President of France?', 3, 'ad56ebf2-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(4, 'What is the funniest animal on Youtube?', 3, 'ad56ee25-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(5, 'How many countries are there in the world?', 5, 'ad56eebf-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(6, 'What is the signature dish from Austria?', 6, 'ad56ef30-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(7, 'Who is the most famous celebrity from Austria?', 4, 'ad56ef96-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(8, 'Which country is furthest north?', 1, 'ad56effa-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(9, 'Which country does not share a border with France?', 1, 'ad56f05f-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(10, 'How many countries border Thailand?', 1, 'ad56f0c7-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(11, 'Which continent is Egypt located in?', 1, 'ad56f12a-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(12, 'Which country does not speak Spanish as a primary language?', 1, 'ad56f18e-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(13, 'What is the capital city of Germany?', 1, 'ad56f1f3-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(14, 'What is the capital city of Turkey?', 1, 'ad56f256-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(15, 'What is the capital of the European Union?', 1, 'ad56f2b9-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(16, 'Which countries border the USA?', 1, 'ad56f317-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(24, 'Which is the most famous soccer team in Germany?', 2, 'ad56f37c-372d-11e7-b20d-c48e8ff8b5f7', 3),
+(25, 'Who is the best soccer player in the world?', 2, 'ad56f3de-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(26, 'What sport was brought to Japan by the Americans during World War 2?', 2, 'ad56f43f-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(27, 'Which NBA basketball team is from New York?', 2, 'ad56f4a9-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(28, 'How many points are scored for a free-throw shot in basketball?', 2, 'ad56f50c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(29, 'Which baseball team is from New York?', 2, 'ad56f571-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(30, 'Which hockey team is from New York City?', 2, 'ad56f5d6-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(31, 'What is the primary color of Bayern Munchen?', 2, 'ad56f637-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(32, 'How many players are on the field for the defensive team in baseball?', 2, 'ad56f698-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(33, 'How many quarterbacks are on the field in American Football?', 2, 'ad56f6fb-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(34, 'How many points are scored from one Touchdown in American Football?', 2, 'ad56f766-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(35, 'How many runs are scored in baseball from a Grand Slam?', 2, 'ad56f7c7-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(36, 'Who was the 44th President of the USA?', 3, 'ad56f828-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(37, 'Who was the 43rd President of the USA?', 3, 'ad56f88a-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(38, 'Who is the President of Austria?', 3, 'ad56f8ec-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(39, 'Who is the Chancellor of Germany?', 3, 'ad56f94f-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(40, 'How many Senators are in the Congress of the USA?', 3, 'ad56f9af-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(41, 'Which political party has the most seats in the Parliament of Iceland?', 3, 'ad56fa0c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(42, 'test question?', 3, 'ad56fa6f-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(43, 'test question?', 3, 'ad56fada-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(44, 'test question?', 3, 'ad56fb3c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(45, 'test question?', 3, 'ad56fb9c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(46, 'test question?', 3, 'ad56fbfd-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(47, 'test question?', 3, 'ad56fc60-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(48, 'How many Terminator films have been produced?', 4, 'ad56fcbe-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(49, 'Which famous actor is from Australia?', 4, 'ad56fd1e-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(50, 'What is the setting of the famous D-Day invasion scene of the film Saving Private Ryan?', 4, 'ad56fd7f-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(51, 'Which company produces the Terminator machines?', 4, 'ad56fde3-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(52, 'What is the primary city depicted in the film The Sound of Music?', 4, 'ad56fe45-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(53, 'What year was the film Terminator 2 released?', 4, 'ad56fea7-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(54, 'test question?', 4, 'ad56ff05-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(55, 'test question?', 4, 'ad56ff64-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(56, 'test question?', 4, 'ad56ffc3-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(57, 'test question?', 4, 'ad570021-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(58, 'test question?', 4, 'ad570082-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(59, 'test question?', 4, 'ad5700e0-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(60, 'test question?', 5, 'ad57013c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(61, 'test question?', 5, 'ad57019a-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(62, 'test question?', 5, 'ad5701f6-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(63, 'test question?', 5, 'ad570252-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(64, 'test question?', 5, 'ad5702af-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(65, 'test question?', 5, 'ad57030c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(66, 'test question?', 5, 'ad570366-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(67, 'test question?', 5, 'ad5703c2-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(68, 'test question?', 5, 'ad570487-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(69, 'test question?', 5, 'ad5704f7-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(70, 'test question?', 5, 'ad57056b-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(71, 'test question?', 5, 'ad5705d2-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(74, 'test question?', 6, 'ad570635-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(75, 'test question?', 6, 'ad570699-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(76, 'test question?', 6, 'ad5706fb-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(77, 'test question?', 6, 'ad57075d-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(78, 'test question?', 6, 'ad5707c2-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(79, 'test question?', 6, 'ad570828-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(80, 'test question?', 6, 'ad57088d-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(81, 'test question?', 6, 'ad5708ef-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(82, 'test question?', 6, 'ad570943-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(83, 'test question?', 6, 'ad5709cf-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(85, 'test question?', 7, 'ad570a2c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(86, 'test question?', 7, 'ad570a80-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(87, 'test question?', 7, 'ad570acd-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(88, 'test question?', 7, 'ad570b19-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(89, 'test question?', 7, 'ad570b64-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(90, 'test question?', 7, 'ad570bd9-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(91, 'test question?', 7, 'ad570c2e-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(92, 'test question?', 7, 'ad570c7c-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(93, 'test question?', 7, 'ad570cc8-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(94, 'test question?', 7, 'ad570d14-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(95, 'test question?', 7, 'ad570d61-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(96, 'test question?', 8, 'ad570dae-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(97, 'test question?', 8, 'ad570dfa-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(98, 'test question?', 8, 'ad570e47-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(99, 'test question?', 8, 'ad570e92-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(100, 'test question?', 8, 'ad570edd-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(101, 'test question?', 8, 'ad570f34-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(102, 'test question?', 8, 'ad570f83-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(103, 'test question?', 8, 'ad570fce-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(104, 'test question?', 8, 'ad57101a-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(105, 'test question?', 8, 'ad57106a-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(106, 'test question?', 8, 'ad5710b6-372d-11e7-b20d-c48e8ff8b5f7', 4),
+(107, 'test question?', 8, 'ad571102-372d-11e7-b20d-c48e8ff8b5f7', 4);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `quizzes`
+-- Table structure for table `quizzes`
 --
 
 CREATE TABLE `quizzes` (
@@ -1060,7 +1043,7 @@ CREATE TABLE `quizzes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `quizzes`
+-- Dumping data for table `quizzes`
 --
 
 INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_timestamp`, `end_timestamp`) VALUES
@@ -1243,20 +1226,12 @@ INSERT INTO `quizzes` (`id`, `FK_users`, `FK_categories`, `scores`, `start_times
 (181, 1, 1, '0.44', '2017-05-11 17:12:33', '2017-05-11 17:12:38'),
 (182, 1, 1, '0.11', '2017-05-11 17:18:37', '2017-05-11 17:18:58'),
 (183, 1, 8, NULL, '2017-05-11 17:33:26', NULL),
-(184, 1, 12, '1.00', '2017-05-12 16:59:14', '2017-05-12 17:00:25'),
-(185, 1, 12, '0.00', '2017-05-12 17:09:46', '2017-05-12 17:09:50'),
-(186, 1, 12, '0.00', '2017-05-12 17:10:30', '2017-05-12 17:10:36'),
-(187, 1, 12, '0.50', '2017-05-12 17:11:31', '2017-05-12 17:11:34'),
-(188, 1, 12, '0.00', '2017-05-12 17:14:25', '2017-05-12 17:14:29'),
-(189, 1, 12, '0.50', '2017-05-12 17:18:11', '2017-05-12 17:18:15'),
-(190, 1, 12, '0.50', '2017-05-12 17:27:54', '2017-05-12 17:27:55'),
-(191, 1, 12, '0.50', '2017-05-12 18:17:19', '2017-05-12 18:17:22'),
-(192, 1, 12, '0.00', '2017-05-12 18:17:29', '2017-05-12 18:17:34');
+(185, 1, 0, NULL, '2017-05-13 11:19:37', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `quiz_questions`
+-- Table structure for table `quiz_questions`
 --
 
 CREATE TABLE `quiz_questions` (
@@ -1266,7 +1241,7 @@ CREATE TABLE `quiz_questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `quiz_questions`
+-- Dumping data for table `quiz_questions`
 --
 
 INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
@@ -1325,29 +1300,21 @@ INSERT INTO `quiz_questions` (`id`, `FK_quizzes`, `FK_questions`) VALUES
 (63, 183, 101),
 (64, 183, 99),
 (65, 183, 106),
-(66, 184, 110),
-(67, 184, 109),
-(68, 185, 110),
-(69, 185, 109),
-(70, 186, 109),
-(71, 186, 110),
-(72, 187, 110),
-(73, 187, 109),
-(74, 188, 109),
-(75, 188, 110),
-(76, 189, 109),
-(77, 189, 110),
-(78, 190, 109),
-(79, 190, 110),
-(80, 191, 110),
-(81, 191, 109),
-(82, 192, 110),
-(83, 192, 109);
+(76, 185, 30),
+(77, 185, 7),
+(78, 185, 15),
+(79, 185, 79),
+(80, 185, 33),
+(81, 185, 37),
+(82, 185, 76),
+(83, 185, 71),
+(84, 185, 34),
+(85, 185, 54);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -1359,33 +1326,32 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `family_name` varchar(255) NOT NULL,
-  `date_of_birth` date NOT NULL DEFAULT '1993-07-30'
+  `date_of_birth` date NOT NULL DEFAULT '1993-07-30',
+  `custom_avatar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `FK_avatars`, `FK_classes`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`) VALUES
-(1, 6, 1, 'Admin', 'admin@CodeBus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Max', 'Mustermann', '1993-07-30'),
-(2, 1, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30'),
-(3, 1, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30'),
-(4, 2, 1, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30'),
-(5, 2, 1, 'Nathalie', 'nathalie.stiefsohn@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nathalie', 'Stiefsohn', '1993-07-30'),
-(6, 1, 1, 'Nicky', 'nicky.pallas@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nicky', 'Pallas', '1993-07-30'),
-(7, 1, 1, 'Test', 'test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Test', 'Test', '1993-07-30'),
-(8, 1, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Christoph', 'Test', '1993-07-30'),
-(9, 2, 1, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30'),
-(10, 5, 1, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30'),
-(11, 1, 1, '', '$email', '$password', '$first_name', '$family_name', '1993-07-30'),
-(12, 2, 1, '', 'maria@musterfrau.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Maria', 'Musterfrau', '2017-03-14');
+INSERT INTO `users` (`id`, `FK_avatars`, `FK_classes`, `nickname`, `email`, `password`, `first_name`, `family_name`, `date_of_birth`, `custom_avatar`) VALUES
+(1, 1, 1, '1111', 'admin@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Master', 'Admin', '1993-07-30', NULL),
+(2, 1, 1, 'Goran', 'goran.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Goran', 'Stevic', '1993-07-30', NULL),
+(3, 1, 1, 'Igor', 'igor.stevic@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Igor', 'Stevic', '1993-07-30', NULL),
+(4, 2, 1, 'Lisa', 'lisa.duschek@codebus.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Lisa', 'Duschek', '1993-07-30', NULL),
+(5, 2, 1, 'Nathalie', 'nathalie.stiefsohn@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nathalie', 'Stiefsohn', '1993-07-30', NULL),
+(6, 1, 1, 'Nicky', 'nicky.pallas@codemasters.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nicky', 'Pallas', '1993-07-30', NULL),
+(7, 1, 1, 'Test', 'test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Test', 'Test', '1993-07-30', NULL),
+(8, 1, 1, 'Christoph', 'chris@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Christoph', 'Test', '1993-07-30', NULL),
+(9, 2, 1, 'Ema', 'ema@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Ema', 'Test', '1993-07-30', NULL),
+(10, 5, 1, 'funnynati1', 'funnynati1@hotmail.com', '16954afbacd788f977ef6e8da44d5d7df5eb9098b71bdbbb40596b0c2e3191f6', 'Nathalie', 'Stiefsohn', '1993-07-30', NULL);
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `admins`
+-- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
@@ -1393,7 +1359,7 @@ ALTER TABLE `admins`
   ADD KEY `id` (`id`,`FK_users`);
 
 --
--- Indizes für die Tabelle `answers`
+-- Indexes for table `answers`
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
@@ -1402,28 +1368,28 @@ ALTER TABLE `answers`
   ADD KEY `correct` (`correct`);
 
 --
--- Indizes für die Tabelle `avatars`
+-- Indexes for table `avatars`
 --
 ALTER TABLE `avatars`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indizes für die Tabelle `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indizes für die Tabelle `classes`
+-- Indexes for table `classes`
 --
 ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indizes für die Tabelle `questions`
+-- Indexes for table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
@@ -1431,7 +1397,7 @@ ALTER TABLE `questions`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indizes für die Tabelle `quizzes`
+-- Indexes for table `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD PRIMARY KEY (`id`),
@@ -1440,7 +1406,7 @@ ALTER TABLE `quizzes`
   ADD KEY `FK_categories` (`FK_categories`);
 
 --
--- Indizes für die Tabelle `quiz_questions`
+-- Indexes for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD PRIMARY KEY (`id`),
@@ -1449,7 +1415,7 @@ ALTER TABLE `quiz_questions`
   ADD KEY `FK_quizzes` (`FK_quizzes`);
 
 --
--- Indizes für die Tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1458,92 +1424,92 @@ ALTER TABLE `users`
   ADD KEY `FK_classes` (`FK_classes`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `admins`
+-- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT für Tabelle `answers`
+-- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=974;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=963;
 --
--- AUTO_INCREMENT für Tabelle `avatars`
+-- AUTO_INCREMENT for table `avatars`
 --
 ALTER TABLE `avatars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT für Tabelle `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT für Tabelle `classes`
+-- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT für Tabelle `questions`
+-- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 --
--- AUTO_INCREMENT für Tabelle `quizzes`
+-- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 --
--- AUTO_INCREMENT für Tabelle `quiz_questions`
+-- AUTO_INCREMENT for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
--- AUTO_INCREMENT für Tabelle `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `admins`
+-- Constraints for table `admins`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`);
 
 --
--- Constraints der Tabelle `answers`
+-- Constraints for table `answers`
 --
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`FK_question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints der Tabelle `questions`
+-- Constraints for table `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints der Tabelle `quizzes`
+-- Constraints for table `quizzes`
 --
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`FK_users`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`FK_categories`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints der Tabelle `quiz_questions`
+-- Constraints for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
   ADD CONSTRAINT `quiz_questions_ibfk_3` FOREIGN KEY (`FK_questions`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `quiz_questions_ibfk_4` FOREIGN KEY (`FK_quizzes`) REFERENCES `quizzes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints der Tabelle `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`FK_avatars`) REFERENCES `avatars` (`id`),
