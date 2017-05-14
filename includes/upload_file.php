@@ -45,8 +45,6 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
                 $_FILES["fileToUpload"]["tmp_name"],
                 $imageFileName
         );
-    } else {
-        echo '<div class="alert alert-danger">The image file you provided was invalid.</div>';
     }
 }
 ?>
