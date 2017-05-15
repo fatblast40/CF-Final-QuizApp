@@ -90,37 +90,48 @@ require_once('includes/head_tag.php');
 				                while ($row_classes  = mysqli_fetch_array($res_classes)){
 				                    $class = $row_classes['name'];
 				                    $class_id = $row_classes['id'];
-				                    $from = $row_classes['from'];
+				                    $from = $row_classes['start_date'];
 				                    $from = strtotime($from);
 				                    $from = date('Y-m-d',$from);
-				                    $to = $row_classes['to'];
+				                    $to = $row_classes['end_date'];
 				                    $to = strtotime($to);
 				                    $to = date('Y-m-d',$to);
+				                    
 
-				                    if(isset($_GET['class_id'])){
+					                    if(isset($_GET['class_id'])){
 
-				                    	if ($class_id==$selected_class_id) {
+					                    	if ($class_id==$selected_class_id) {
 
-					                    	echo "<option value='".$class_id."' selected='selected
-					                    	'>".$class."</option>";
-					                    } else {
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } else {
 
-					                    	echo "<option value='".$class_id."'>".$class."</option>";
-					                    }
+						                    	echo "<option value='".$class_id."'>".$class."</option>";
+						                    }
 
-									} else {
-					                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
-					                    	$selected_class_id=$class_id;
-					                    	echo "<option value='".$class_id."' selected='selected
-					                    	'>".$class."</option>";
-					                    } else {
+										} else {
+						                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
+						                    	$count_active_classes += 1;
+						                    	$selected_class_id=$class_id;
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } elseif($class_id==$count_classes){
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } else {
+						                    	$selected_class_id=$class_id;
+						                    	
+						                    	echo "<option value='".$class_id."'>".$class."</option>";
+						                    }
+					                	}
 
-					                    	echo "<option value='".$class_id."'>".$class."</option>";
-					                    }
-				                	}
+
 				                }
-
-
+						        if(!isset($_GET['class_id'])){
+							        if ($count_active_classes == 0) {
+				                    	$selected_class_id=$count_classes;
+							        }
+							    }
 					 ?>
 
 					</select>
@@ -135,10 +146,10 @@ require_once('includes/head_tag.php');
 					<div class="row">
 
 							<?php
-								require_once('query/admin_ranking_query.php');
-				                while ($row_categories  = mysqli_fetch_array($res_categories)){
-				                    $category = $row_categories['category'];
-				                    $category_id=$row_categories['category_id'];
+								require_once('query/categories_query.php');
+				                while ($row_all_categories  = mysqli_fetch_array($res_all_categories)){
+				                    $category = $row_all_categories['category'];
+				                    $category_id=$row_all_categories['id'];
 				                    if ($selected_category_id==$category_id){
 				                    	$highlight="highlight";
 				                    } else {
@@ -192,7 +203,6 @@ require_once('includes/head_tag.php');
                         $rank=1;
                         while ($row_ranking  = mysqli_fetch_array($res_ranking)){
                         	
- 							$name = $row_ranking['nickname'];
  							$first_name = $row_ranking['first_name'];
  							$family_name = $row_ranking['family_name'];
                             $score=$row_ranking['scores'];

@@ -2,9 +2,13 @@
 require_once('includes/start_session_admin.php');
 ?>
 <?php 
+
 	if(isset($_GET['class_id'])){
 		$selected_class_id=$_GET['class_id'];
-	} 
+	} else {
+    	$count_active_classes = 0;
+
+	}
 ?>
 
 <!DOCTYPE html>
@@ -52,44 +56,55 @@ require_once('includes/head_tag.php');
 
 					<label class="white">Pick a Class</label>
 					<select class="form-control" id="class" name="class">
-				          	<option value='5'>TESTEST</option>"			  
+				          	<!-- <option value='5'>TESTEST</option>"			   -->
 					<?php 
 
 						require_once('query/all_classes_query.php');
 				                while ($row_classes  = mysqli_fetch_array($res_classes)){
 				                    $class = $row_classes['name'];
 				                    $class_id = $row_classes['id'];
-				                    $from = $row_classes['from'];
+				                    $from = $row_classes['start_date'];
 				                    $from = strtotime($from);
 				                    $from = date('Y-m-d',$from);
-				                    $to = $row_classes['to'];
+				                    $to = $row_classes['end_date'];
 				                    $to = strtotime($to);
 				                    $to = date('Y-m-d',$to);
+				                    
 
-				                    if(isset($_GET['class_id'])){
+					                    if(isset($_GET['class_id'])){
 
-				                    	if ($class_id==$selected_class_id) {
+					                    	if ($class_id==$selected_class_id) {
 
-					                    	echo "<option value='".$class_id."' selected='selected
-					                    	'>".$class."</option>";
-					                    } else {
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } else {
 
-					                    	echo "<option value='".$class_id."'>".$class."</option>";
-					                    }
+						                    	echo "<option value='".$class_id."'>".$class."</option>";
+						                    }
 
-									} else {
-					                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
-					                    	$selected_class_id=$class_id;
-					                    	echo "<option value='".$class_id."' selected='selected
-					                    	'>".$class."</option>";
-					                    } else {
+										} else {
+						                    if ((date('Y-m-d') >= $from) AND (date('Y-m-d') <= $to)) {
+						                    	$count_active_classes += 1;
+						                    	$selected_class_id=$class_id;
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } elseif($class_id==$count_classes){
+						                    	echo "<option value='".$class_id."' selected='selected
+						                    	'>".$class."</option>";
+						                    } else {
+						                    	$selected_class_id=$class_id;
+						                    	
+						                    	echo "<option value='".$class_id."'>".$class."</option>";
+						                    }
+					                	}
 
-					                    	echo "<option value='".$class_id."'>".$class."</option>";
-					                    }
-				                	}
+
 				                }
-
-
+						        if(!isset($_GET['class_id'])){
+							        if ($count_active_classes == 0) {
+				                    	$selected_class_id=$count_classes;
+							        }
+							    }
 					 ?>
 
 					</select>
@@ -113,10 +128,10 @@ require_once('includes/head_tag.php');
                                 	<th class="text-center"><h5>Family<br>Name</h5></th>
                                     <!-- <th class="text-center"><h5>E-Mail</h5></th> -->
                                     <?php
-										require('query/my_quizzes_categories.php');
-						                while ($row_categories  = mysqli_fetch_array($res_categories)){
+										require('query/categories_query.php');
+						                while ($row_categories  = mysqli_fetch_array($res_all_categories)){
 						                    $category = $row_categories['category'];
-						                    $category_id=$row_categories['category_id'];     
+						                    $category_id=$row_categories['id'];     
 						                    echo '
 
 									<th class="text-center"><h5>'.$category.'</h5></th>
@@ -162,7 +177,7 @@ require_once('includes/head_tag.php');
 
 					                    if($score<0 || $score>100){
 					                    	echo'
-											<td class=""><h4>('.$score.')</h4></td>
+											<td class=""><h4>error</h4></td>
 
 						       				';
 					                    } else {

@@ -60,6 +60,14 @@ require_once('includes/head_tag.php');
 								</div>
 							</div>
 						</a>
+						<!-- create class -->
+						<a href="admin_create_class.php">
+							<div class="col-xs-6">
+								<div class="wrapper text-center">
+									<h2>Create Class</h2>
+								</div>
+							</div>
+						</a>
 						<!-- all users -->
 						<a href="admin_all_users.php">
 							<div class="col-xs-6">

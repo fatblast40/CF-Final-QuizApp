@@ -16,15 +16,17 @@ require_once('includes/start_session_user.php');
 		$selected_category_id = $_GET['selected_category_id'];
 
 		$query_category_name = "
-		    SELECT category, t1.scores 
-		    FROM quizzes AS t1
-		    LEFT JOIN categories ON categories.id=t1.FK_categories
-		    JOIN users ON users.id = t1.FK_users
-		    LEFT JOIN quizzes AS t2
-		      ON t1.FK_users = t2.FK_users 
-		            AND t1.start_timestamp < t2.start_timestamp
-		    WHERE t2.FK_users IS NULL 
-		    and t1.fk_categories LIKE '".$selected_category_id."' and t1.FK_users=".$user_id
+			SELECT category, t1.scores AS scores
+		    FROM categories 
+			left JOIN quizzes as t1 ON categories.id=t1.FK_categories
+			left JOIN quizzes AS t2
+			ON t1.FK_users = t2.FK_users 
+			AND t1.FK_categories = t2.FK_categories
+			AND t1.end_timestamp < t2.end_timestamp
+			WHERE t2.FK_users IS NULL 
+		    and t1.fk_categories = ".$selected_category_id." and t1.FK_users=".$_SESSION['user']."
+		    order by category ASC 
+		    "
 		    ;
 
 		$res_category_name = mysqli_query($con, $query_category_name);
@@ -154,7 +156,6 @@ require_once('includes/head_tag.php');
                         $rank=1;
                         while (($row_ranking  = mysqli_fetch_array($res_ranking)) AND ($rank <11)){
                         	
- 							$name = $row_ranking['nickname'];
  							$first_name = $row_ranking['first_name'];
  							$family_name = $row_ranking['family_name'];
                             $score=$row_ranking['scores'];

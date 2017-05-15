@@ -58,12 +58,11 @@ require_once('includes/head_tag.php');
                             scores AS latest_score
 
                         FROM `quizzes`
-                        LEFT JOIN categories ON categories.id=quizzes.FK_categories
                         where FK_users = ".$user_id."
-                        AND categories.id=".$category_id."
-                        AND start_timestamp='".$latest_timestamp."'"
-                        
-                    ;
+                        AND quizzes.fk_categories=".$category_id."
+                        AND end_timestamp='".$latest_timestamp."'
+
+                        ";
 
                     $res_latest_result = mysqli_query($con, $query_latest_result);
                     $latest_result = mysqli_fetch_array($res_latest_result);
