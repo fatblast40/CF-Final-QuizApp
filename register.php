@@ -216,10 +216,10 @@ require_once('includes/head_tag.php');
                         while ($row_classes  = mysqli_fetch_array($res_classes)){
                             $class = $row_classes['name'];
                             $class_id = $row_classes['id'];
-                            $from = $row_classes['from'];
+                            $from = $row_classes['start_date'];
                             $from = strtotime($from);
                             $from = date('Y-m-d',$from);
-                            $to = $row_classes['to'];
+                            $to = $row_classes['end_date'];
                             $to = strtotime($to);
                             $to = date('Y-m-d',$to);
 
