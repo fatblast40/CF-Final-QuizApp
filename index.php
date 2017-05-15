@@ -117,21 +117,21 @@ require_once('includes/alert_box.php');
                
                  
         <!-- USERNAME -->
-        <!--   <h4 class="color_bc1">USERNAME:</h4>
+        <!--   <h4 class="white">USERNAME:</h4>
           <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" maxlength="50" value="<?php echo $name ?>" />
           <span class="text-danger"><?php echo $nameError; ?></span>
       </div>
       <div class="col-xs-12 col-md-6"> -->
 
        <!-- EMAIL -->
-          <h4 class="color_bc1">E-MAIL:</h4>
+          <h4 class="white">E-MAIL:</h4>
           <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email"/>
           <span class="text-danger"><?php echo $emailError; ?></span>
       </div>
       <div class="col-xs-12 col-md-6">
 
         <!-- PASSWORD -->
-          <h4 class="color_bc1">PASSWORD:</h4>
+          <h4 class="white">PASSWORD:</h4>
           <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
           <span class="text-danger"><?php echo $passError; ?></span>
       </div>
