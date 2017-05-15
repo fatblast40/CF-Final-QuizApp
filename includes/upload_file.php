@@ -4,26 +4,47 @@
 
     <!-- NEW PASSWORD -->
     <h4 class="white">Upload Avatar image</h4>
-    <input id="input-1a" type="file" class="file" data-show-preview="false">
+    <input id="fileToUpload" name="fileToUpload" type="file" class="file" data-show-preview="false">
 
 
 
 
 <?php
-if(isset($_POST["submit"])) {
+require_once 'sql_helpers.php';
+require_once 'sql_queries.php';
+
+function replaceOldImage($imageFileName) {
+    global $getCustomAvatarFileNameQuery;
+    $imageData = getFirstRecord($getCustomAvatarFileNameQuery, ['i', $_SESSION['user']]);
+    $customAvatarFileName = $imageData['custom_avatar'];
+    if ($customAvatarFileName !== null) {
+        unlink($customAvatarFileName);
+    }
+    global $setCustomAvatarFileNameQuery;
+    return addRecord($setCustomAvatarFileNameQuery, ['si', $imageFileName, $_SESSION['user']]);
+}
+
+
+if(isset($_POST['btn-change_data']) || isset($_POST['btn-signup'])) {
+    error_log(json_encode($_FILES));
 
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    error_log($imageFileType);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
+        $imageFileName = 'uploads'.DIRECTORY_SEPARATOR.'avatar_user'.$_SESSION['user'].'.'.$imageFileType;
+        try {
+            replaceOldImage($imageFileName);
+        } catch (OutOfBoundsException $exception) {
+            echo '<div class="alert alert-danger">Database error'.$exception->getMessage().'</div>';
+        }
+        move_uploaded_file(
+                $_FILES["fileToUpload"]["tmp_name"],
+                $imageFileName
+        );
     }
 }
 ?>

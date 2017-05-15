@@ -200,7 +200,7 @@ require_once('includes/head_tag.php');
         <section class="row">
           <div class="col-xs-12 margin-top">
             <!-- add main content here -->
-            <form method="post" class="row <?php echo $hidden; ?>" autocomplete="off">
+            <form method="post" class="row <?php echo $hidden; ?>" autocomplete="off" enctype="multipart/form-data">
               <!-- first_row -->
               <div class="col-xs-12">
                 <div class="row">
@@ -291,7 +291,16 @@ require_once('includes/head_tag.php');
                   $query_avatar = "SELECT * FROM avatars";
                   $res_avatar = mysqli_query($con, $query_avatar);
 
-                  while($avatarRow=mysqli_fetch_array($res_avatar)){
+                  $avatarRows=mysqli_fetch_all($res_avatar, MYSQLI_ASSOC);
+                  // Fetch custom avatar and present it as the first choice if it exists
+
+                  require_once 'includes/sql_queries.php';
+
+                  $customAvatarFileName = getFirstRecord($getCustomAvatarFileNameQuery, ['i', $_SESSION['user']])['custom_avatar'];
+                  if ($customAvatarFileName != null) {
+                      $avatarRows = array_merge([['location' => $customAvatarFileName, 'id' => 0]], $avatarRows);
+                  }
+                  foreach ($avatarRows as $avatarRow) {
                     $avatar = $avatarRow['location'];
                     $avatar_id = $avatarRow['id'];
 
