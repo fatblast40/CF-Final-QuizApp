@@ -55,18 +55,18 @@
    
    $password = hash('sha256', $password); // password hashing using SHA256
   // user
-   $user_query = "SELECT id, email, nickname, password FROM users WHERE email='$email'";
+   $user_query = "SELECT id, email, password FROM users WHERE email='$email'";
    $res_user = mysqli_query($con, $user_query);
    $row_user = mysqli_fetch_array($res_user);
    $count_user = mysqli_num_rows($res_user); // if uname/pass correct it returns must be 1 row
    // echo $count_user;
    // admin
-   $res_admin=mysqli_query($con, "SELECT users.id, email, nickname, password FROM users JOIN admins ON users.id = admins.FK_users WHERE email='$email'");
+   $res_admin=mysqli_query($con, "SELECT users.id, email, password FROM users JOIN admins ON users.id = admins.FK_users WHERE email='$email'");
    $row_admin=mysqli_fetch_array($res_admin);
    $count_admin = mysqli_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
    // echo $count_admin;
-   echo $row_user['password'].'<br>';
-   echo $password;
+   // echo $row_user['password'].'<br>';
+   // echo $password;
    if( $count_user == 1 && $row_user['password']==$password ) {
     $_SESSION['user'] = $row_user['id'];
     header("Location: home_user.php");
@@ -87,21 +87,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Log-in</title>
-  <link rel="icon" href="pictures/logo2.png">
-    <!-- style sheet -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- jquery and bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight.js"></script>
-    <!-- webfont -->
-    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+  <title>log-in</title>
+  <?php
+require_once('includes/head_tag.php');
+  ?>
 </head>
 <body>
   <div id="wrap">
@@ -117,7 +106,7 @@
       <div class="col-xs-12">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
 
-          <h2 class="color_bc1">Sign In</h2>
+          <h2 class="white">Sign In</h2>
           <hr />
                  
       <?php
